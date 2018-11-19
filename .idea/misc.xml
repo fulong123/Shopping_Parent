@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/UserService/pom.xml" />
+        <option value="$PROJECT_DIR$/ProductServer/pom.xml" />
+        <option value="$PROJECT_DIR$/ProducTypeServer/pom.xml" />
+        <option value="$PROJECT_DIR$/AdServer/pom.xml" />
+        <option value="$PROJECT_DIR$/NewsServer/pom.xml" />
+        <option value="$PROJECT_DIR$/AddressServer/pom.xml" />
+        <option value="$PROJECT_DIR$/PayServer/pom.xml" />
+        <option value="$PROJECT_DIR$/OrderServer/pom.xml" />
+        <option value="$PROJECT_DIR$/BrandServer/pom.xml" />
+        <option value="$PROJECT_DIR$/CarServer/pom.xml" />
+        <option value="$PROJECT_DIR$/ManagerWeb/pom.xml" />
+        <option value="$PROJECT_DIR$/DaoCommons/pom.xml" />
+        <option value="$PROJECT_DIR$/ServiceComons/pom.xml" />
+        <option value="$PROJECT_DIR$/Commons/pom.xml" />
+        <option value="$PROJECT_DIR$/Facade/pom.xml" />
+        <option value="$PROJECT_DIR$/Pojo/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
