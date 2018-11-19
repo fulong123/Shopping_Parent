@@ -20,7 +20,7 @@ public class User implements Serializable {
     private static final long serialVersionUID = 7159250874103984414L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //自动
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //自动生成策略
     private Integer uId;            //用户ID
     @Column
     private String userRealName;    //用户真实姓名
