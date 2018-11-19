@@ -23,12 +23,12 @@ public class Address implements Serializable {
     private String telNum;                      //电话
     private String landmarkBuilding;            //标志建筑
     private String deliveryTime;                //最佳送货时间
-    private String isDefault;                   //是否默认
+    private Integer isDefault;                   //是否默认
 
     public Address() {
     }
 
-    public Address(Integer addressId, String distributionArea, String consigneeName, String email, String detailedAddress, String postalCode, String phone, String telNum, String landmarkBuilding, String deliveryTime, String isDefault) {
+    public Address(Integer addressId, String distributionArea, String consigneeName, String email, String detailedAddress, String postalCode, String phone, String telNum, String landmarkBuilding, String deliveryTime, Integer isDefault) {
         this.addressId = addressId;
         this.distributionArea = distributionArea;
         this.consigneeName = consigneeName;
@@ -122,11 +122,11 @@ public class Address implements Serializable {
         this.deliveryTime = deliveryTime;
     }
 
-    public String getIsDefault() {
+    public Integer getIsDefault() {
         return isDefault;
     }
 
-    public void setIsDefault(String isDefault) {
+    public void setIsDefault(Integer isDefault) {
         this.isDefault = isDefault;
     }
 

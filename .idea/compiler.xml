@@ -24,8 +24,8 @@
         <module name="ManagerWeb" />
         <module name="NewsServer" />
         <module name="newsserver" />
-        <module name="OrderServer" />
         <module name="orderserver" />
+        <module name="OrderServer" />
         <module name="PayServer" />
         <module name="payserver" />
         <module name="pojo" />
