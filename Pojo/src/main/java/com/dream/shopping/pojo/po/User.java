@@ -42,7 +42,8 @@ public class User implements Serializable {
     private String email;           //电子邮箱
     @Column
     private String sex;             //性别
-
+    @Column
+    private String addressId;       //地址id
     public User() {
     }
 
