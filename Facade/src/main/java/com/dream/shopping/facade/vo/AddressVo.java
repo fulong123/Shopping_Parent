@@ -13,7 +13,6 @@ import java.io.Serializable;
  * Time: 11:32
  */
 @Component
-@Entity
 public class AddressVo implements Serializable {
 
     private static final long serialVersionUID = -7235225216870775844L;
@@ -33,5 +32,12 @@ public class AddressVo implements Serializable {
 
     public void setConstomAddress(ConstomAddress constomAddress) {
         this.constomAddress = constomAddress;
+    }
+
+    @Override
+    public String toString() {
+        return "AddressVo{" +
+                "constomAddress=" + constomAddress +
+                '}';
     }
 }

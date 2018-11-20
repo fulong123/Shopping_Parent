@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dream.shopping.addressserver.mapper.AddressMapper">
 
-    <select id="selectAll" parameterType="com.dream.shopping.facade.vo.AddressVo" resultType="com.dream.shopping.facade.po.Address">
+    <select id="selectAll" parameterType="com.dream.shopping.facade.vo.AddressVo"
+            resultType="com.dream.shopping.facade.po.Address">
         select * from address
         <where>
             <include refid="selectAddress"/>
@@ -11,28 +12,82 @@
     <sql id="selectAddress">
         <if test="constomAddress != null">
             <if test="constomAddress.consigneeName!=null and constomAddress.consigneeName!=''">
-                and consignee_name = "${constomAddress.consigneeName}"
+                and consigneeName = "${constomAddress.consigneeName}"
             </if>
         </if>
     </sql>
 
     <select id="selectAddressById" parameterType="java.lang.Integer" resultType="com.dream.shopping.facade.po.Address">
-        select * from address where addressId = #{value}
+        select *
+        from address
+        where addressId = #{value}
     </select>
     <insert id="insertAddress" parameterType="com.dream.shopping.facade.po.Address">
         <selectKey keyProperty="addressId" order="AFTER" resultType="java.lang.Integer">
             select last_insert_id()
         </selectKey>
-        insert into address(consigneeName, deliveryTime, detailedAddress, distributionArea, email, isDefault, landmarkBuilding, phone, postalCode, telNum)
-        values (#{consigneeName},#{deliveryTime},#{detailedAddress},#{distributionArea},#{email},#{isDefault},#{landmarkBuilding},#{phone},#{postalCode},#{telNum})
+        insert into address
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            consigneeName, detailedAddress, distributionArea, email, isDefault, phone,
+            <if test="postalCode != null">
+                postalCode,
+            </if>
+            <if test="telNum != null">
+                telNum,
+            </if>
+            <if test="landmarkBuilding != null">
+                landmarkBuilding,
+            </if>
+            <if test="deliveryTime != null">
+                deliveryTime,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            #{consigneeName},#{detailedAddress},#{distributionArea},#{email},#{isDefault},#{phone},
+            <if test="postalCode != null">
+                #{postalCode},
+            </if>
+            <if test="telNum != null">
+                #{telNum},
+            </if>
+            <if test="landmarkBuilding != null">
+                #{landmarkBuilding},
+            </if>
+            <if test="deliveryTime != null">
+                #{deliveryTime},
+            </if>
+        </trim>
     </insert>
 
     <update id="updateAddress" parameterType="com.dream.shopping.facade.po.Address">
-        update address set consigneeName=#{consigneeName},deliveryTime=#{deliveryTime},detailedAddress=#{detailedAddress},distributionArea=#{distributionArea},
-                           email=#{email},isDefault=#{isDefault},landmarkBuilding=#{landmarkBuilding},phone=#{phone},postalCode=#{postalCode},telNum=#{telNum}
+        update address
+        <trim suffixOverrides=",">
+            set consigneeName = #{consigneeName},
+            detailedAddress = #{detailedAddress},
+            distributionArea = #{distributionArea},
+            email = #{email},
+            isDefault = #{isDefault},
+            phone = #{phone},
+            <if test="postalCode != null">
+                postalCode = #{postalCode},
+            </if>
+            <if test="telNum != null">
+                telNum = #{telNum}
+            </if>
+            <if test="landmarkBuilding != null">
+                landmarkBuilding = #{landmarkBuilding},
+            </if>
+            <if test="deliveryTime != null">
+                deliveryTime = #{deliveryTime},
+            </if>
+        </trim>
+        where addressId=#{addressId}
     </update>
 
     <delete id="deleteAddressById" parameterType="java.lang.Integer">
-        delete from address where addressId=#{addressId}
+        delete
+        from address
+        where addressId = #{addressId}
     </delete>
 </mapper>

@@ -60,7 +60,7 @@ public interface UserMapper {
      * @author sky
      * @date 2018/11/20 11:12
      * @param [uId]
-     * @return com.dream.shopping.facade.po.User
+     * @return User
      */
     User selectById(Integer uId);
 
@@ -69,7 +69,7 @@ public interface UserMapper {
      * @author sky
      * @date 2018/11/20 11:55
      * @param []
-     * @return java.util.List<com.dream.shopping.facade.po.User>
+     * @return java.util.List<User>
      */
     List<User> selectByUser(User user);
 

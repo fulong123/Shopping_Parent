@@ -2,6 +2,8 @@ package com.dream.shopping.addressserver.testaddress;
 
 import com.dream.shopping.facade.po.Address;
 import com.dream.shopping.addressserver.mapper.AddressMapper;
+import com.dream.shopping.facade.vo.AddressVo;
+import com.dream.shopping.facade.vo.ConstomAddress;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
@@ -15,6 +17,7 @@ import org.dbunit.database.QueryDataSet;
 import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,6 +38,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * 描述:
@@ -89,8 +93,70 @@ public class TestAddressMapper extends DBTestCase {
         Address address = addressMapper.selectAddressById(22);
         assertSame("成功",22,address.getAddressId());
     }
+    @Test
+    @DatabaseSetup(type = DatabaseOperation.CLEAN_INSERT,
+            value = "classpath:insertDBUnit/address.xml")
+    @DatabaseTearDown(type = DatabaseOperation.CLEAN_INSERT,
+            value = "classpath:sourceDBUnit/address.xml")
+    public void testFindAll(){
+        AddressVo addressVo = new AddressVo();
+        ConstomAddress constomAddress = new ConstomAddress();
+        constomAddress.setAddressId(22);
+        addressVo.setConstomAddress(constomAddress);
+        System.out.println(addressVo);
+        List<Address> addresses = addressMapper.selectAll(addressVo);
+        for (Address address:
+        addresses) {
+            assertSame("成功",22,address.getAddressId());
+        }
+    }
 
+    @Test
+    @DatabaseSetup(type = DatabaseOperation.CLEAN_INSERT,
+            value = "classpath:insertDBUnit/address.xml")
+    @DatabaseTearDown(type = DatabaseOperation.CLEAN_INSERT,
+            value = "classpath:sourceDBUnit/address.xml")
+    public void testSelectAll(){
+        AddressVo addressVo = new AddressVo();
+        ConstomAddress constomAddress = new ConstomAddress();
+        addressVo.setConstomAddress(constomAddress);
+        System.out.println(addressVo);
+        List<Address> addresses = addressMapper.selectAll(addressVo);
+        for (Address address:
+                addresses) {
+            assertSame("成功",22,address.getAddressId());
+        }
+    }
+    @Test
+    @DatabaseSetup(type = DatabaseOperation.CLEAN_INSERT,
+            value = "classpath:insertDBUnit/address.xml")
+    @DatabaseTearDown(type = DatabaseOperation.CLEAN_INSERT,
+            value = "classpath:sourceDBUnit/address.xml")
+    public void testInsert(){
+        Address address = new Address(null, "sc", "z3", "117@qq.com", "sad", null, "1545", null, null, null, 1);
+        int i = addressMapper.insertAddress(address);
+        Assert.assertEquals(1,i);
+    }
 
+    @Test
+    @DatabaseSetup(type = DatabaseOperation.CLEAN_INSERT,
+            value = "classpath:insertDBUnit/address.xml")
+    @DatabaseTearDown(type = DatabaseOperation.CLEAN_INSERT,
+            value = "classpath:sourceDBUnit/address.xml")
+    public void testUpdate(){
+        Address address = new Address(22, "sc", "z3", "117@qq.com", "sad", null, "1545", null, null, null, 1);
+        int i = addressMapper.updateAddress(address);
+        Assert.assertEquals(1,i);
+    }
+    @Test
+    @DatabaseSetup(type = DatabaseOperation.CLEAN_INSERT,
+            value = "classpath:insertDBUnit/address.xml")
+    @DatabaseTearDown(type = DatabaseOperation.CLEAN_INSERT,
+            value = "classpath:sourceDBUnit/address.xml")
+    public void testDelete(){
+        int i = addressMapper.deleteAddressById(22);
+        Assert.assertEquals(1,i);
+    }
     @Override
     protected IDataSet getDataSet() throws Exception {
         return connection.createDataSet();
