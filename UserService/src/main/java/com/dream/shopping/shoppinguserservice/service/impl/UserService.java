@@ -37,8 +37,13 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Integer deleteAll(UserVo userVo) {
-        return userMapper.deleteAll(userVo);
+    public Integer deleteByBatch(List<UserVo> userVos) {
+        return userMapper.deleteByBatch(userVos);
+    }
+
+    @Override
+    public Integer deleteAll() {
+        return userMapper.deleteAll();
     }
 
     @Override
@@ -47,8 +52,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public List<User> selectAll(UserVo userVo) {
-        return userMapper.selectAll(userVo);
+    public List<User> selectByUserVo(UserVo userVo) {
+        return userMapper.selectByUserVo(userVo);
     }
 
     @Override
