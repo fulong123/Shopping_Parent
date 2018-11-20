@@ -27,6 +27,24 @@
     </properties>
 
     <dependencies>
+        <!-- 依赖facade工程 -->
+        <dependency>
+            <groupId>com.dream.shopping</groupId>
+            <artifactId>facade</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!-- 依赖通用daocommon工程 -->
+        <dependency>
+            <groupId>com.dream.shopping</groupId>
+            <artifactId>daocommons</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!-- 依赖全局工具类-->
+        <dependency>
+            <groupId>com.dream.shopping</groupId>
+            <artifactId>cmmons</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-activemq</artifactId>
