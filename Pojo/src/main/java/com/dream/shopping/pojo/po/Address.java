@@ -40,12 +40,8 @@ public class Address implements Serializable {
     private String landmarkBuilding;            //标志建筑
     @Column
     private String deliveryTime;                //最佳送货时间
-<<<<<<< Updated upstream
-    private Integer isDefault;                   //是否默认
-=======
     @Column
-    private String isDefault;                   //是否默认
->>>>>>> Stashed changes
+    private Integer isDefault;                   //是否默认
 
     public Address() {
     }
