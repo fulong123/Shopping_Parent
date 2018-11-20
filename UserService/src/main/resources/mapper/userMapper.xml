@@ -15,7 +15,7 @@
     <result column="tel" property="tel" jdbcType="VARCHAR"/>
     <result column="user_real_name" property="userRealName" jdbcType="VARCHAR"/>
     <result column="username" property="username" jdbcType="VARCHAR"/>
-    <result column="weChat" property="weChat" jdbcType="VARCHAR"/>
+    <result column="we_chat" property="weChat" jdbcType="VARCHAR"/>
     <result column="monetary" property="monetary" jdbcType="DOUBLE"/>
     <result column="address_id" property="addressId" jdbcType="VARCHAR"/>
     <result column="balance" property="balance" jdbcType="DOUBLE"/>
@@ -30,7 +30,7 @@
     <result column="user_login_name" property="userLoginName" jdbcType="VARCHAR"/>
 
 </resultMap>
-
+    <!-- 动态sql添加 -->
     <insert id="insertUser" parameterType="com.dream.shopping.shoppinguserservice.vo.UserVo">
             insert into user
             <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -61,11 +61,8 @@
                 <if test="userRealName != null">
                     user_real_name,
                 </if>
-                <if test="username != null">
-                    username,
-                </if>
                 <if test="weChat != null">
-                    we_caht,
+                    we_chat,
                 </if>
                 <if test="monetary != null">
                     monetary,
@@ -132,9 +129,6 @@
                 <if test="userRealName != null">
                     #{user_real_name,jdbcType=VARCHAR},
                 </if>
-                <if test="username != null">
-                    #{username,jdbcType=VARCHAR},
-                </if>
                 <if test="weChat != null">
                     #{we_chat,jdbcType=VARCHAR},
                 </if>
@@ -177,7 +171,7 @@
             </trim>
     </insert>
 
-    <delete id="deleteById" parameterType="java.lang.Integer">
+    <delete id="deleteUserById" parameterType="java.lang.Integer">
         delete from user where u_id = #{uId,jdbcType=INTEGER}
     </delete>
     <delete id="deleteAll">
@@ -190,11 +184,11 @@
     <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" resultType="com.dream.shopping.facade.po.User">
         select *from user where u_id = #{uId,jdbcType=INTEGER}
     </select>
-    <select id="selectByUserVo" resultMap="BaseResultMap"
-            parameterType="com.dream.shopping.shoppinguserservice.vo.UserVo"
+    <select id="SelectByUser" resultMap="BaseResultMap"
+            parameterType="com.dream.shopping.facade.po.User"
             resultType="com.dream.shopping.facade.po.User">
         select *from user where 1 = 1
-
+        <if test=""
     </select>
     <update id="updateUser" parameterType="com.dream.shopping.shoppinguserservice.vo.UserVo">
         update user
@@ -222,9 +216,6 @@
             </if>
             <if test="userRealName != null">
                 user_real_name = #{user_real_name,jdbcType=VARCHAR},
-            </if>
-            <if test="username != null">
-                username = #{username,jdbcType=VARCHAR},
             </if>
             <if test="weChat != null">
                 we_chat = #{we_chat,jdbcType=VARCHAR},

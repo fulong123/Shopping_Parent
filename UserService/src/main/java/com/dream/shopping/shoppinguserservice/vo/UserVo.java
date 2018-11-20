@@ -13,12 +13,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserVo {
 
-    private final CustomerUser customerUser;
+    private CustomerUser customerUser;
 
-    @Autowired
-    public UserVo (CustomerUser customerUser){
+    public void setCustomerUser(CustomerUser customerUser) {
         this.customerUser = customerUser;
     }
 
-
+    public CustomerUser getCustomerUser() {
+        return customerUser;
+    }
 }

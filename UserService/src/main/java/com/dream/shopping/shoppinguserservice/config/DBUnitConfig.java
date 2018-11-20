@@ -6,7 +6,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
-
+/**
+ * 描述 redis配置类
+ * @author sky
+ * @date 2018/11/20 19:01
+ * @param
+ * @return
+ */
 @Configuration
 public class DBUnitConfig {
 

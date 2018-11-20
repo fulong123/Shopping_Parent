@@ -1,6 +1,7 @@
 package com.dream.shopping.shoppinguserservice.mapper;
 
 import com.dream.shopping.facade.po.User;
+import com.dream.shopping.shoppinguserservice.vo.CustomerUser;
 import com.dream.shopping.shoppinguserservice.vo.UserVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -25,7 +26,7 @@ public interface UserMapper {
      * @param [userVo]
      * @return java.lang.Integer
      */
-    Integer insertUser(UserVo userVo);
+    Integer insertUser(User user);
 
     /**
      * 描述 通过id删除用户
@@ -43,7 +44,7 @@ public interface UserMapper {
      * @param [userVos]
      * @return java.lang.Integer
      */
-    Integer deleteByBatch(List<UserVo> userVos);
+    Integer deleteByBatch(List<User> user);
 
     /**
      * 描述 通过某一属性删除全部
@@ -70,7 +71,7 @@ public interface UserMapper {
      * @param []
      * @return java.util.List<com.dream.shopping.facade.po.User>
      */
-    List<User> selectByUserVo(UserVo userVo);
+    List<User> selectByUser(User user);
 
     /**
      * 描述 通过id修改
@@ -79,5 +80,5 @@ public interface UserMapper {
      * @param [uId]
      * @return java.lang.Integer
      */
-    Integer updateUser(Integer uId);
+    Integer updateUser(User user);
 }
