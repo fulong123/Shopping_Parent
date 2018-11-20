@@ -21,26 +21,27 @@ public class Address implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)     //主键生成策略
+    @Column(name = "addressId")
     private Integer addressId;                  //地址id
-    @Column
+    @Column(name = "distributionArea")
     private String distributionArea;            //配送地区
-    @Column
+    @Column(name = "consigneeName")
     private String consigneeName;               //收货人姓名
-    @Column
+    @Column(name = "email")
     private String email;                       //电子邮箱
-    @Column
+    @Column(name = "detailedAddress")
     private String detailedAddress;             //详细地址
-    @Column
+    @Column(name = "postalCode")
     private String postalCode;                  //邮政编码
-    @Column
+    @Column(name = "phone")
     private String phone;                       //手机
-    @Column
+    @Column(name = "telNum")
     private String telNum;                      //电话
-    @Column
+    @Column(name = "landmarkBuilding")
     private String landmarkBuilding;            //标志建筑
-    @Column
+    @Column(name = "deliveryTime")
     private String deliveryTime;                //最佳送货时间
-    @Column
+    @Column(name = "isDefault")
     private Integer isDefault;                   //是否默认
 
     public Address() {
