@@ -1,8 +1,6 @@
 package com.dream.shopping.shoppinguserservice.mapper;
 
 import com.dream.shopping.facade.po.User;
-import com.dream.shopping.shoppinguserservice.vo.CustomerUser;
-import com.dream.shopping.shoppinguserservice.vo.UserVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

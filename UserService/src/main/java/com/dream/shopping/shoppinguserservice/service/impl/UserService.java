@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * 描述:
+ * 描述:user的service实现层
  * Created with IntelliJ IDEA.
  * User: sky
  * Date: 2018/11/20

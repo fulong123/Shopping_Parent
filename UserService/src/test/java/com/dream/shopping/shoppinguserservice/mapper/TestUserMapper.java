@@ -2,7 +2,6 @@ package com.dream.shopping.shoppinguserservice.mapper;
 
 import com.dream.shopping.facade.po.User;
 import com.dream.shopping.shoppinguserservice.vo.CustomerUser;
-import com.dream.shopping.shoppinguserservice.vo.UserVo;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
@@ -12,10 +11,7 @@ import org.dbunit.DBTestCase;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
-import org.dbunit.database.QueryDataSet;
-import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
-import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,9 +29,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * 描述:
@@ -117,7 +113,14 @@ public class TestUserMapper extends DBTestCase {
 
     @Test
     public void testSelectByUser(){
-
+        User user = new User();
+        user.setAddress("%水%");
+        user.setEmail("%233%");
+        List<User> users = userMapper.selectByUser(user);
+        System.out.println("1     " + users.size());
+        for (User us:users) {
+           System.out.println(us);
+        }
     }
 
     @Override
