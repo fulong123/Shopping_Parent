@@ -1,9 +1,185 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.dream" >
+<mapper namespace="com.dream.shopping.shoppinguserservice.mapper.UserMapper" >
 
-<resultMap id="BaseResultMap" type=""
+<resultMap id="BaseResultMap" type="com.dream.shopping.facade.po.User">
+
+    <id column="u_id" property="uId" jdbcType="INTEGER"/>
+    <result column="address" property="address" jdbcType="VARCHAR"/>
+    <result column="age" property="age" jdbcType="INTEGER"/>
+    <result column="email" property="email" jdbcType="VARCHAR"/>
+    <result column="password" property="password" jdbcType="VARCHAR"/>
+    <result column="qq" property="qq" jdbcType="VARCHAR"/>
+    <result column="sex" property="sex" jdbcType="VARCHAR"/>
+    <result column="tel" property="tel" jdbcType="VARCHAR"/>
+    <result column="user_real_name" property="userRealName" jdbcType="VARCHAR"/>
+    <result column="username" property="username" jdbcType="VARCHAR"/>
+    <result column="weChat" property="weChat" jdbcType="VARCHAR"/>
+    <result column="monetary" property="monetary" jdbcType="DOUBLE"/>
+    <result column="address_id" property="addressId" jdbcType="VARCHAR"/>
+    <result column="balance" property="balance" jdbcType="DOUBLE"/>
+    <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER"/>
+    <result column="integral" property="integral" jdbcType="VARCHAR"/>
+    <result column="inviter" property="inviter" jdbcType="VARCHAR"/>
+    <result column="last_login_time" property="lastLoginTime" jdbcType="VARCHAR"/>
+    <result column="red_envelopes_value" property="red_EnvelopesValue" jdbcType="DOUBLE"/>
+    <result column="red_envelopes_count" property="red_Envelopes_Count" jdbcType="INTEGER"/>
+    <result column="user_id_card" property="userIdCard" jdbcType="VARCHAR"/>
+    <result column="user_login_name" property="userLoginName" jdbcType="VARCHAR"/>
+
+</resultMap>
+
+    <insert id="insertUser" parameterType="com.dream.shopping.shoppinguserservice.vo.UserVo">
+            insert into user
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test="uId != null" >
+                    u_id,
+                </if>
+                <if test="address != null">
+                    address,
+                </if>
+                <if test="age != null">
+                    age,
+                </if>
+                <if test="email != null">
+                    email,
+                </if>
+                <if test="password != null">
+                    password,
+                </if>
+                <if test="qq != null">
+                    qq,
+                </if>
+                <if test="sex != null">
+                    sex,
+                </if>
+                <if test="tel != null">
+                    tel,
+                </if>
+                <if test="userRealName != null">
+                    user_real_name,
+                </if>
+                <if test="username != null">
+                    username,
+                </if>
+                <if test="weChat != null">
+                    we_caht,
+                </if>
+                <if test="monetary != null">
+                    monetary,
+                </if>
+                <if test="addressId != null">
+                    address_id,
+                </if>
+                <if test="balance != null">
+                    balance,
+                </if>
+                <if test="createTime != null">
+                    create_time,
+                </if>
+                <if test="goodsId != null">
+                    goods_id,
+                </if>
+                <if test="integral != null">
+                    integral,
+                </if>
+                <if test="inviter != null">
+                    inviter,
+                </if>
+                <if test="lastLoginTime != null">
+                    last_login_time,
+                </if>
+                <if test="red_EnvelopesValue != null">
+                    red_envelopes_value,
+                </if>
+                <if test="red_Envelopes_Count != null">
+                    red_envelopes_count,
+                </if>
+                <if test="userIdCard != null">
+                    user_id_card,
+                </if>
+                <if test="userLoginName != null">
+                    user_login_name,
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides="," >
+                <if test="uId != null" >
+                    #{uId,jdbcType=INTEGER},
+                </if>
+                <if test="address != null">
+                    #{address,jdbcType=VARCHAR},
+                </if>
+                <if test="age != null">
+                    #{age,jdbcType=INTEGER},
+                </if>
+                <if test="email != null">
+                    #{email,jdbcType=VARCHAR},
+                </if>
+                <if test="password != null">
+                    #{password,jdbcType=VARCHAR},
+                </if>
+                <if test="qq != null">
+                    #{qq,jdbcType=VARCHAR},
+                </if>
+                <if test="sex != null">
+                    #{sex,jdbcType=VARCHAR},
+                </if>
+                <if test="tel != null">
+                    #{tel,jdbcType=VARCHAR},
+                </if>
+                <if test="userRealName != null">
+                    #{user_real_name,jdbcType=VARCHAR},
+                </if>
+                <if test="username != null">
+                    #{username,jdbcType=VARCHAR},
+                </if>
+                <if test="weChat != null">
+                    #{we_chat,jdbcType=VARCHAR},
+                </if>
+                <if test="monetary != null">
+                    #{monetary,jdbcType=DOUBLE},
+                </if>
+                <if test="addressId != null">
+                    #{address_id,jdbcType=INTEGER},
+                </if>
+                <if test="balance != null">
+                    #{balance,jdbcType=DOUBLE},
+                </if>
+                <if test="createTime != null">
+                    #{create_time,jdbcType=VARCHAR},
+                </if>
+                <if test="goodsId != null">
+                    #{goods_id,jdbcType=INTEGER},
+                </if>
+                <if test="integral != null">
+                    #{integral,jdbcType=VARCHAR},
+                </if>
+                <if test="inviter != null">
+                    #{inviter,jdbcType=VARCHAR},
+                </if>
+                <if test="lastLoginTime != null">
+                    #{last_login_time,jdbcType=VARCHAR},
+                </if>
+                <if test="red_EnvelopesValue != null">
+                    #{red_envelopes_value,jdbcType=DOUBLE},
+                </if>
+                <if test="red_Envelopes_Count != null">
+                    #{red_envelopes_count,jdbcType=INTEGER},
+                </if>
+                <if test="userIdCard != null">
+                    #{user_id_card,jdbcType=INTEGER},
+                </if>
+                <if test="userLoginName != null">
+                    #{user_login_name,jdbcType=VARCHAR},
+                </if>
+            </trim>
+    </insert>
+
+
+
+
 
 
 </mapper>

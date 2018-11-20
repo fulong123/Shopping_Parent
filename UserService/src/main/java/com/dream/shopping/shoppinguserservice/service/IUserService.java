@@ -1,22 +1,18 @@
-package com.dream.shopping.shoppinguserservice.mapper;
+package com.dream.shopping.shoppinguserservice.service;
 
 import com.dream.shopping.facade.po.User;
 import com.dream.shopping.shoppinguserservice.vo.UserVo;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
- * 描述:user的mapper层
+ * 描述:
  * Created with IntelliJ IDEA.
  * User: sky
  * Date: 2018/11/20
- * Time: 10:33
+ * Time: 11:13
  */
-@Mapper
-@Repository
-public interface UserMapper {
+public interface IUserService {
 
     /**
      * 描述 添加用户
