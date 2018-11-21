@@ -3,14 +3,13 @@ package com.dream.shopping.shoppinguserservice.service.impl;
 import com.dream.shopping.facade.po.User;
 import com.dream.shopping.shoppinguserservice.mapper.UserMapper;
 import com.dream.shopping.shoppinguserservice.service.IUserService;
-import com.dream.shopping.shoppinguserservice.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
- * 描述:
+ * 描述:user的service实现层
  * Created with IntelliJ IDEA.
  * User: sky
  * Date: 2018/11/20
@@ -27,8 +26,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Integer insertUser(UserVo userVo) {
-        return userMapper.insertUser(userVo);
+    public Integer insertUser(User user) {
+        return userMapper.insertUser(user);
     }
 
     @Override
@@ -37,8 +36,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Integer deleteByBatch(List<UserVo> userVos) {
-        return userMapper.deleteByBatch(userVos);
+    public Integer deleteByBatch(List<User> user) {
+        return userMapper.deleteByBatch(user);
     }
 
     @Override
@@ -52,12 +51,12 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public List<User> selectByUserVo(UserVo userVo) {
-        return userMapper.selectByUserVo(userVo);
+    public List<User> selectByUser(User user) {
+        return userMapper.selectByUser(user);
     }
 
     @Override
-    public Integer updateUser(Integer uId) {
-        return userMapper.updateUser(uId);
+    public Integer updateUser(User user) {
+        return userMapper.updateUser(user);
     }
 }

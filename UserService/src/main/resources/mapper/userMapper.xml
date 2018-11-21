@@ -15,7 +15,7 @@
     <result column="tel" property="tel" jdbcType="VARCHAR"/>
     <result column="user_real_name" property="userRealName" jdbcType="VARCHAR"/>
     <result column="username" property="username" jdbcType="VARCHAR"/>
-    <result column="weChat" property="weChat" jdbcType="VARCHAR"/>
+    <result column="we_chat" property="weChat" jdbcType="VARCHAR"/>
     <result column="monetary" property="monetary" jdbcType="DOUBLE"/>
     <result column="address_id" property="addressId" jdbcType="VARCHAR"/>
     <result column="balance" property="balance" jdbcType="DOUBLE"/>
@@ -30,8 +30,8 @@
     <result column="user_login_name" property="userLoginName" jdbcType="VARCHAR"/>
 
 </resultMap>
-
-    <insert id="insertUser" parameterType="com.dream.shopping.shoppinguserservice.vo.UserVo">
+    <!-- 动态sql添加 -->
+    <insert id="insertUser" parameterType="com.dream.shopping.facade.po.User">
             insert into user
             <trim prefix="(" suffix=")" suffixOverrides="," >
                 <if test="uId != null" >
@@ -61,11 +61,8 @@
                 <if test="userRealName != null">
                     user_real_name,
                 </if>
-                <if test="username != null">
-                    username,
-                </if>
                 <if test="weChat != null">
-                    we_caht,
+                    we_chat,
                 </if>
                 <if test="monetary != null">
                     monetary,
@@ -132,9 +129,6 @@
                 <if test="userRealName != null">
                     #{user_real_name,jdbcType=VARCHAR},
                 </if>
-                <if test="username != null">
-                    #{username,jdbcType=VARCHAR},
-                </if>
                 <if test="weChat != null">
                     #{we_chat,jdbcType=VARCHAR},
                 </if>
@@ -177,26 +171,94 @@
             </trim>
     </insert>
 
-    <delete id="deleteById" parameterType="java.lang.Integer">
-        delete from user where u_id = #{uId,jdbcType=INTEGER}
-    </delete>
     <delete id="deleteAll">
         delete from user 
     </delete>
-    <delete id="deleteByBatch" parameterType="com.dream.shopping.shoppinguserservice.vo.UserVo">
+
+    <delete id="deleteUserById" parameterType="java.lang.Integer">
+        delete from user where u_id = #{uId,jdbcType=INTEGER}
+    </delete>
+
+    <delete id="deleteByBatch" parameterType="com.dream.shopping.facade.po.User">
 
     </delete>
+
+    <select id="selectByUser" resultMap="BaseResultMap"
+            parameterType="com.dream.shopping.facade.po.User"
+            resultType="com.dream.shopping.facade.po.User">
+        select *from user where 1 = 1
+        <trim suffixOverrides=" ">
+            <if test="address != null">
+                and address like #{address,jdbcType=VARCHAR}
+            </if>
+            <if test="age != null">
+                and age = #{age,jdbcType=INTEGER}
+            </if>
+            <if test="email != null">
+                and email like #{email,jdbcType=VARCHAR}
+            </if>
+            <if test="password != null">
+                and password like #{password,jdbcType=VARCHAR}
+            </if>
+            <if test="qq != null">
+                and qq like #{qq,jdbcType=VARCHAR}
+            </if>
+            <if test="sex != null">
+                and sex = #{sex,jdbcType=VARCHAR}
+            </if>
+            <if test="tel != null">
+                and tel like #{tel,jdbcType=VARCHAR}
+            </if>
+            <if test="userRealName != null">
+                and user_real_name like #{user_real_name,jdbcType=VARCHAR}
+            </if>
+            <if test="weChat != null">
+                and we_chat like #{we_chat,jdbcType=VARCHAR}
+            </if>
+            <if test="monetary != null">
+                and monetary = #{monetary,jdbcType=DOUBLE}
+            </if>
+            <if test="addressId != null">
+                and address_id = #{address_id,jdbcType=INTEGER}
+            </if>
+            <if test="balance != null">
+                and balance = #{balance,jdbcType=DOUBLE}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{create_time,jdbcType=VARCHAR}
+            </if>
+            <if test="goodsId != null">
+                and goods_id = #{goods_id,jdbcType=INTEGER}
+            </if>
+            <if test="integral != null">
+                and integral like #{integral,jdbcType=VARCHAR}
+            </if>
+            <if test="inviter != null">
+                and inviter like #{inviter,jdbcType=VARCHAR}
+            </if>
+            <if test="lastLoginTime != null">
+                and last_login_time = #{last_login_time,jdbcType=VARCHAR}
+            </if>
+            <if test="red_EnvelopesValue != null">
+                and red_envelopes_value = #{red_envelopes_value,jdbcType=DOUBLE}
+            </if>
+            <if test="red_Envelopes_Count != null">
+                and red_envelopes_count = #{red_envelopes_count,jdbcType=INTEGER}
+            </if>
+            <if test="userIdCard != null">
+                and user_id_card = #{user_id_card,jdbcType=INTEGER}
+            </if>
+            <if test="userLoginName != null">
+                and user_login_name like #{user_login_name,jdbcType=VARCHAR}
+            </if>
+        </trim>
+    </select>
 
     <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" resultType="com.dream.shopping.facade.po.User">
         select *from user where u_id = #{uId,jdbcType=INTEGER}
     </select>
-    <select id="selectByUserVo" resultMap="BaseResultMap"
-            parameterType="com.dream.shopping.shoppinguserservice.vo.UserVo"
-            resultType="com.dream.shopping.facade.po.User">
-        select *from user where 1 = 1
 
-    </select>
-    <update id="updateUser" parameterType="com.dream.shopping.shoppinguserservice.vo.UserVo">
+    <update id="updateUser" parameterType="com.dream.shopping.facade.po.User">
         update user
         <set >
             <if test="address != null">
@@ -222,9 +284,6 @@
             </if>
             <if test="userRealName != null">
                 user_real_name = #{user_real_name,jdbcType=VARCHAR},
-            </if>
-            <if test="username != null">
-                username = #{username,jdbcType=VARCHAR},
             </if>
             <if test="weChat != null">
                 we_chat = #{we_chat,jdbcType=VARCHAR},
@@ -254,7 +313,7 @@
                 lats_login_time = #{last_login_time,jdbcType=VARCHAR},
             </if>
             <if test="red_EnvelopesValue != null">
-                red_{envelopes_value = #{red_envelopes_value,jdbcType=DOUBLE},
+                red_envelopes_value = #{red_envelopes_value,jdbcType=DOUBLE},
             </if>
             <if test="red_Envelopes_Count != null">
                 red_envelopes_count = #{red_envelopes_count,jdbcType=INTEGER},

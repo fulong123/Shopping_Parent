@@ -1,4 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-  <user u_id="36" address="111" age="111" email="1111" password="1111" qq="111" sex="11" tel="111"/>
+  <user u_id="38" address="水电" age="234" email="2337925386@qq.com" password="123456" qq="2627925386" sex="女" tel="15082384975" user_real_name="付龙" we_chat="25252" monetary="14.9" address_id="12" balance="67.0" create_time="1234" goods_id="23" integral="12" inviter="yyy" last_login_time="567111" red_envelopes_value="12.0" red_envelopes_count="111111" user_id_card="23" user_login_name="嘻嘻嘻"/>
+  <user u_id="39" address="水" age="234" email="2337925386@qq.com" password="123456" qq="2627925386" sex="女" tel="15082384975" user_real_name="付龙" we_chat="25252" monetary="14.9" address_id="12" balance="67.0" create_time="1234" goods_id="23" integral="12" inviter="yyy" last_login_time="567111" red_envelopes_value="12.0" red_envelopes_count="111111" user_id_card="23" user_login_name="嘻嘻嘻"/>
+  <user u_id="40" address="水电费" age="234" email="2627925386@qq.com" password="123456" qq="2627925386" sex="女" tel="15082384975" user_real_name="付龙" we_chat="25252" monetary="14.9" address_id="12" balance="67.0" create_time="1234" goods_id="23" integral="12" inviter="yyy" last_login_time="567111" red_envelopes_value="12.0" red_envelopes_count="111111" user_id_card="23" user_login_name="嘻嘻嘻"/>
+  <user u_id="41" address="火星" age="234" email="2337925386@qq.com" password="123456" qq="2627925386" sex="女" tel="15082384975" user_real_name="付龙" we_chat="25252" monetary="14.9" address_id="12" balance="67.0" create_time="1234" goods_id="23" integral="12" inviter="yyy" last_login_time="567111" red_envelopes_value="12.0" red_envelopes_count="111111" user_id_card="23" user_login_name="嘻嘻嘻"/>
 </dataset>

@@ -1,7 +1,7 @@
-package com.dream.shopping.shoppinguserservice.testUser;
+package com.dream.shopping.shoppinguserservice.mapper;
 
 import com.dream.shopping.facade.po.User;
-import com.dream.shopping.shoppinguserservice.mapper.UserMapper;
+import com.dream.shopping.shoppinguserservice.vo.CustomerUser;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
@@ -11,10 +11,7 @@ import org.dbunit.DBTestCase;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
-import org.dbunit.database.QueryDataSet;
-import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
-import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,9 +29,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * 描述:
@@ -55,7 +52,10 @@ import java.sql.SQLException;
         MockitoTestExecutionListener.class,
         DbUnitTestExecutionListener.class
 })
-
+@DatabaseSetup(type = DatabaseOperation.CLEAN_INSERT,
+        value = "classpath:insertDBUnit/user.xml")
+@DatabaseTearDown(type = DatabaseOperation.CLEAN_INSERT,
+        value = "classpath:sourceDBUnit/user.xml")
 public class TestUserMapper extends DBTestCase {
 
     @Autowired
@@ -82,38 +82,56 @@ public class TestUserMapper extends DBTestCase {
     }
 
     @Test
-    @DatabaseSetup(type = DatabaseOperation.CLEAN_INSERT,
-            value = "classpath:insertDBUnit/user.xml")
-    @DatabaseTearDown(type = DatabaseOperation.CLEAN_INSERT,
-            value = "classpath:sourceDBUnit/user.xml")
-    public void testFindById(){
-        User byId = userMapper.selectById(36);
-        assertSame("成功",36,byId.getuId());
+    public void testSelectById(){
+        User byId = userMapper.selectById(38);
+        assertSame("成功",38,byId.getuId());
     }
 
-//    @Test
-//    public void testUpdateByPrimaryKeySelective(){
-//        User user = new User(36,"嘻嘻","哈哈","123123","市长","135","1231",3);
-//        Integer integer = userMapper.updateByPrimaryKeySelective(user);
-//        assertSame(null,1,integer);
-//    }
-//
-//    @Test
-//    public void testInsertSelective(){
-//        User user = new User(90,"嘻嘻","哈哈","123123","市长","135","1231",3);
-//        Integer integer = userMapper.insertSelective(user);
-//        assertSame(null,1,integer);
-//    }
+    @Test
+    public void testUpdateByPrimaryKeySelective(){
+        Integer integer = userMapper.updateUser(new CustomerUser(38,24));
+        assertSame(null,1,integer);
+    }
+
+    @Test
+    public void testInsertSelective(){
+        Integer integer = userMapper.insertUser(new CustomerUser(1,23));
+        assertSame(null,1,integer);
+    }
+
+    @Test
+    public void testDeleteUserById(){
+        Integer integer = userMapper.deleteUserById(38);
+        assertSame(1,integer);
+    }
+
+    @Test
+    public void testDeleteAll(){
+        Integer integer = userMapper.deleteAll();
+        assertEquals(1,integer.intValue());
+    }
+
+    @Test
+    public void testSelectByUser(){
+        User user = new User();
+        user.setAddress("%水%");
+        user.setEmail("%233%");
+        List<User> users = userMapper.selectByUser(user);
+        System.out.println("1     " + users.size());
+        for (User us:users) {
+           System.out.println(us);
+        }
+    }
 
     @Override
     protected IDataSet getDataSet() throws Exception {
         return connection.createDataSet();
     }
 
-    @Test
-    public void backTable() throws DataSetException, IOException {
-        QueryDataSet queryDataSet = new QueryDataSet(connection);
-        queryDataSet.addTable("user", "select * from user");
-        FlatXmlDataSet.write(queryDataSet, new FileOutputStream(path + "/src/resources/sourceDBUnit/user.xml"));
-    }
+//    @Test
+//    public void backTable() throws DataSetException, IOException {
+//        QueryDataSet queryDataSet = new QueryDataSet(connection);
+//        queryDataSet.addTable("user", "select * from user");
+//        FlatXmlDataSet.write(queryDataSet, new FileOutputStream(path + "/src/resources/sourceDBUnit/user.xml"));
+//    }
 }
