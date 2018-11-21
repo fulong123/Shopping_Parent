@@ -1,7 +1,8 @@
-package com.dream.shopping.facade;
+package com.dream.shopping.facade.addressservice;
 
 import com.dream.shopping.facade.po.Address;
 import com.dream.shopping.facade.vo.AddressVo;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * Date: 2018/11/20
  * Time: 14:27
  */
+@Component
 public interface IAddressFacade {
 
     /**

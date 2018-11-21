@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dream.shopping.brandserver.mapper.BrandMapper">
+
+    <select id="selectAll" parameterType="com.dream.shopping.facade.po.Brand"
+            resultType="com.dream.shopping.facade.po.Brand">
+        select * from brand
+        <where>
+            <include refid="selectBrand"/>
+        </where>
+    </select>
+    <sql id="selectBrand">
+            <if test="brandName!=null and brandName!=''">
+                and brandName like #{brandName}
+            </if>
+            <if test="photo!=null and photo!=''">
+                and photo = #{brandId}
+            </if>
+    </sql>
+
+    <select id="selectBrandById" parameterType="java.lang.Integer" resultType="com.dream.shopping.facade.po.Brand">
+        select *
+        from brand
+        where brandId = #{brandId}
+    </select>
+    <insert id="insertBrand" parameterType="com.dream.shopping.facade.po.Brand">
+        <selectKey keyProperty="brandId" order="AFTER" resultType="java.lang.Integer">
+            select last_insert_id()
+        </selectKey>
+        insert into brand
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="brandName != null">
+                brandName,
+            </if>
+            <if test="photo != null">
+                photo,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="brandName != null">
+                #{brandName},
+            </if>
+            <if test="photo != null">
+                #{photo},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBrand" parameterType="com.dream.shopping.facade.po.Address">
+        update brand  set
+        <trim suffixOverrides=",">
+            <if test="brandName != null">
+                brandName = #{brandName},
+            </if>
+            <if test="photo != null">
+                photo = #{photo}
+            </if>
+        </trim>
+        where brandId=#{brandId}
+    </update>
+
+    <delete id="deleteBrandById" parameterType="java.lang.Integer">
+        delete
+        from brand
+        where brandId = #{brandId}
+    </delete>
+</mapper>

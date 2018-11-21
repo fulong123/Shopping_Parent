@@ -37,7 +37,6 @@
         <module name="Shopping_Parent" />
         <module name="shoppinguserservice" />
         <module name="UserService" />
-        <module name="workspace" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

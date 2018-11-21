@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Repository
 @Mapper
-public interface AddressMapper extends AbstractTMapper<Address>{
+public interface AddressMapper{
 
     /**
      * 描述 通过条件查询地址

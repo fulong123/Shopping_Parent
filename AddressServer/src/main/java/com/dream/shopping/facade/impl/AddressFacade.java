@@ -1,6 +1,6 @@
 package com.dream.shopping.facade.impl;
 
-import com.dream.shopping.facade.IAddressFacade;
+import com.dream.shopping.facade.addressservice.IAddressFacade;
 import com.dream.shopping.facade.po.Address;
 import com.dream.shopping.addressserver.service.AddressService;
 import com.dream.shopping.facade.vo.AddressVo;
