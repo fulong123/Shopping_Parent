@@ -1,4 +1,4 @@
-package com.dream.shooping.newsserver;
+package com.dream.shopping.newsserver;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

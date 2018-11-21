@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dream.shopping.newsserver.mapper.NewsMapper" >
+
+    <resultMap id="BaseResultMap" type="com.dream.shopping.facade.po.News">
+
+        <id column="news_id" property="newsId" jdbcType="INTEGER"/>
+        <result column="news_title" property="newsTitle" jdbcType="VARCHAR"/>
+        <result column="news_type" property="newsType" jdbcType="VARCHAR"/>
+    </resultMap>
+    <!-- 动态sql添加 -->
+    <insert id="insertNews" parameterType="com.dream.shopping.facade.po.News">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="newsId != null">
+                news_id,
+            </if>
+            <if test="newsTitle != null">
+                news_title,
+            </if>
+            <if test="newsType != null">
+                news_type,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="newsId != null" >
+                #{newsId,jdbcType=INTEGER},
+            </if>
+            <if test="newsTitle != null">
+                #{newsTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="newsType != null">
+                #{newsType,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="deleteAll">
+        delete from news
+    </delete>
+
+    <delete id="deleteNewsById" parameterType="java.lang.Integer">
+        delete from news where news_id = #{newsId,jdbcType=INTEGER}
+    </delete>
+
+    <delete id="deleteByBatch" parameterType="java.util.List">
+        delete from news where news_id in
+        <foreach collection="list" item="param" open="(" separator="," close=")">
+            #{param.newsId,jdbcType=INTEGER}
+        </foreach>
+    </delete>
+
+    <select id="selectByNews" resultMap="BaseResultMap"
+            parameterType="com.dream.shopping.facade.po.News"
+            resultType="com.dream.shopping.facade.po.News">
+        select *from news where 1 = 1
+        <trim suffixOverrides=" ">
+            <if test="newsTitle != null">
+                and news_title like #{age,jdbcType=VARCHAR}
+            </if>
+            <if test="newsType != null">
+                and news_type like #{email,jdbcType=VARCHAR}
+            </if>
+        </trim>
+    </select>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" resultType="com.dream.shopping.facade.po.News">
+        select *from news where news_id = #{newsId,jdbcType=INTEGER}
+    </select>
+
+    <update id="updateNews" parameterType="com.dream.shopping.facade.po.News">
+        update news
+        <set >
+            <if test="newsTitle != null">
+                news_title = #{newsTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="newsType != null">
+                news_type = #{newsType,jdbcType=INTEGER},
+            </if>
+        </set>
+        where news_id = #{newsId,jdbcType=INTEGER}
+    </update>
+</mapper>

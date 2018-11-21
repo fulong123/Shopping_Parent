@@ -1,4 +1,4 @@
-package com.dream.shooping.newsserver;
+package com.dream.shopping.newsserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

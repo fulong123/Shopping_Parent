@@ -34,7 +34,7 @@
     <insert id="insertUser" parameterType="com.dream.shopping.facade.po.User">
             insert into user
             <trim prefix="(" suffix=")" suffixOverrides="," >
-                <if test="uId != null" >
+                <if test="uId != null">
                     u_id,
                 </if>
                 <if test="address != null">
@@ -179,8 +179,11 @@
         delete from user where u_id = #{uId,jdbcType=INTEGER}
     </delete>
 
-    <delete id="deleteByBatch" parameterType="com.dream.shopping.facade.po.User">
-
+    <delete id="deleteByBatch" parameterType="java.util.List">
+        delete from user where u_id in
+        <foreach collection="list" item="param" open="(" separator="," close=")">
+            #{param.uId,jdbcType=INTEGER}
+        </foreach>
     </delete>
 
     <select id="selectByUser" resultMap="BaseResultMap"

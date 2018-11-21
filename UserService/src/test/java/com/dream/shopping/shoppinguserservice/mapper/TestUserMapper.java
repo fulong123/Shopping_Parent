@@ -31,6 +31,7 @@ import javax.sql.DataSource;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -108,7 +109,20 @@ public class TestUserMapper extends DBTestCase {
     @Test
     public void testDeleteAll(){
         Integer integer = userMapper.deleteAll();
-        assertEquals(1,integer.intValue());
+        assertEquals(4,integer.intValue());
+    }
+
+    @Test
+    public void testDeleteByBatch(){
+        ArrayList<User> list = new ArrayList<>();
+        User user = new User();
+        User user1 = new User();
+        user.setuId(39);
+        user1.setuId(40);
+        list.add(user);
+        list.add(user1);
+        Integer integer = userMapper.deleteByBatch(list);
+        assertSame(2,integer);
     }
 
     @Test
