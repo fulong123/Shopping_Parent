@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="addressserver" />
         <module name="AddressServer" />
+        <module name="administrationserver" />
         <module name="AdministrationServer" />
         <module name="AdServer" />
         <module name="adserver" />
