@@ -21,37 +21,34 @@ public class Goods implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)     //主键生成策略
+    @Column(name = "goodsId")
     private Integer goodsId;            //商品id
-    @Column
-    private String goodsType;           //商品类别
-    @Column
+    @Column(name = "goodsType")
+    private Integer goodsType;           //商品类别
+    @Column(name = "goodsTitle")
     private String goodsTitle;          //商品标题
-    @Column
+    @Column(name = "goodsPrice")
     private Double goodsPrice;          //商品价格
-    @Column
-    private Integer dealId;             //商家id
-    @Column
+    @Column(name = "createTime")
     private String createTime;          //创建时间
-    @Column
-    private Integer quantity_In_Stock;  //库存数量
-    @Column
-    private Integer sales_Quantity;     //销售数量
-    @Column
-    private String goodsPicture;        //商品图片
+    @Column(name = "quantityInStock")
+    private Integer quantityInStock;  //库存数量
+    @Column(name = "salesQuantity")
+    private Integer salesQuantity;     //销售数量
+    @Column(name = "state")
+    private Integer state;        //商品状态
 
     public Goods() {
     }
 
-    public Goods(Integer goodsId, String goodsType, String goodsTitle, Double goodsPrice, Integer dealId, String createTime, Integer quantity_In_Stock, Integer sales_Quantity, String goodsPicture) {
-        this.goodsId = goodsId;
+    public Goods(Integer goodsType, String goodsTitle, Double goodsPrice,  String createTime, Integer quantityInStock, Integer salesQuantity, Integer state) {
         this.goodsType = goodsType;
         this.goodsTitle = goodsTitle;
         this.goodsPrice = goodsPrice;
-        this.dealId = dealId;
         this.createTime = createTime;
-        this.quantity_In_Stock = quantity_In_Stock;
-        this.sales_Quantity = sales_Quantity;
-        this.goodsPicture = goodsPicture;
+        this.quantityInStock = quantityInStock;
+        this.salesQuantity = salesQuantity;
+        this.state = state;
     }
 
     public Integer getGoodsId() {
@@ -62,11 +59,11 @@ public class Goods implements Serializable {
         this.goodsId = goodsId;
     }
 
-    public String getGoodsType() {
+    public Integer getGoodsType() {
         return goodsType;
     }
 
-    public void setGoodsType(String goodsType) {
+    public void setGoodsType(Integer goodsType) {
         this.goodsType = goodsType;
     }
 
@@ -86,14 +83,6 @@ public class Goods implements Serializable {
         this.goodsPrice = goodsPrice;
     }
 
-    public Integer getDealId() {
-        return dealId;
-    }
-
-    public void setDealId(Integer dealId) {
-        this.dealId = dealId;
-    }
-
     public String getCreateTime() {
         return createTime;
     }
@@ -102,28 +91,28 @@ public class Goods implements Serializable {
         this.createTime = createTime;
     }
 
-    public Integer getQuantity_In_Stock() {
-        return quantity_In_Stock;
+    public Integer getQuantityInStock() {
+        return quantityInStock;
     }
 
-    public void setQuantity_In_Stock(Integer quantity_In_Stock) {
-        this.quantity_In_Stock = quantity_In_Stock;
+    public void setQuantityInStock(Integer quantityInStock) {
+        this.quantityInStock = quantityInStock;
     }
 
-    public Integer getSales_Quantity() {
-        return sales_Quantity;
+    public Integer getSalesQuantity() {
+        return salesQuantity;
     }
 
-    public void setSales_Quantity(Integer sales_Quantity) {
-        this.sales_Quantity = sales_Quantity;
+    public void setSalesQuantity(Integer salesQuantity) {
+        this.salesQuantity = salesQuantity;
     }
 
-    public String getGoodsPicture() {
-        return goodsPicture;
+    public Integer getState() {
+        return state;
     }
 
-    public void setGoodsPicture(String goodsPicture) {
-        this.goodsPicture = goodsPicture;
+    public void setState(Integer state) {
+        this.state = state;
     }
 
     @Override
@@ -133,11 +122,10 @@ public class Goods implements Serializable {
                 ", goodsType='" + goodsType + '\'' +
                 ", goodsTitle='" + goodsTitle + '\'' +
                 ", goodsPrice=" + goodsPrice +
-                ", dealId=" + dealId +
                 ", createTime='" + createTime + '\'' +
-                ", quantity_In_Stock=" + quantity_In_Stock +
-                ", sales_Quantity=" + sales_Quantity +
-                ", goodsPicture='" + goodsPicture + '\'' +
+                ", quantityInStock=" + quantityInStock +
+                ", salesQuantity=" + salesQuantity +
+                ", state='" + state + '\'' +
                 '}';
     }
 }

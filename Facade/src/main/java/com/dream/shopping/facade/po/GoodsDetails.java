@@ -21,32 +21,33 @@ public class GoodsDetails implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)     //主键生成策略
+    @Column(name = "goodsDetailsId")
     private Integer goodsDetailsId;         //详情id
-    @Column
+    @Column(name = "goodsId")
     private Integer goodsId;                //商品id
-    @Column
+    @Column(name = "goodsOrigin")
     private String goodsOrigin;             //商品产地
-    @Column
+    @Column(name = "goodsName")
     private String goodsName;               //商品名称
-    @Column
+    @Column(name = "goodsBrand")
     private String goodsBrand;              //商品品牌
-    @Column
+    @Column(name = "goodsWeight")
     private Double goodsWeight;             //商品重量
-    @Column
-    private String goods_Specification_packaging;   //规格和包装
-    @Column
+    @Column(name = "goodsSpecificationPackaging")
+    private String goodsSpecificationPackaging;   //规格和包装
+    @Column(name = "goodsDetailPicture")
     private String goodsDetailPicture;      //商品详情图片
 
     public GoodsDetails() {
     }
 
-    public GoodsDetails(Integer goodsId, String goodsOrigin, String goodsName, String goodsBrand, Double goodsWeight, String goods_Specification_packaging, String goodsDetailPicture) {
+    public GoodsDetails(Integer goodsId, String goodsOrigin, String goodsName, String goodsBrand, Double goodsWeight, String goodsSpecificationPackaging, String goodsDetailPicture) {
         this.goodsId = goodsId;
         this.goodsOrigin = goodsOrigin;
         this.goodsName = goodsName;
         this.goodsBrand = goodsBrand;
         this.goodsWeight = goodsWeight;
-        this.goods_Specification_packaging = goods_Specification_packaging;
+        this.goodsSpecificationPackaging = goodsSpecificationPackaging;
         this.goodsDetailPicture = goodsDetailPicture;
     }
 
@@ -98,12 +99,12 @@ public class GoodsDetails implements Serializable {
         this.goodsWeight = goodsWeight;
     }
 
-    public String getGoods_Specification_packaging() {
-        return goods_Specification_packaging;
+    public String getGoodsSpecificationPackaging() {
+        return goodsSpecificationPackaging;
     }
 
-    public void setGoods_Specification_packaging(String goods_Specification_packaging) {
-        this.goods_Specification_packaging = goods_Specification_packaging;
+    public void setGoodsSpecificationPackaging(String goodsSpecificationPackaging) {
+        this.goodsSpecificationPackaging = goodsSpecificationPackaging;
     }
 
     public String getGoodsDetailPicture() {
@@ -123,7 +124,7 @@ public class GoodsDetails implements Serializable {
                 ", goodsName='" + goodsName + '\'' +
                 ", goodsBrand='" + goodsBrand + '\'' +
                 ", goodsWeight=" + goodsWeight +
-                ", goods_Specification_packaging='" + goods_Specification_packaging + '\'' +
+                ", goodsSpecificationPackaging='" + goodsSpecificationPackaging + '\'' +
                 ", goodsDetailPicture='" + goodsDetailPicture + '\'' +
                 '}';
     }

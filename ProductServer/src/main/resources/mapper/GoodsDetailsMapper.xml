@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dream.shopping.productserver.mapper.GoodsDetailsMapper">
+
+    <select id="selectAll" parameterType="com.dream.shopping.facade.po.GoodsDetails"
+            resultType="com.dream.shopping.facade.po.GoodsDetails">
+        select * from goodsDetails
+        <where>
+            <include refid="selectGoodsDetails"/>
+        </where>
+    </select>
+    <sql id="selectGoodsDetails">
+        <if test="goodsDrand!=null and goodsDrand!=''">
+            and goodsDrand like #{goodsDrand}
+        </if>
+        <if test="goodsDetailPicture!=null and goodsDetailPicture!=''">
+            and goodsDetailPicture like #{goodsDetailPicture}
+        </if>
+        <if test="goodsId!=null and goodsId!=''">
+            and goodsId = #{goodsId}
+        </if>
+        <if test="goodsName!=null and goodsName!=''">
+            and goodsName = #{goodsName}
+        </if>
+        <if test="goodsOrigin!=null and goodsOrigin!=''">
+            and goodsOrigin = #{goodsOrigin}
+        </if>
+        <if test="goodsWeight!=null and goodsWeight!=''">
+            and goodsWeight = #{goodsWeight}
+        </if>
+        <if test="goodsSpecificationPackaging!=null and goodsSpecificationPackaging!=''">
+            and goodsSpecificationPackaging = #{goodsSpecificationPackaging}
+        </if>
+    </sql>
+
+    <select id="selectGoodsDetailsById" parameterType="java.lang.Integer"
+            resultType="com.dream.shopping.facade.po.GoodsDetails">
+        select *
+        from goodsDetails
+        where goodsDetailsId = #{goodsDetailsId}
+    </select>
+
+    <insert id="insertGoodsDetails" parameterType="com.dream.shopping.facade.po.GoodsDetails">
+        <selectKey keyProperty="goodsDetailsId" order="AFTER" resultType="java.lang.Integer">
+            select last_insert_id()
+        </selectKey>
+        insert into goodsDetails
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="goodsDrand != null">
+                goodsDrand,
+            </if>
+            <if test="goodsDetailPicture != null">
+                goodsDetailPicture,
+            </if>
+            <if test="goodsId != null">
+                goodsId,
+            </if>
+            <if test="goodsName != null">
+                goodsName,
+            </if>
+            <if test="goodsOrigin != null">
+                goodsOrigin,
+            </if>
+            <if test="goodsWeight != null">
+                goodsWeight,
+            </if>
+            <if test="goodsSpecificationPackaging != null">
+                goodsSpecificationPackaging,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="goodsDrand != null">
+                #{goodsDrand},
+            </if>
+            <if test="goodsDetailPicture != null">
+                #{goodsDetailPicture},
+            </if>
+            <if test="goodsId != null">
+                #{goodsId},
+            </if>
+            <if test="goodsName != null">
+                #{goodsName},
+            </if>
+            <if test="goodsOrigin != null">
+                #{goodsOrigin},
+            </if>
+            <if test="goodsWeight != null">
+                #{goodsWeight},
+            </if>
+            <if test="goodsSpecificationPackaging != null">
+                #{goodsSpecificationPackaging},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateGoodsDetails" parameterType="com.dream.shopping.facade.po.GoodsDetails">
+        update goodsDetails set
+        <trim suffixOverrides=",">
+            <if test="goodsDrand != null">
+                goodsDrand = #{goodsDrand},
+            </if>
+            <if test="goodsDetailPicture != null">
+                goodsDetailPicture = #{goodsDetailPicture},
+            </if>
+            <if test="goodsId != null">
+                goodsId = #{goodsId},
+            </if>
+            <if test="goodsName != null">
+                goodsName = #{goodsName},
+            </if>
+            <if test="goodsOrigin != null">
+                goodsOrigin = #{goodsOrigin},
+            </if>
+            <if test="goodsWeight != null">
+                goodsWeight = #{goodsWeight},
+            </if>
+            <if test="goodsSpecificationPackaging != null">
+                goodsSpecificationPackaging = #{goodsSpecificationPackaging},
+            </if>
+        </trim>
+        where goodsDetailsId=#{goodsDetailsId}
+    </update>
+
+    <delete id="deleteGoodsDetailsById" parameterType="java.lang.Integer">
+        delete
+        from goodsDetails
+        where goodsDetailsId = #{goodsDetailsId}
+    </delete>
+</mapper>
