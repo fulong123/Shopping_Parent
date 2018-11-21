@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <goods_order goods_order_id="1" goods_order_num="123456" goods_order_state="1" goods_order_sum_money="999.0" goods_order_time="2018.11.11" pay_state="1" pay_time="2018.11.11" user_address="武侯区" user_id="1" user_num="1234567899"/>
+  <goods_order goods_order_id="2" goods_order_num="112233" goods_order_state="2" goods_order_sum_money="888.0" goods_order_time="2018.11.11" pay_state="2" pay_time="2018.11.11" user_address="武侯区" user_id="1" user_num="1234567899"/>
+</dataset>

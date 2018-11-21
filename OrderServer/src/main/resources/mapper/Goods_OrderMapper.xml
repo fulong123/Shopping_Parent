@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dream.shopping.orderserver.mapper.Goods_OrderMapper">
+    <resultMap id="BaseResultMap" type="com.dream.shopping.facade.po.Goods_Order">
+        <id column="goods_order_id" property="goods_OrderId" jdbcType="INTEGER"/>
+        <result column="goods_order_num" property="goods_OrderNum" jdbcType="VARCHAR"/>
+        <result column="goods_order_state" property="goods_OrderState" jdbcType="INTEGER"/>
+        <result column="goods_order_sum_money" property="goods_OrderSumMoney" jdbcType="DOUBLE"/>
+        <result column="goods_order_time" property="goods_OrderTime" jdbcType="VARCHAR"/>
+        <result column="pay_state" property="payState" jdbcType="VARCHAR"/>
+        <result column="pay_time" property="payTime" jdbcType="VARCHAR"/>
+        <result column="user_address" property="userAddress" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="user_num" property="userNum" jdbcType="VARCHAR"/>
+    </resultMap>
+    <!--根据用户Id查询所有订单-->
+    <select id="selectGoods_OrderByUserId" resultMap="BaseResultMap"  resultType="com.dream.shopping.facade.po.Goods_Order" parameterType="java.lang.Integer">
+        select * from goods_order where user_id=#{user_id,jdbcType=INTEGER}
+    </select>
+    <!--根据Id查询订单-->
+    <select id="selectGoods_OrderById" resultMap="BaseResultMap" parameterType="java.lang.Integer" resultType="com.dream.shopping.facade.po.Goods_Order">
+        select * from goods_order where goods_order_id=#{goods_order_id,jdbcType=INTEGER}
+    </select>
+    <!--删除订单-->
+    <delete id="deleteGood_OrderById" parameterType="java.lang.Integer" >
+        delete from goods_order where goods_order_id=#{goods_order_id,jdbcType=INTEGER}
+    </delete>
+    <!--修改订单-->
+    <update id="updateGoods_OrderById" parameterType="java.lang.Integer">
+        update goods_order set user_address=#{user_address,jdbcType=VARCHAR},user_num=#{user_num,jdbcType=VARCHAR} where goods_order_id=#{goods_order_id,jdbcType=INTEGER}
+    </update>
+</mapper>
+
+
+

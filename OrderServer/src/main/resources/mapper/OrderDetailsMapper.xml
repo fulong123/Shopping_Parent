@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dream.shopping.orderserver.mapper.OrderDetailsMapper">
+    <resultMap id="BaseResultMap" type="com.dream.shopping.facade.po.OrderDetails">
+        <id column="order_details_id" property="orderDetailsId" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+        <result column="deal_num" property="dealNum" jdbcType="VARCHAR"/>
+        <result column="goods_id" property="goodsId" jdbcType="INTEGER"/>
+        <result column="merchant_id" property="merchantId" jdbcType="INTEGER"/>
+        <result column="order_id" property="orderId" jdbcType="INTEGER"/>
+    </resultMap>
+    <!--根据订单Id查询所有订单项-->
+    <select id="selectOrderDetailsByOrderId" resultMap="BaseResultMap" resultType="com.dream.shopping.facade.po.OrderDetails" parameterType="java.lang.Integer">
+        select * from order_details where order_id=#{order_id}
+    </select>
+    <!--根据Id查询订单项-->
+    <select id="selectOrderDetailsById" resultMap="BaseResultMap" resultType="com.dream.shopping.facade.po.OrderDetails" parameterType="java.lang.Integer">
+        select * from order_details where order_details_id=#{order_details_id}
+    </select>
+    <!--根据Id删除订单项-->
+    <delete id="deleteOrderDetaIlsById" parameterType="java.lang.Integer" >
+        delete from order_details where order_details_id=#{order_details_id}
+    </delete>
+</mapper>
