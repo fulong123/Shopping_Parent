@@ -1,6 +1,7 @@
 package com.dream.shopping.shoppinguserservice.service;
 
 import com.dream.shopping.facade.po.User;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * Date: 2018/11/20
  * Time: 11:13
  */
+@Service(value = "IUserService")
 public interface IUserService {
 
     /**

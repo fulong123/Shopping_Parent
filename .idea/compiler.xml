@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="addressserver" />
         <module name="AddressServer" />
+        <module name="AdministrationServer" />
         <module name="AdServer" />
         <module name="adserver" />
         <module name="brandserver" />
@@ -34,13 +35,13 @@
         <module name="ProducTypeServer" />
         <module name="ServiceComons" />
         <module name="servicecomons" />
-        <module name="Shopping_Parent" />
         <module name="shoppinguserservice" />
         <module name="UserService" />
-        <module name="workspace" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="AdministraterService" target="1.8" />
+      <module name="AdministrationService" target="1.8" />
       <module name="Pojo" target="1.8" />
       <module name="pojo" target="1.8" />
     </bytecodeTargetLevel>

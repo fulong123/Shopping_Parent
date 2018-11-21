@@ -16,6 +16,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface Goods_OrderMapper {
+
     /**
      * 描述 查询所有订单
      * @author cqq
@@ -23,7 +24,8 @@ public interface Goods_OrderMapper {
      * @param []
      * @return java.util.List<com.dream.shopping.facade.po.Goods_Order>
      */
-    List<Goods_Order> selectGoods_Order(int id);
+    List<Goods_Order> selectGoods_OrderByUserId(int id);
+
     /**
      * 描述 根据Id查询订单
      * @author cqq
@@ -32,6 +34,7 @@ public interface Goods_OrderMapper {
      * @return com.dream.shopping.facade.po.Goods_Order
      */
     Goods_Order selectGoods_OrderById(int id);
+
     /**
      * 描述 根据Id删除订单
      * @author cqq
@@ -40,6 +43,7 @@ public interface Goods_OrderMapper {
      * @return int
      */
     int deleteGood_OrderById(int id);
+
     /**
      * 描述 根据Id修改订单
      * @author cqq

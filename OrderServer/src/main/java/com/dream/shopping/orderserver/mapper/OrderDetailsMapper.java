@@ -16,6 +16,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface OrderDetailsMapper {
+
     /**
      * 描述 查询所有订单项
      * @author cqq
@@ -24,6 +25,7 @@ public interface OrderDetailsMapper {
      * @return java.util.List<com.dream.shopping.facade.po.OrderDetails>
      */
     List<OrderDetails> selectOrderDetailsByOrderId(int id);
+
     /**
      * 描述 根据Id查询订单项
      * @author cqq
@@ -32,6 +34,7 @@ public interface OrderDetailsMapper {
      * @return com.dream.shopping.facade.po.OrderDetails
      */
     OrderDetails selectOrderDetailsById(int id);
+
     /**
      * 描述 根据Id删除订单项
      * @author cqq

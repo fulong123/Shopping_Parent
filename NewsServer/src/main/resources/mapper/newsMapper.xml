@@ -11,7 +11,7 @@
     </resultMap>
     <!-- 动态sql添加 -->
     <insert id="insertNews" parameterType="com.dream.shopping.facade.po.News">
-        insert into user
+        insert into news
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="newsId != null">
                 news_id,
@@ -57,10 +57,10 @@
         select *from news where 1 = 1
         <trim suffixOverrides=" ">
             <if test="newsTitle != null">
-                and news_title like #{age,jdbcType=VARCHAR}
+                and news_title like #{newsTitle,jdbcType=VARCHAR}
             </if>
             <if test="newsType != null">
-                and news_type like #{email,jdbcType=VARCHAR}
+                and news_type like #{newsType,jdbcType=VARCHAR}
             </if>
         </trim>
     </select>
