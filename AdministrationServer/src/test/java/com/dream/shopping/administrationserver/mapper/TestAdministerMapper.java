@@ -1,7 +1,6 @@
 package com.dream.shopping.administrationserver.mapper;
 
 import com.dream.shopping.facade.po.Administrator;
-import com.dream.shopping.facade.po.User;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
@@ -11,10 +10,7 @@ import org.dbunit.DBTestCase;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
-import org.dbunit.database.QueryDataSet;
-import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
-import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +28,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -93,7 +88,7 @@ public class TestAdministerMapper extends DBTestCase {
     }
 
     @Test
-    public void testUpdateByPrimaryKeySelective(){
+    public void testUpdateAdmin(){
         Administrator admin = new Administrator();
         admin.setAdministratorId(2);
         admin.setAdministratorName("嘻嘻嘻");
@@ -102,7 +97,7 @@ public class TestAdministerMapper extends DBTestCase {
     }
 
     @Test
-    public void testInsertSelective(){
+    public void testInsertAdmin(){
         Administrator admin = new Administrator();
         admin.setAdministratorId(1);
         admin.setAdministratorName("嘻嘻嘻");
@@ -111,7 +106,7 @@ public class TestAdministerMapper extends DBTestCase {
     }
 
     @Test
-    public void testDeleteUserById(){
+    public void testDeleteAdminById(){
         Integer integer = administerMapper.deleteAdminById(3);
         assertSame(1,integer);
     }
@@ -136,7 +131,7 @@ public class TestAdministerMapper extends DBTestCase {
     }
 
     @Test
-    public void testSelectByUser(){
+    public void testSelectByAdmin(){
         Administrator admin = new Administrator();
         admin.setAdministratorName("水");
         List<Administrator> users = administerMapper.selectByAdmin(admin);

@@ -20,7 +20,6 @@
         <mysql-version>5.1.38</mysql-version>
     </properties>
 
-
         <dependencies>
             <!-- 整合消息队列-->
             <dependency>
@@ -75,6 +74,11 @@
                 <artifactId>spring-boot-devtools</artifactId>
             </dependency>
             <!-- 引入thymeleaf -->
+            <dependency>
+                <groupId>net.sourceforge.nekohtml</groupId>
+                <artifactId>nekohtml</artifactId>
+                <version>1.9.22</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-thymeleaf</artifactId>
