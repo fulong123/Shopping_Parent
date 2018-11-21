@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dream.shopping.adserver.mapper.AdvertisementMapper">
+
+<resultMap id="BaseResultMap" type="com.dream.shopping.facade.po.Advertisement">
+
+<id column="advertisement_id" property="AdvertisementId" jdbcType="INTEGER"/>
+<result column="advertisement_photo" property="AdvertisementPhoto" jdbcType="VARCHAR"/>
+<result column="advertisement_type" property="AdvertisementType" jdbcType="VARCHAR"/>
+<result column="goods_id" property="goodsId" jdbcType="INTEGER"/>
+</resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="com.dream.shopping.facade.po.Advertisement" resultType="com.dream.shopping.facade.po.Advertisement">
+        select * from advertisement
+        <where>
+            <include refid="customerSql"/>
+        </where>
+    </select>
+    <sql id="customerSql" >
+            <if test="AdvertisementId!=null and AdvertisementId!=''">
+                and advertisement_id = "${AdvertisementId}"
+            </if>
+            <if test="AdvertisementPhoto!=null and AdvertisementPhoto!='' ">
+                and advertisement_photo = "${AdvertisementPhoto}"
+            </if>
+            <if test="AdvertisementType!=null and AdvertisementType!='' ">
+                and advertisement_type = "${AdvertisementType}"
+            </if>
+            <if test="goodsId!=null and goodsId!='' ">
+                and goods_id = "${goodsId}"
+            </if>
+    </sql>
+
+    <insert id="insertAdvertisement" parameterType="com.dream.shopping.facade.po.Advertisement" useGeneratedKeys="true" keyProperty="AdvertisementId">
+        insert into advertisement (advertisement_photo,advertisement_type,goods_id) values (#{AdvertisementPhoto},#{AdvertisementType},#{goodsId})
+    </insert>
+
+    <update id="updateById" parameterType="com.dream.shopping.facade.po.Advertisement" >
+        update advertisement set advertisement_photo=#{AdvertisementPhoto},advertisement_type=#{AdvertisementType},goods_id=#{goodsId} where advertisement_id=#{AdvertisementId}
+    </update>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" resultType="com.dream.shopping.facade.po.Advertisement">
+        select * from advertisement where advertisement_id = #{AdvertisementId};
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.Integer" >
+        delete from advertisement where advertisement_id = #{AdvertisementId};
+    </delete>
+</mapper>

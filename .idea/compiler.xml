@@ -28,7 +28,6 @@
         <module name="OrderServer" />
         <module name="PayServer" />
         <module name="payserver" />
-        <module name="pojo" />
         <module name="ProductServer" />
         <module name="productserver" />
         <module name="productypeserver" />
@@ -43,6 +42,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Pojo" target="1.8" />
+      <module name="pojo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
