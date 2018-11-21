@@ -11,7 +11,7 @@ import java.util.List;
  * Date: 2018/11/21
  * Time: 14:09
  */
-public interface Goods_OrderService {
+public interface IGoods_OrderService {
     /**
      * 描述 查询所有订单
      * @author cqq
@@ -19,7 +19,7 @@ public interface Goods_OrderService {
      * @param []
      * @return java.util.List<com.dream.shopping.facade.po.Goods_Order>
      */
-    List<Goods_Order> selectGoods_OrderByUserId(int id);
+    List<Goods_Order> selectGoods_Order(int id);
     /**
      * 描述 根据Id查询订单
      * @author cqq

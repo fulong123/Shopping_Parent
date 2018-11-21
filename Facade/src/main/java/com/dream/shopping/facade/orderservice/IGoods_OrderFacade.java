@@ -1,8 +1,6 @@
-package com.dream.shopping.orderserver.mapper;
+package com.dream.shopping.facade.orderservice;
 
 import com.dream.shopping.facade.po.Goods_Order;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -10,12 +8,10 @@ import java.util.List;
  * 描述:
  * Created with IntelliJ IDEA.
  * User: qingquan
- * Date: 2018/11/20
- * Time: 14:06
+ * Date: 2018/11/21
+ * Time: 14:34
  */
-@Mapper
-@Repository
-public interface Goods_OrderMapper {
+public interface IGoods_OrderFacade {
     /**
      * 描述 查询所有订单
      * @author cqq

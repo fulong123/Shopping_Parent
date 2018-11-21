@@ -2,7 +2,7 @@ package com.dream.shopping.orderserver.service.impl;
 
 import com.dream.shopping.facade.po.OrderDetails;
 import com.dream.shopping.orderserver.mapper.OrderDetailsMapper;
-import com.dream.shopping.orderserver.service.OrderDetailsService;
+import com.dream.shopping.orderserver.service.IOrderDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ import java.util.List;
  * Time: 14:15
  */
 @Service
-public class OrderDetailsServiceImpl implements OrderDetailsService {
+public class OrderDetailsServiceImpl implements IOrderDetailsService {
 
     @Autowired
     OrderDetailsMapper orderDetailsMapper;

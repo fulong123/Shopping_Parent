@@ -11,7 +11,7 @@ import java.util.List;
  * Date: 2018/11/21
  * Time: 14:14
  */
-public interface OrderDetailsService {
+public interface IOrderDetailsService {
     /**
      * 描述 查询所有订单项
      * @author cqq

@@ -14,8 +14,18 @@
         <result column="user_num" property="userNum" jdbcType="VARCHAR"/>
     </resultMap>
     <!--根据用户Id查询所有订单-->
-    <select id="selectGoods_OrderByUserId" resultMap="BaseResultMap"  resultType="com.dream.shopping.facade.po.Goods_Order" parameterType="java.lang.Integer">
-        select * from goods_order where user_id=#{user_id,jdbcType=INTEGER}
+    <select id="selectGoods_Order" resultMap="BaseResultMap"
+            resultType="com.dream.shopping.facade.po.Goods_Order"
+            parameterType="com.dream.shopping.facade.po.Goods_Order">
+        select * from goods_order where 1 = 1
+        <trim suffixOverrides=" ">
+            <if test="goods_OrderNum!=null">
+                and goods_order_num like #{goods_OrderNum,jdbcType="VARCHAR"}
+            </if>
+            <if test="userId!=null">
+                and user_id like #{userId,jdbcType="INTEGER}
+            </if>
+        </trim>
     </select>
     <!--根据Id查询订单-->
     <select id="selectGoods_OrderById" resultMap="BaseResultMap" parameterType="java.lang.Integer" resultType="com.dream.shopping.facade.po.Goods_Order">
