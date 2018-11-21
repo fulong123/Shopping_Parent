@@ -21,11 +21,26 @@ public class Brand implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)     //主键生成策略
+    @Column(name = "brandId")
     private Integer brandId;        //品牌id
-    @Column
+    @Column(name = "brandName")
     private String brandName;       //品牌名字
-
+    @Column(name = "photo")
+    private String photo;           //品牌图片
     public Brand() {
+    }
+
+    public Brand(String brandName, String photo) {
+        this.brandName = brandName;
+        this.photo = photo;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public Brand(String brandName) {
@@ -53,6 +68,7 @@ public class Brand implements Serializable {
         return "Brand{" +
                 "brandId=" + brandId +
                 ", brandName='" + brandName + '\'' +
+                ", photo='" + photo + '\'' +
                 '}';
     }
 }
