@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <administrator administrator_id="2" administrator_name="付龙" create_time="12345" password="123123"/>="25252" monetary="14.9" address_id="12" balance="67.0" create_time="1234" goods_id="23" integral="12" inviter="yyy" last_login_time="567111" red_envelopes_value="12.0" red_envelopes_count="111111" user_id_card="23" user_login_name="嘻嘻嘻"/>
+  <administrator administrator_id="3" administrator_name="付龙" create_time="12345" password="123123"/>
+  <administrator administrator_id="4" administrator_name="付龙" create_time="12345" password="123123"/>
+  <administrator administrator_id="5" administrator_name="付龙" create_time="12345" password="123123"/>
+</dataset>

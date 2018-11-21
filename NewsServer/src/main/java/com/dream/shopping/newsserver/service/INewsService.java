@@ -1,73 +1,71 @@
-package com.dream.shopping.shoppinguserservice.service;
+package com.dream.shopping.newsserver.service;
 
-import com.dream.shopping.facade.po.User;
-import org.springframework.stereotype.Service;
+import com.dream.shopping.facade.po.News;
 
 import java.util.List;
 
 /**
- * 描述:user的service接口
+ * 描述:
  * Created with IntelliJ IDEA.
  * User: sky
- * Date: 2018/11/20
- * Time: 11:13
+ * Date: 2018/11/21
+ * Time: 13:02
  */
-@Service(value = "IUserService")
-public interface IUserService {
+public interface INewsService {
 
     /**
-     * 描述 添加用户
+     * 描述 添加新闻
      * @author sky
      * @date 2018/11/20 12:23
-     * @param [userVo]
+     * @param [news]
      * @return java.lang.Integer
      */
-    Integer insertUser(User user);
+    Integer insertNews(News news);
 
     /**
-     * 描述 通过id删除用户
+     * 描述 通过id删除新闻
      * @author sky
      * @date 2018/11/20 12:24
-     * @param [userVo]
+     * @param [newsId]
      * @return java.lang.Integer
      */
-    Integer deleteUserById(Integer uId);
+    Integer deleteNewsById(Integer newsId);
 
     /**
      * 描述 批量删除
      * @author sky
      * @date 2018/11/20 14:56
-     * @param [userVos]
+     * @param [news]
      * @return java.lang.Integer
      */
-    Integer deleteByBatch(List<User> user);
+    Integer deleteByBatch(List<News> news);
 
     /**
-     * 描述 删除全部
+     * 描述 通过某一属性删除全部
      * @author sky
      * @date 2018/11/20 12:27
-     * @param [userVo]
+     * @param []
      * @return java.lang.Integer
      */
     Integer deleteAll();
 
     /**
-     * 描述 通过id查找user
+     * 描述 通过id查找News
      * @author sky
      * @date 2018/11/20 11:12
-     * @param [uId]
+     * @param [newsId]
      * @return User
      */
-    User selectById(Integer uId);
+    News selectById(Integer newsId);
 
     /**
-     * 描述 通过某一属性查询
+     * 描述 查询所有
      * @author sky
      * @date 2018/11/20 11:55
      * @param []
-     * @return java.util.List<User>
+     * @return java.util.List<News>
      */
-    List<User> selectByUser(User user);
+    List<News> selectByNews(News news);
 
     /**
      * 描述 通过id修改
@@ -76,5 +74,5 @@ public interface IUserService {
      * @param [uId]
      * @return java.lang.Integer
      */
-    Integer updateUser(User user);
+    Integer updateNews(News news);
 }

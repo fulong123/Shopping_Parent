@@ -1,19 +1,21 @@
-package com.dream.shopping.shoppinguserservice.service;
+package com.dream.shopping.administrationserver.mapper;
 
-import com.dream.shopping.facade.po.User;
-import org.springframework.stereotype.Service;
+import com.dream.shopping.facade.po.Administrator;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
- * 描述:user的service接口
+ * 描述:
  * Created with IntelliJ IDEA.
  * User: sky
- * Date: 2018/11/20
- * Time: 11:13
+ * Date: 2018/11/21
+ * Time: 14:50
  */
-@Service(value = "IUserService")
-public interface IUserService {
+@Mapper
+@Repository
+public interface AdministerMapper {
 
     /**
      * 描述 添加用户
@@ -22,7 +24,7 @@ public interface IUserService {
      * @param [userVo]
      * @return java.lang.Integer
      */
-    Integer insertUser(User user);
+    Integer insertAdmin(Administrator admin);
 
     /**
      * 描述 通过id删除用户
@@ -31,7 +33,7 @@ public interface IUserService {
      * @param [userVo]
      * @return java.lang.Integer
      */
-    Integer deleteUserById(Integer uId);
+    Integer deleteAdminById(Integer admin_id);
 
     /**
      * 描述 批量删除
@@ -40,10 +42,10 @@ public interface IUserService {
      * @param [userVos]
      * @return java.lang.Integer
      */
-    Integer deleteByBatch(List<User> user);
+    Integer deleteByBatch(List<Administrator> admin);
 
     /**
-     * 描述 删除全部
+     * 描述 通过某一属性删除全部
      * @author sky
      * @date 2018/11/20 12:27
      * @param [userVo]
@@ -58,16 +60,16 @@ public interface IUserService {
      * @param [uId]
      * @return User
      */
-    User selectById(Integer uId);
+    Administrator selectById(Integer admin_id);
 
     /**
-     * 描述 通过某一属性查询
+     * 描述 查询所有
      * @author sky
      * @date 2018/11/20 11:55
      * @param []
      * @return java.util.List<User>
      */
-    List<User> selectByUser(User user);
+    List<Administrator> selectByAdmin(Administrator admin);
 
     /**
      * 描述 通过id修改
@@ -76,5 +78,5 @@ public interface IUserService {
      * @param [uId]
      * @return java.lang.Integer
      */
-    Integer updateUser(User user);
+    Integer updateAdmin(Administrator admin);
 }

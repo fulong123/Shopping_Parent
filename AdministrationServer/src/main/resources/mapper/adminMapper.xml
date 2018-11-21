@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dream.shopping.administrationserver.mapper.AdministerMapper" >
+
+<resultMap id="BaseResultMap" type="com.dream.shopping.facade.po.Administrator">
+
+    <id column="administrator_id" property="administratorId" jdbcType="INTEGER"/>
+    <result column="administrator_name" property="administratorName" jdbcType="VARCHAR"/>
+    <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+    <result column="password" property="password" jdbcType="VARCHAR"/>
+
+</resultMap>
+    <!-- 动态sql添加 -->
+    <insert id="insertAdmin" parameterType="com.dream.shopping.facade.po.Administrator">
+            insert into administrator
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test="administratorId != null">
+                    administrator_id,
+                </if>
+                <if test="administratorName != null">
+                    administrator_name,
+                </if>
+                <if test="createTime != null">
+                    create_time,
+                </if>
+                <if test="password != null">
+                    password,
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides="," >
+                <if test="administratorId != null" >
+                    #{administratorId,jdbcType=INTEGER},
+                </if>
+                <if test="administratorName != null">
+                    #{administratorName,jdbcType=VARCHAR},
+                </if>
+                <if test="createTime != null">
+                    #{createTime,jdbcType=VARCHAR},
+                </if>
+                <if test="password != null">
+                    #{password,jdbcType=VARCHAR},
+                </if>
+            </trim>
+    </insert>
+
+    <delete id="deleteAll">
+        delete from administrator
+    </delete>
+
+    <delete id="deleteAdminById" parameterType="java.lang.Integer">
+        delete from administrator where administrator_id = #{administratorId,jdbcType=INTEGER}
+    </delete>
+
+    <delete id="deleteByBatch" parameterType="java.util.List">
+        delete from administrator where administrator_id in
+        <foreach collection="list" item="param" open="(" separator="," close=")">
+            #{param.administratorId,jdbcType=INTEGER}
+        </foreach>
+    </delete>
+
+    <select id="selectByAdmin" resultMap="BaseResultMap"
+            parameterType="com.dream.shopping.facade.po.Administrator"
+            resultType="com.dream.shopping.facade.po.Administrator">
+        select *from administrator where 1 = 1
+        <trim suffixOverrides=" ">
+            <if test="administratorName != null">
+                and administrator_name like #{administratorName,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime,jdbcType=VARCHAR}
+            </if>
+        </trim>
+    </select>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" resultType="com.dream.shopping.facade.po.Administrator">
+        select *from administrator where administrator_id = #{administrator,jdbcType=INTEGER}
+    </select>
+
+    <update id="updateAdmin" parameterType="com.dream.shopping.facade.po.Administrator">
+        update administrator
+        <set >
+            <if test="administratorName != null">
+                administrator_name = #{administratorName,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where  administrator_id= #{administratorId,jdbcType=INTEGER}
+    </update>
+</mapper>

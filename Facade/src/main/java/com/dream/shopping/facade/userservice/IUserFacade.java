@@ -1,6 +1,7 @@
 package com.dream.shopping.facade.userservice;
 
 import com.dream.shopping.facade.po.User;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * Date: 2018/11/20
  * Time: 23:55
  */
+@Component
 public interface IUserFacade {
 
     /**

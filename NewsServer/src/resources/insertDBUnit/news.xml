@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <news news_id="2" news_title="脉" news_type="青柠味"/>
+  <news news_id="3" news_title="脉动" news_type="西瓜味"/>
+  <news news_id="4" news_title="脉动来" news_type="仙人掌味"/>
+  <news news_id="5" news_title="脉动来了" news_type="橘子味"/>
+</dataset>

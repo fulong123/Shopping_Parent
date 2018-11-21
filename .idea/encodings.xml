@@ -4,6 +4,8 @@
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/AdServer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/AddressServer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/AdministrationServer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/AdministrationService" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BrandServer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/CarServer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Commons" charset="UTF-8" />
@@ -17,5 +19,6 @@
     <file url="file://$PROJECT_DIR$/ProductServer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ServiceComons" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/UserService" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/administrater" charset="UTF-8" />
   </component>
 </project>
