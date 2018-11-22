@@ -16,6 +16,6 @@ public class AddressServerController {
 
     @RequestMapping("/login")
     public String login(){
-        return "login";
+        return "";
     }
 }
