@@ -1,4 +1,4 @@
-package com.dream.shopping.shoppinguserservice.service;
+package com.dream.shopping.managerweb.userService;
 
 import com.dream.shopping.facade.po.User;
 

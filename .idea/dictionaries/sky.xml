@@ -3,13 +3,18 @@
     <words>
       <w>daocommon</w>
       <w>daocommons</w>
+      <w>dubbo</w>
+      <w>echarts</w>
       <w>huiliao</w>
       <w>jclose</w>
       <w>jyes</w>
       <w>legacyhtml</w>
+      <w>managerweb</w>
       <w>newsserver</w>
       <w>productserver</w>
       <w>shoppinguserservice</w>
+      <w>signout</w>
+      <w>ueditor</w>
     </words>
   </dictionary>
 </component>
