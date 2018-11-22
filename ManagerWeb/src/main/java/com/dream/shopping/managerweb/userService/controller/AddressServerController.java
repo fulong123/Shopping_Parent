@@ -16,11 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/address")
 public class AddressServerController {
 
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0",timeout = 100000)
     private IUserService userService;
 
     @RequestMapping("/login")
-    public void login(){
+    public String login(){
         System.out.println(userService.selectById(36));
+        return "/user/register";
     }
 }
