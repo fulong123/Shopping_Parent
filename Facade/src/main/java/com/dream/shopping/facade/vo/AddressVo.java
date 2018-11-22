@@ -2,7 +2,6 @@ package com.dream.shopping.facade.vo;
 
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
 import java.io.Serializable;
 
 /**

@@ -1,11 +1,10 @@
 package com.dream.shopping.shoppinguserservice.service.impl;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.dream.shopping.facade.po.User;
 import com.dream.shopping.shoppinguserservice.mapper.UserMapper;
 import com.dream.shopping.shoppinguserservice.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -16,8 +15,7 @@ import java.util.List;
  * Date: 2018/11/20
  * Time: 12:21
  */
-@Component
-@Service(version = "1.0.0")
+@Service
 public class UserService implements IUserService {
 
     private final UserMapper userMapper;

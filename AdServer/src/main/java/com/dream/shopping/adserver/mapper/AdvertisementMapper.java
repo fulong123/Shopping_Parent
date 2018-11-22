@@ -1,7 +1,5 @@
 package com.dream.shopping.adserver.mapper;
 
-import com.dream.shopping.adserver.vo.AdvertisementVo;
-import com.dream.shopping.adserver.vo.CustomerAdvertisement;
 import com.dream.shopping.facade.po.Advertisement;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;

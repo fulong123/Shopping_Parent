@@ -1,6 +1,10 @@
 <component name="ProjectDictionaryState">
   <dictionary name="sky">
     <words>
+      <w>addressserver</w>
+      <w>administrationserver</w>
+      <w>brandserver</w>
+      <w>carserver</w>
       <w>daocommon</w>
       <w>daocommons</w>
       <w>dubbo</w>

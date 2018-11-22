@@ -1,8 +1,6 @@
 package com.dream.shopping.orderserver.testOrder;
 
-import com.dream.shopping.facade.po.Goods_Order;
 import com.dream.shopping.facade.po.OrderDetails;
-import com.dream.shopping.facade.po.User;
 import com.dream.shopping.orderserver.mapper.Goods_OrderMapper;
 import com.dream.shopping.orderserver.mapper.OrderDetailsMapper;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;

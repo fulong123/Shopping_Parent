@@ -1,17 +1,17 @@
-package com.dream.shopping.managerweb.userService;
+package com.dream.shopping.facade;
 
 import com.dream.shopping.facade.po.User;
 
 import java.util.List;
 
 /**
- * 描述:user的service接口
+ * 描述:
  * Created with IntelliJ IDEA.
  * User: sky
  * Date: 2018/11/20
- * Time: 11:13
+ * Time: 23:55
  */
-public interface IUserService {
+public interface IUserFacade {
 
     /**
      * 描述 添加用户
@@ -54,7 +54,7 @@ public interface IUserService {
      * @author sky
      * @date 2018/11/20 11:12
      * @param [uId]
-     * @return User
+     * @return com.dream.shopping.facade.po.User
      */
     User selectById(Integer uId);
 
@@ -63,7 +63,7 @@ public interface IUserService {
      * @author sky
      * @date 2018/11/20 11:55
      * @param []
-     * @return java.util.List<User>
+     * @return java.util.List<com.dream.shopping.facade.po.User>
      */
     List<User> selectByUser(User user);
 

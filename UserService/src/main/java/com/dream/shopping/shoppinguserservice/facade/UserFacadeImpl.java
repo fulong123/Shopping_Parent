@@ -1,57 +1,60 @@
-package com.dream.shopping.managerweb.userService.impl;
+package com.dream.shopping.shoppinguserservice.facade;
 
-import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.dubbo.config.annotation.Service;
+import com.dream.shopping.facade.IUserFacade;
 import com.dream.shopping.facade.po.User;
 import com.dream.shopping.shoppinguserservice.service.IUserService;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 描述:user的service实现层
+ * 描述:
  * Created with IntelliJ IDEA.
  * User: sky
- * Date: 2018/11/20
- * Time: 12:21
+ * Date: 2018/11/22
+ * Time: 19:34
  */
 @Component
-public class UserConsumerService implements IUserService {
+@Service(version = "1.0.0")
+public class UserFacadeImpl implements IUserFacade {
 
-    @Reference(version = "1.0.0",url = "dubbo://10.7.190.179:20880")
-    private IUserService userService;
+    @Resource
+    private IUserService iUserService;
 
     @Override
     public Integer insertUser(User user) {
-        return null;
+        return iUserService.insertUser(user);
     }
 
     @Override
     public Integer deleteUserById(Integer uId) {
-        return null;
+        return iUserService.deleteUserById(uId);
     }
 
     @Override
     public Integer deleteByBatch(List<User> user) {
-        return null;
+        return iUserService.deleteByBatch(user);
     }
 
     @Override
     public Integer deleteAll() {
-        return null;
+        return iUserService.deleteAll();
     }
 
     @Override
     public User selectById(Integer uId) {
-        return userService.selectById(uId);
+        return iUserService.selectById(uId);
     }
 
     @Override
     public List<User> selectByUser(User user) {
-        return null;
+        return iUserService.selectByUser(user);
     }
 
     @Override
     public Integer updateUser(User user) {
-        return null;
+        return iUserService.updateUser(user);
     }
 }

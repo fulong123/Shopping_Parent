@@ -1,7 +1,7 @@
-package com.dream.shopping.managerweb.userService.controller;
+package com.dream.shopping.managerweb.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.dream.shopping.shoppinguserservice.service.IUserService;
+import com.dream.shopping.facade.IUserFacade;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/address")
 public class AddressServerController {
 
-    @Reference(version = "1.0.0",timeout = 100000)
-    private IUserService userService;
+   @Reference(version = "1.0.0",timeout = 100000)
+   private IUserFacade iUserFacade;
 
     @RequestMapping("/login")
     public String login(){
-        System.out.println(userService.selectById(36));
+        System.out.println(iUserFacade.selectById(36));
         return "/user/register";
     }
 }

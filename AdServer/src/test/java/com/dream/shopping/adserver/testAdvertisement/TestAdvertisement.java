@@ -1,10 +1,7 @@
 package com.dream.shopping.adserver.testAdvertisement;
 
 import com.dream.shopping.adserver.mapper.AdvertisementMapper;
-import com.dream.shopping.adserver.vo.AdvertisementVo;
-import com.dream.shopping.adserver.vo.CustomerAdvertisement;
 import com.dream.shopping.facade.po.Advertisement;
-import com.dream.shopping.facade.po.User;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
