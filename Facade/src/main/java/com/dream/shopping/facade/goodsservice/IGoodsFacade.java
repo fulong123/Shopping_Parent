@@ -1,18 +1,17 @@
-package com.dream.shopping.productserver.service;
+package com.dream.shopping.facade.goodsservice;
 
 import com.dream.shopping.facade.po.Goods;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
- * 描述:  商品的服务
+ * 描述:
  * Created with IntelliJ IDEA.
  * User: huiliao
- * Date: 2018/11/21
- * Time: 20:41
+ * Date: 2018/11/22
+ * Time: 10:15
  */
-public interface GoodsService {
+public interface IGoodsFacade {
 
     /**
      * 描述 通过条件查询所有

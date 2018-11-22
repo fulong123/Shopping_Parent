@@ -10,8 +10,8 @@
         </where>
     </select>
     <sql id="selectGoodsDetails">
-        <if test="goodsDrand!=null and goodsDrand!=''">
-            and goodsDrand like #{goodsDrand}
+        <if test="goodsBrand!=null and goodsBrand!=''">
+            and goodsBrand like #{goodsBrand}
         </if>
         <if test="goodsDetailPicture!=null and goodsDetailPicture!=''">
             and goodsDetailPicture like #{goodsDetailPicture}
@@ -46,8 +46,8 @@
         </selectKey>
         insert into goodsDetails
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="goodsDrand != null">
-                goodsDrand,
+            <if test="goodsBrand != null">
+                goodsBrand,
             </if>
             <if test="goodsDetailPicture != null">
                 goodsDetailPicture,
@@ -70,8 +70,8 @@
         </trim>
         values
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="goodsDrand != null">
-                #{goodsDrand},
+            <if test="goodsBrand != null">
+                #{goodsBrand},
             </if>
             <if test="goodsDetailPicture != null">
                 #{goodsDetailPicture},
@@ -97,8 +97,8 @@
     <update id="updateGoodsDetails" parameterType="com.dream.shopping.facade.po.GoodsDetails">
         update goodsDetails set
         <trim suffixOverrides=",">
-            <if test="goodsDrand != null">
-                goodsDrand = #{goodsDrand},
+            <if test="goodsBrand != null">
+                goodsBrand = #{goodsBrand},
             </if>
             <if test="goodsDetailPicture != null">
                 goodsDetailPicture = #{goodsDetailPicture},

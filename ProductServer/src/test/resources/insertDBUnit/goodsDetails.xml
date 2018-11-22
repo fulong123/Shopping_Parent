@@ -1,3 +1,4 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
+    <goodsDetails goodsDetailsId="12" goodsId="11" goodsOrigin="231" goodsName="123" goodsBrand="123" goodsWeight="213" goodsSpecificationPackaging="123" goodsDetailPicture="123"/>
 </dataset>

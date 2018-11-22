@@ -3,8 +3,11 @@ package com.dream.shopping.productserver.service.impl;
 import com.dream.shopping.facade.po.Goods;
 import com.dream.shopping.productserver.mapper.GoodMapper;
 import com.dream.shopping.productserver.service.GoodsService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,6 +17,7 @@ import java.util.List;
  * Date: 2018/11/21
  * Time: 20:43
  */
+@Service
 public class GoodsServiceImpl implements GoodsService {
 
     @Resource
@@ -30,6 +34,8 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public int insertGoods(Goods goods) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        goods.setCreateTime(dateFormat.format(new Date()));
         return goodMapper.insertGoods(goods);
     }
 
