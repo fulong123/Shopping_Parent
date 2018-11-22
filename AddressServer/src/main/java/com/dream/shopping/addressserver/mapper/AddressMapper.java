@@ -14,7 +14,6 @@ import java.util.List;
  * Date: 2018/11/20
  * Time: 11:41
  */
-@Repository
 @Mapper
 public interface AddressMapper{
 

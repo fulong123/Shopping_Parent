@@ -3,7 +3,9 @@ package com.dream.shopping.productserver.service.impl;
 import com.dream.shopping.facade.po.Goods;
 import com.dream.shopping.productserver.mapper.GoodMapper;
 import com.dream.shopping.productserver.service.GoodsService;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
@@ -17,7 +19,8 @@ import java.util.List;
  * Date: 2018/11/21
  * Time: 20:43
  */
-@Service
+@Component
+@Transactional
 public class GoodsServiceImpl implements GoodsService {
 
     @Resource

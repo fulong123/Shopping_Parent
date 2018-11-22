@@ -2,6 +2,7 @@ package com.dream.shopping.addressserver.service;
 
 import com.dream.shopping.facade.po.Address;
 import com.dream.shopping.facade.vo.AddressVo;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 

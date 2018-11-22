@@ -1,5 +1,6 @@
-package com.dream.shopping.facade.impl;
+package com.dream.shopping.facade;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.dream.shopping.facade.goodsservice.IGoodsFacade;
 import com.dream.shopping.facade.po.Goods;
 import com.dream.shopping.productserver.service.GoodsService;
@@ -16,6 +17,7 @@ import java.util.List;
  * Time: 10:20
  */
 @Component
+@Service(version = "1.0.0")
 public class GoodsFacade implements IGoodsFacade {
 
     @Resource

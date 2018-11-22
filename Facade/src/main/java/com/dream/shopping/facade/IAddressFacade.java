@@ -1,4 +1,4 @@
-package com.dream.shopping.facade.addressservice;
+package com.dream.shopping.facade;
 
 import com.dream.shopping.facade.po.Address;
 import com.dream.shopping.facade.vo.AddressVo;

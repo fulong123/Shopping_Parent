@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script th:src="javascript/jquery.js"></script>
+    <script th:src="javascript/distpicker.data.js"></script>
+    <script th:src="javascript/distpicker.js"></script>
+    <script th:src="javascript/main.js"></script>
+    <script>
+        $(document).ready(function () {
+                var province = $("#eprovinceName").find("option:selected").text();
+                var city = $("#ecityName").find("option:selected").text();
+                var district = $("#edistrictName").find("option:selected").text();
+        })
+    </script>
+</head>
+<body>
+<div class="mem_tit">
+    <a href="#"><img th:src="images/add_ad.gif" /></a>
+</div>
+<table border="0" class="add_tab" style="width:930px;"  cellspacing="0" cellpadding="0">
+    <tr>
+        <td width="135" align="right">配送地区</td>
+        <td colspan="3" style="font-family:'宋体';">
+            <div data-toggle="distpicker">
+                <select id="eprovinceName" data-province="浙江省" name="provinceName"></select>
+                <select id="ecityName" data-city="杭州市" name="cityName"></select>
+                <select id="edistrictName" data-district="西湖区" name="districtName"></select>
+            </div>
+            （必填）
+        </td>
+    </tr>
+    <tr>
+        <td align="right">收货人姓名</td>
+        <td style="font-family:'宋体';"><input type="text" value="姓名" class="add_ipt" />（必填）</td>
+        <td align="right">电子邮箱</td>
+        <td style="font-family:'宋体';"><input type="text" value="12345678@qq.com" class="add_ipt" />（必填）</td>
+    </tr>
+    <tr>
+        <td align="right">详细地址</td>
+        <td style="font-family:'宋体';"><input type="text" value="世外桃源" class="add_ipt" />（必填）</td>
+        <td align="right">邮政编码</td>
+        <td style="font-family:'宋体';"><input type="text" value="610000" class="add_ipt" /></td>
+    </tr>
+    <tr>
+        <td align="right">手机</td>
+        <td style="font-family:'宋体';"><input type="text" value="1361234587" class="add_ipt" />（必填）</td>
+        <td align="right">电话</td>
+        <td style="font-family:'宋体';"><input type="text" value="028-12345678" class="add_ipt" /></td>
+    </tr>
+    <tr>
+        <td align="right">标志建筑</td>
+        <td style="font-family:'宋体';"><input type="text" value="世外桃源大酒店" class="add_ipt" /></td>
+        <td align="right">最佳送货时间</td>
+        <td style="font-family:'宋体';"><input type="text" value="" class="add_ipt" /></td>
+    </tr>
+</table>
+<p align="right">
+   <a href="#" class="add_b">确认添加</a>
+</p>
+</body>
+</html>

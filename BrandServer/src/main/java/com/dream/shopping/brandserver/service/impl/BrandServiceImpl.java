@@ -4,6 +4,7 @@ import com.dream.shopping.brandserver.mapper.BrandMapper;
 import com.dream.shopping.brandserver.service.BrandService;
 import com.dream.shopping.facade.po.Brand;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
  * Time: 14:14
  */
 @Service
+@Transactional
 public class BrandServiceImpl implements BrandService {
 
     @Resource

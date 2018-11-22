@@ -4,6 +4,7 @@ import com.dream.shopping.facade.po.GoodsDetails;
 import com.dream.shopping.productserver.mapper.GoodsDetailsMapper;
 import com.dream.shopping.productserver.service.GoodsDetailsService;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
  * Time: 20:47
  */
 @Component
+@Transactional
 public class GoodsDetailsServiceImpl implements GoodsDetailsService {
 
     @Resource

@@ -4,9 +4,10 @@ import com.dream.shopping.facade.po.Address;
 import com.dream.shopping.addressserver.mapper.AddressMapper;
 import com.dream.shopping.addressserver.service.AddressService;
 import com.dream.shopping.facade.vo.AddressVo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,16 +17,14 @@ import java.util.List;
  * Date: 2018/11/20
  * Time: 14:15
  */
-@Service
+@Component
+@Transactional
 public class AddressServiceImpl implements AddressService {
 
 
+    @Resource
     private AddressMapper addressMapper;
 
-    @Autowired
-    public void setAddressMapper(AddressMapper addressMapper) {
-        this.addressMapper = addressMapper;
-    }
 
     @Override
     public List<Address> selectAll(AddressVo addressVo) {
@@ -34,6 +33,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public Address selectAddressById(Integer id) {
+        System.out.println("-------------------------22222222222222222222222222222222222");
         return addressMapper.selectAddressById(id);
     }
 

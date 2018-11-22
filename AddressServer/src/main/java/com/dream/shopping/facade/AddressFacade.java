@@ -1,12 +1,12 @@
-package com.dream.shopping.facade.impl;
+package com.dream.shopping.facade;
 
-import com.dream.shopping.facade.addressservice.IAddressFacade;
+import com.alibaba.dubbo.config.annotation.Service;
 import com.dream.shopping.facade.po.Address;
 import com.dream.shopping.addressserver.service.AddressService;
 import com.dream.shopping.facade.vo.AddressVo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -17,14 +17,12 @@ import java.util.List;
  * Time: 14:22
  */
 @Component
+@Service(version = "1.0.0")
 public class AddressFacade implements IAddressFacade {
 
+    @Resource
     private AddressService addressService = null;
 
-    @Autowired
-    public void setAddressService(AddressService addressService) {
-        this.addressService = addressService;
-    }
 
     @Override
     public List<Address> selectAll(AddressVo addressVo) {
@@ -33,6 +31,7 @@ public class AddressFacade implements IAddressFacade {
 
     @Override
     public Address selectAddressById(Integer id) {
+        System.out.println("-------------------------1111111111111111111111111111111111111");
         return addressService.selectAddressById(id);
     }
 
