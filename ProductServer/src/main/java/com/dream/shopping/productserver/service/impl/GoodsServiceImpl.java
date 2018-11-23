@@ -20,7 +20,6 @@ import java.util.List;
  * Time: 20:43
  */
 @Component
-@Transactional
 public class GoodsServiceImpl implements GoodsService {
 
     @Resource

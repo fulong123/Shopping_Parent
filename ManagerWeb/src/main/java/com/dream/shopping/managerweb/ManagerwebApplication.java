@@ -7,10 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ManagerwebApplication {
 
     public static void main(String[] args) {
-//        ConfigurableApplicationContext run =
-//                SpringApplication.run(ManagerwebApplication.class, args);
-//        UserConsumerService bean = run.getBean(UserConsumerService.class);
-//        System.out.println(bean.selectById(36));
         SpringApplication.run(ManagerwebApplication.class,args);
     }
 }

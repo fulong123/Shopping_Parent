@@ -1,4 +1,4 @@
-package com.dream.shopping.facade;
+package com.dream.shopping.productserver.facade;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.dream.shopping.facade.IServiceFacade.IGoodsDetailsFacade;

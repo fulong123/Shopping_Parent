@@ -18,7 +18,6 @@ import java.util.List;
  * Time: 14:15
  */
 @Component
-@Transactional
 public class AddressServiceImpl implements AddressService {
 
 
@@ -33,7 +32,6 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public Address selectAddressById(Integer id) {
-        System.out.println("-------------------------22222222222222222222222222222222222");
         return addressMapper.selectAddressById(id);
     }
 

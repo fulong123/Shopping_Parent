@@ -2,9 +2,15 @@ package com.dream.shopping.managerweb.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.dream.shopping.facade.IServiceFacade.IAddressFacade;
-import com.dream.shopping.facade.IServiceFacade.IUserFacade;
+import com.dream.shopping.facade.po.Address;
+import com.dream.shopping.facade.vo.AddressVo;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 /**
  * 描述:
@@ -17,21 +23,53 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/address")
 public class AddressController {
 
-    @Reference(version = "1.0.0",timeout = 100000)
+    @Reference(version = "1.0.0", timeout = 100000)
     private IAddressFacade iAddressFacade;
 
-    @Reference(version = "1.0.0",timeout = 100000)
-    private IUserFacade iUserFacade;
 
     @RequestMapping("/login")
-    public String login(){
+    public String login() {
         System.out.println(iAddressFacade);
-        System.out.println(iAddressFacade.selectAddressById(33));
-        return "/user/register";
+        return "address/addressadd";
     }
 
-    @RequestMapping("/register")
-    public String register(){
-        return "/user/register";
+    @RequestMapping("/init")
+    public String register(@RequestParam(value = "id") Integer id, Model model) {
+        Address address = iAddressFacade.selectAddressById(id);
+        model.addAttribute("address", address);
+        return "addressupdate";
+    }
+
+    @RequestMapping("/getAll")
+    public String getAddress(AddressVo addressVo, Model model) {
+        List<Address> addresses = iAddressFacade.selectAll(addressVo);
+        model.addAttribute("addresses", addresses);
+        return "address/addresslist";
+    }
+
+    @RequestMapping("/addAddress")
+    public String addAddress(Address address) {
+        int i = iAddressFacade.insertAddress(address);
+        if (i > 0) {
+            return "redirect:/address/getAll";
+        } else {
+            return "address/addressadd";
+        }
+    }
+
+    @RequestMapping("/updateAddress")
+    public String updateAddress(Address address) {
+        int i = iAddressFacade.updateAddress(address);
+        if (i > 0) {
+            return "redirect:/address/getAll";
+        } else {
+            return "address/addressupdate";
+        }
+    }
+
+    @RequestMapping("/deleteById")
+    public String deleteById(@RequestParam(value = "id") Integer id) {
+        iAddressFacade.deleteAddressById(id);
+        return "redirect:/address/getAll";
     }
 }

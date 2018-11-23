@@ -11,7 +11,7 @@ import java.util.List;
  * Date: 2018/11/22
  * Time: 19:53
  */
-public interface BrandFacade {
+public interface IBrandFacade {
     /**
      * 描述 查询所有
      * @author huiliao

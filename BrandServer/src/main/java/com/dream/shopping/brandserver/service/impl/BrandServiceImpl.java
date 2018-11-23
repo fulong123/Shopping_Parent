@@ -17,7 +17,6 @@ import java.util.List;
  * Time: 14:14
  */
 @Service
-@Transactional
 public class BrandServiceImpl implements BrandService {
 
     @Resource

@@ -2,7 +2,7 @@ package com.dream.shopping.brandserver.facade;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.dream.shopping.brandserver.service.BrandService;
-import com.dream.shopping.facade.IServiceFacade.BrandFacade;
+import com.dream.shopping.facade.IServiceFacade.IBrandFacade;
 import com.dream.shopping.facade.po.Brand;
 import org.springframework.stereotype.Component;
 
@@ -17,8 +17,8 @@ import java.util.List;
  * Time: 19:56
  */
 @Component
-@Service
-public class BrandFacadeImpl implements BrandFacade {
+@Service(version = "1.0.0")
+public class BrandFacadeImpl implements IBrandFacade {
 
     @Resource
     BrandService brandService;
