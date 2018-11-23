@@ -1,27 +1,29 @@
 package com.dream.shopping.managerweb.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.dream.shopping.facade.IUserFacade;
+import com.dream.shopping.facade.IServiceFacade.IAddressFacade;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 描述:
  * Created with IntelliJ IDEA.
- * User: sky
- * Date: 2018/11/21
- * Time: 20:37
+ * User: huiliao
+ * Date: 2018/11/22
+ * Time: 19:52
  */
 @Controller
 @RequestMapping("/address")
-public class AddressServerController {
+public class AddressController {
 
-   @Reference(version = "1.0.0",timeout = 100000)
-   private IUserFacade iUserFacade;
+
+    @Reference(version = "1.0.0",timeout = 100000)
+    private IAddressFacade iAddressFacade;
 
     @RequestMapping("/login")
     public String login(){
-        System.out.println(iUserFacade.selectById(36));
+        System.out.println(iAddressFacade);
+        System.out.println(iAddressFacade.selectAddressById(33));
         return "/user/register";
     }
 }

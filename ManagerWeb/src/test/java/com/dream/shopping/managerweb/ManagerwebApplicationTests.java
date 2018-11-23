@@ -1,7 +1,7 @@
 package com.dream.shopping.managerweb;
 
 
-import com.dream.shopping.facade.addressservice.IAddressFacade;
+import com.dream.shopping.facade.IServiceFacade.IAddressFacade;
 import com.dream.shopping.facade.po.Address;
 import org.junit.Test;
 import org.junit.runner.RunWith;

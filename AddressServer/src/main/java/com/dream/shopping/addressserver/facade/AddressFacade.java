@@ -1,6 +1,7 @@
-package com.dream.shopping.facade;
+package com.dream.shopping.addressserver.facade;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.dream.shopping.facade.IServiceFacade.IAddressFacade;
 import com.dream.shopping.facade.po.Address;
 import com.dream.shopping.addressserver.service.AddressService;
 import com.dream.shopping.facade.vo.AddressVo;
@@ -31,7 +32,6 @@ public class AddressFacade implements IAddressFacade {
 
     @Override
     public Address selectAddressById(Integer id) {
-        System.out.println("-------------------------1111111111111111111111111111111111111");
         return addressService.selectAddressById(id);
     }
 

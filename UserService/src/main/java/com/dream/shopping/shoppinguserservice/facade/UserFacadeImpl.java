@@ -1,7 +1,7 @@
 package com.dream.shopping.shoppinguserservice.facade;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.dream.shopping.facade.IUserFacade;
+import com.dream.shopping.facade.IServiceFacade.IUserFacade;
 import com.dream.shopping.facade.po.User;
 import com.dream.shopping.shoppinguserservice.service.IUserService;
 import org.springframework.stereotype.Component;

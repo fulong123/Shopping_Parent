@@ -1,4 +1,4 @@
-package com.dream.shopping.facade.goodsservice;
+package com.dream.shopping.facade.IServiceFacade;
 
 import com.dream.shopping.facade.po.Goods;
 
