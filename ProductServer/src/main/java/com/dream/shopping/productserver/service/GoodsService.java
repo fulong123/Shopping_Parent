@@ -1,7 +1,6 @@
 package com.dream.shopping.productserver.service;
 
 import com.dream.shopping.facade.po.Goods;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 

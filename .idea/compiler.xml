@@ -7,21 +7,37 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="addressserver" />
+        <module name="AddressServer" />
         <module name="administrationserver" />
+        <module name="AdministrationServer" />
+        <module name="AdServer" />
         <module name="adserver" />
         <module name="brandserver" />
+        <module name="BrandServer" />
+        <module name="CarServer" />
         <module name="carserver" />
         <module name="cmmons" />
+        <module name="Commons" />
         <module name="daocommons" />
+        <module name="DaoCommons" />
         <module name="facade" />
+        <module name="Facade" />
         <module name="managerweb" />
+        <module name="ManagerWeb" />
+        <module name="NewsServer" />
         <module name="newsserver" />
         <module name="orderserver" />
+        <module name="OrderServer" />
+        <module name="PayServer" />
         <module name="payserver" />
+        <module name="ProductServer" />
         <module name="productserver" />
         <module name="productypeserver" />
+        <module name="ProducTypeServer" />
+        <module name="ServiceComons" />
         <module name="servicecomons" />
         <module name="shoppinguserservice" />
+        <module name="UserService" />
       </profile>
     </annotationProcessing>
   </component>

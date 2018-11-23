@@ -18,13 +18,18 @@
     <script th:src="@{/editor/ueditor.all.js}"></script>
     <script th:src="@{/javascript/plug-ins/pagination.js}"></script>
     <script th:src="@{/javascript/public.js}"></script>
+    <script th:inline="javascript">
+
+
+
+    </script>
 </head>
 <body>
 <div class="main-wrap">
     <div class="side-nav">
         <nav class="side-menu content mCustomScrollbar" data-mcs-theme="minimal-dark">
             <h2>
-                <a href="index.html" class="InitialPage"><i class="icon-dashboard"></i>数据概况</a>
+                <a href="" class="InitialPage"><i class="icon-dashboard"></i>数据概况</a>
             </h2>
             <ul>
                 <li>
@@ -234,50 +239,44 @@
         <main class="main-cont content mCustomScrollbar">
             <div class="page-wrap">
                 <div class="form-group-col-2">
-                    <div class="form-label">用户登陆名：</div>
                     <div class="form-cont">
                         <label>
-                            <input type="text">
+                            登录名：<input type="text">
                         </label>
                     </div>
                 </div>
                 <div class="form-group-col-2">
-                    <div class="form-label">收货地址：</div>
                     <div class="form-cont">
                         <label>
-                            <input type="text">
+                            年龄：<input type="text">
                         </label>
                     </div>
                 </div>
                 <div class="form-group-col-2">
-                    <div class="form-label">年龄：</div>
                     <div class="form-cont">
                         <label>
-                            <input type="text">
+                            收货地址：<input type="text">
                         </label>
                     </div>
                 </div>
                 <div class="form-group-col-2">
-                    <div class="form-label">邮箱：</div>
                     <div class="form-cont">
                         <label>
-                            <input type="text">
+                            邮箱：<input type="text">
                         </label>
                     </div>
                 </div>
                 <div class="form-group-col-2">
-                    <div class="form-label">用户密码：</div>
                     <div class="form-cont">
                         <label>
-                            <input type="password">
+                            密码：<input type="text">
                         </label>
                     </div>
                 </div>
                 <div class="form-group-col-2">
-                    <div class="form-label">qq：</div>
                     <div class="form-cont">
                         <label>
-                            <input type="text">
+                            qq：<input type="text">
                         </label>
                     </div>
                 </div>
@@ -299,34 +298,51 @@
                     </div>
                 </div>
                 <div class="form-group-col-2">
-                    <div class="form-label">电话号码：</div>
                     <div class="form-cont">
                         <label>
-                            <input type="text">
+                            电话号码：<input type="text">
+                        </label>
+                        <label>
+                            真实姓名：<input type="text">
+                        </label>
+                        <label>
+                            微信：<input type="text">
                         </label>
                     </div>
                 </div>
                 <div class="form-group-col-2">
-                    <div class="form-label">真实姓名：</div>
                     <div class="form-cont">
                         <label>
-                            <input type="text">
+                            消费金额：<input type="text">
+                        </label>
+                        <label>
+                            余额：<input type="text">
+                        </label>
+                        <label>
+                            创建时间：<input type="text">
                         </label>
                     </div>
                 </div>
                 <div class="form-group-col-2">
-                    <div class="form-label">微信：</div>
                     <div class="form-cont">
                         <label>
-                            <input type="text">
+                            积分：<input type="text">
+                        </label>
+                        <label>
+                            上次登陆时间：<input type="text">
+                        </label>
+                        <label>
+                            红包个数：<input type="text">
                         </label>
                     </div>
                 </div>
                 <div class="form-group-col-2">
-                    <div class="form-label">微信：</div>
                     <div class="form-cont">
                         <label>
-                            <input type="text">
+                            红包总价：<input type="text">
+                        </label>
+                        <label>
+                            身份证号码：<input type="text">
                         </label>
                     </div>
                 </div>
@@ -355,23 +371,6 @@
 				</span>
             </p>
         </footer>
-    </div>
-</div>
-
-<div class="mask"></div>
-<div class="dialog">
-    <div class="dialog-hd">
-        <strong class="lt-title">标题</strong>
-        <a class="rt-operate icon-remove JclosePanel" title="关闭"></a>
-    </div>
-    <div class="dialog-bd">
-        <!--start::-->
-        <p>这里是基础弹窗,可以定义文本信息，HTML信息这里是基础弹窗,可以定义文本信息，HTML信息。</p>
-        <!--end::-->
-    </div>
-    <div class="dialog-ft">
-        <button class="btn btn-info JyesBtn">确认</button>
-        <button class="btn btn-secondary JnoBtn">关闭</button>
     </div>
 </div>
 </body>

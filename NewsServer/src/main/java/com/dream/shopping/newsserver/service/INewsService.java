@@ -18,7 +18,7 @@ public interface INewsService {
      * @author sky
      * @date 2018/11/20 12:23
      * @param [news]
-     * @return java.lang.Integer
+     * @return java.a.Integer
      */
     Integer insertNews(News news);
 
@@ -27,7 +27,7 @@ public interface INewsService {
      * @author sky
      * @date 2018/11/20 12:24
      * @param [newsId]
-     * @return java.lang.Integer
+     * @return java.a.Integer
      */
     Integer deleteNewsById(Integer newsId);
 
@@ -36,7 +36,7 @@ public interface INewsService {
      * @author sky
      * @date 2018/11/20 14:56
      * @param [news]
-     * @return java.lang.Integer
+     * @return java.a.Integer
      */
     Integer deleteByBatch(List<News> news);
 
@@ -45,7 +45,7 @@ public interface INewsService {
      * @author sky
      * @date 2018/11/20 12:27
      * @param []
-     * @return java.lang.Integer
+     * @return java.a.Integer
      */
     Integer deleteAll();
 
@@ -72,7 +72,7 @@ public interface INewsService {
      * @author sky
      * @date 2018/11/20 12:29
      * @param [uId]
-     * @return java.lang.Integer
+     * @return java.a.Integer
      */
     Integer updateNews(News news);
 }

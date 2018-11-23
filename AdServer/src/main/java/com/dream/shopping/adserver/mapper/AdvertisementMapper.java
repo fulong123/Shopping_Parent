@@ -29,7 +29,7 @@ public interface AdvertisementMapper {
      * @author cx
      * @date 2018/11/20 14:22
      * @param [advertisement]
-     * @return java.lang.Integer
+     * @return java.a.Integer
      */
     int insertAdvertisement(Advertisement advertisement);
     /**
@@ -37,7 +37,7 @@ public interface AdvertisementMapper {
      * @author cx
      * @date 2018/11/20 14:23
      * @param [advertisement]
-     * @return java.lang.Integer
+     * @return java.a.Integer
      */
     int updateById(Advertisement advertisement);
     /**
@@ -45,7 +45,7 @@ public interface AdvertisementMapper {
      * @author cx
      * @date 2018/11/20 14:25
      * @param [advertisementId]
-     * @return java.lang.Integer
+     * @return java.a.Integer
      */
     int deleteById(Integer advertisementId);
 
