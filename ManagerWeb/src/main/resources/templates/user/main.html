@@ -18,10 +18,23 @@
     <script th:src="@{/editor/ueditor.all.js}"></script>
     <script th:src="@{/javascript/plug-ins/pagination.js}"></script>
     <script th:src="@{/javascript/public.js}"></script>
-    <script th:inline="javascript">
-
-
-
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // $.ajax({
+            //     type:"post",
+            //     url:"/user/main",
+            //     dataType:"json",
+            //     success:function (result) {
+            //
+            //
+            //
+            //
+            //     },
+            //     error:function () {
+            //         alert("2");
+            //     }
+            // });
+        });
     </script>
 </head>
 <body>
@@ -237,115 +250,123 @@
             </div>
         </header>
         <main class="main-cont content mCustomScrollbar">
+            <table>
+                <thead>
+                    登录名：<th th:each="user : ${users}" th:text="${user.userLoginName}"></th>
+                </thead>
+            </table>
             <div class="page-wrap">
-                <div class="form-group-col-2">
-                    <div class="form-cont">
-                        <label>
-                            登录名：<input type="text">
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group-col-2">
-                    <div class="form-cont">
-                        <label>
-                            年龄：<input type="text">
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group-col-2">
-                    <div class="form-cont">
-                        <label>
-                            收货地址：<input type="text">
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group-col-2">
-                    <div class="form-cont">
-                        <label>
-                            邮箱：<input type="text">
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group-col-2">
-                    <div class="form-cont">
-                        <label>
-                            密码：<input type="text">
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group-col-2">
-                    <div class="form-cont">
-                        <label>
-                            qq：<input type="text">
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group-col-2">
-                    <div class="form-label">性别：</div>
-                    <div class="form-cont">
-                        <label class="radio">
-                            <input type="radio" name="sex" checked="checked"/>
-                            <span>男士</span>
-                        </label>
-                        <label class="radio">
-                            <input type="radio" name="sex"/>
-                            <span>女士</span>
-                        </label>
-                        <label class="radio">
-                            <input type="radio" name="sex"/>
-                            <span>保密</span>
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group-col-2">
-                    <div class="form-cont">
-                        <label>
-                            电话号码：<input type="text">
-                        </label>
-                        <label>
-                            真实姓名：<input type="text">
-                        </label>
-                        <label>
-                            微信：<input type="text">
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group-col-2">
-                    <div class="form-cont">
-                        <label>
-                            消费金额：<input type="text">
-                        </label>
-                        <label>
-                            余额：<input type="text">
-                        </label>
-                        <label>
-                            创建时间：<input type="text">
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group-col-2">
-                    <div class="form-cont">
-                        <label>
-                            积分：<input type="text">
-                        </label>
-                        <label>
-                            上次登陆时间：<input type="text">
-                        </label>
-                        <label>
-                            红包个数：<input type="text">
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group-col-2">
-                    <div class="form-cont">
-                        <label>
-                            红包总价：<input type="text">
-                        </label>
-                        <label>
-                            身份证号码：<input type="text">
-                        </label>
-                    </div>
-                </div>
+                <!--<div class="form-group-col-2">-->
+                    <!--<div class="form-cont">-->
+                        <!--<label>-->
+                            <!---->
+                        <!--</label>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="form-group-col-2">-->
+                    <!--<div class="form-cont">-->
+                        <!--<label>-->
+                            <!--年龄：<input type="text">-->
+                        <!--</label>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="form-group-col-2">-->
+                    <!--<div class="form-cont">-->
+                        <!--<label>-->
+                            <!--收货地址：<input type="text">-->
+                        <!--</label>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="form-group-col-2">-->
+                    <!--<div class="form-cont">-->
+                        <!--<label>-->
+                            <!--邮箱：<input type="text">-->
+                        <!--</label>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="form-group-col-2">-->
+                    <!--<div class="form-cont">-->
+                        <!--<label>-->
+                            <!--密码：<input type="text">-->
+                        <!--</label>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="form-group-col-2">-->
+                    <!--<div class="form-cont">-->
+                        <!--<label>-->
+                            <!--qq：<input type="text">-->
+                        <!--</label>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="form-group-col-2">-->
+                    <!--<div class="form-label">性别：</div>-->
+                    <!--<div class="form-cont">-->
+                        <!--<label class="radio">-->
+                            <!--<input type="radio" name="sex" checked="checked"/>-->
+                            <!--<span>男士</span>-->
+                        <!--</label>-->
+                        <!--<label class="radio">-->
+                            <!--<input type="radio" name="sex"/>-->
+                            <!--<span>女士</span>-->
+                        <!--</label>-->
+                        <!--<label class="radio">-->
+                            <!--<input type="radio" name="sex"/>-->
+                            <!--<span>保密</span>-->
+                        <!--</label>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="form-group-col-2">-->
+                    <!--<div class="form-cont">-->
+                        <!--<label>-->
+                            <!--电话号码：<input type="text">-->
+                        <!--</label>-->
+                        <!--<label>-->
+                            <!--真实姓名：<input type="text">-->
+                        <!--</label>-->
+                        <!--<label>-->
+                            <!--微信：<input type="text">-->
+                        <!--</label>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="form-group-col-2">-->
+                    <!--<div class="form-cont">-->
+                        <!--<label>-->
+                            <!--消费金额：<input type="text">-->
+                        <!--</label>-->
+                        <!--<label>-->
+                            <!--余额：<input type="text">-->
+                        <!--</label>-->
+                        <!--<label>-->
+                            <!--创建时间：<input type="text">-->
+                        <!--</label>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="form-group-col-2">-->
+                    <!--<div class="form-cont">-->
+                        <!--<label>-->
+                            <!--积分：<input type="text">-->
+                        <!--</label>-->
+                        <!--<label>-->
+                            <!--上次登陆时间：<input type="text">-->
+                        <!--</label>-->
+                        <!--<label>-->
+                            <!--红包个数：<input type="text">-->
+                        <!--</label>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="form-group-col-2">-->
+                    <!--<div class="form-cont">-->
+                        <!--<label>-->
+                            <!--红包总价：<input type="text">-->
+                        <!--</label>-->
+                        <!--<label>-->
+                            <!--身份证号码：<input type="text">-->
+                        <!--</label>-->
+                        <!--<label>-->
+                            <!--<a href="update.html" th:href="@{/user/selectById/36}">修改</a>-->
+                        <!--</label>-->
+                    <!--</div>-->
+                <!--</div>-->
                 <div class="form-group-col-2">
                     <div class="form-label"></div>
                     <div class="form-cont">
