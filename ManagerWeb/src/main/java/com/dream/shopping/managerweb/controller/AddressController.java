@@ -6,7 +6,6 @@ import com.dream.shopping.facade.po.Address;
 import com.dream.shopping.facade.vo.AddressVo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -29,15 +28,15 @@ public class AddressController {
 
     @RequestMapping("/login")
     public String login() {
-        System.out.println(iAddressFacade);
         return "address/addressadd";
     }
 
     @RequestMapping("/init")
     public String register(@RequestParam(value = "id") Integer id, Model model) {
         Address address = iAddressFacade.selectAddressById(id);
+        System.out.println(address);
         model.addAttribute("address", address);
-        return "addressupdate";
+        return "address/addressupdate";
     }
 
     @RequestMapping("/getAll")
@@ -60,6 +59,7 @@ public class AddressController {
     @RequestMapping("/updateAddress")
     public String updateAddress(Address address) {
         int i = iAddressFacade.updateAddress(address);
+        System.out.println(i);
         if (i > 0) {
             return "redirect:/address/getAll";
         } else {
@@ -70,6 +70,14 @@ public class AddressController {
     @RequestMapping("/deleteById")
     public String deleteById(@RequestParam(value = "id") Integer id) {
         iAddressFacade.deleteAddressById(id);
+        return "redirect:/address/getAll";
+    }
+
+    @RequestMapping("/idDefault")
+    public String idDefault(@RequestParam(value = "id") Integer id){
+        Address address = iAddressFacade.selectAddressById(id);
+        address.setIsDefault((address.getIsDefault() == 1)?0:1);
+        iAddressFacade.updateAddress(address);
         return "redirect:/address/getAll";
     }
 }
