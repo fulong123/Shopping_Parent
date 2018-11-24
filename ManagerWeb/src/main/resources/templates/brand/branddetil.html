@@ -235,36 +235,20 @@
         <main class="main-cont content mCustomScrollbar">
             <div class="m_right">
                 <p></p>
-                <div class="mem_tit">收货地址</div>
+                <div class="mem_tit">品牌详情</div>
                 <div class="address">
                     <table border="0" class="add_t" align="center" style="width:98%; margin:10px auto;" cellspacing="0"
                            cellpadding="0">
                         <tr>
-                            <td>收货人姓名：</td>
-                            <td>配送区域：</td>
-                            <td>详细地址：</td>
-                            <td>邮政编码</td>
-                            <td>手机：</td>
-                            <td>电话：</td>
-                            <td>电子邮箱：</td>
-                            <td>标志建筑：</td>
-                            <td>默认地址</td>
-                            <td>操作</td>
-                        </tr>
-                        <tr th:each="address:${addresses}">
-                            <td th:text="${address.consigneeName}"></td>
-                            <td th:text="${address.distributionArea}"></td>
-                            <td th:text="${address.detailedAddress}"></td>
-                            <td th:text="${address.postalCode}"></td>
-                            <td th:text="${address.phone}"></td>
-                            <td th:text="${address.telNum}"></td>
-                            <td th:text="${address.email}"></td>
-                            <td th:text="${address.landmarkBuilding}"></td>
-                            <td th:text="${address.isDefault}==1?'是':'否'"></td>
-                            <td><a th:href="@{/address/init(id=${address.addressId})}">修改</a><a
-                                    th:href="@{/address/deleteById(id=${address.addressId})}">删除</a></td>
+                            <td>
+                                <img th:src="${brand.photo}"><br/>
+                                <span th:text="${brand.brandName}"></span><br/>
+                                <a th:href="@{/brands/init(id=${brand.brandId})}">修改</a>
+                                <a th:href="@{/brands/deleteById(id=${brand.brandId})}">删除</a>
+                            </td>
                         </tr>
                     </table>
+                    <input type="button" onclick="javascript:history.back(-1);" value="返回">
                 </div>
             </div>
         </main>

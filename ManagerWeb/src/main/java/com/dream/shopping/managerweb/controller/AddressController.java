@@ -32,8 +32,8 @@ public class AddressController {
     }
 
     @RequestMapping("/init")
-    public String register(@RequestParam(value = "id") Integer id, Model model) {
-        Address address = iAddressFacade.selectAddressById(id);
+    public String register(@RequestParam(value = "id") String id, Model model) {
+        Address address = iAddressFacade.selectAddressById(Integer.parseInt(id));
         System.out.println(address);
         model.addAttribute("address", address);
         return "address/addressupdate";
@@ -68,14 +68,14 @@ public class AddressController {
     }
 
     @RequestMapping("/deleteById")
-    public String deleteById(@RequestParam(value = "id") Integer id) {
-        iAddressFacade.deleteAddressById(id);
+    public String deleteById(@RequestParam(value = "id") String id) {
+        iAddressFacade.deleteAddressById(Integer.parseInt(id));
         return "redirect:/address/getAll";
     }
 
     @RequestMapping("/idDefault")
-    public String idDefault(@RequestParam(value = "id") Integer id){
-        Address address = iAddressFacade.selectAddressById(id);
+    public String idDefault(@RequestParam(value = "id") String id){
+        Address address = iAddressFacade.selectAddressById(Integer.parseInt(id));
         address.setIsDefault((address.getIsDefault() == 1)?0:1);
         iAddressFacade.updateAddress(address);
         return "redirect:/address/getAll";

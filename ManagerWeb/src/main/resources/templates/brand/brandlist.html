@@ -1,9 +1,322 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.springframework.org/schema/data/jaxb">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8"/>
+    <title>后台管理系统-HTML5后台管理系统</title>
+    <meta name="keywords" content="设置关键词..."/>
+    <meta name="description" content="设置描述..."/>
+    <meta name="author" content="DeathGhost"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <link rel="icon" th:href="@{/images/icon/favicon.ico}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <script th:src="@{/javascript/jquery.js}"></script>
+    <script th:src="@{/javascript/plug-ins/customScrollbar.min.js}"></script>
+    <script th:src="@{/javascript/plug-ins/echarts.min.js}"></script>
+    <script th:src="@{/javascript/plug-ins/layerUi/layer.js}"></script>
+    <script th:src="@{/javascript/plug-ins/pagination.js}"></script>
+    <script th:src="@{/javascript/public.js}"></script>
+    <script th:src="@{/javascript/distpicker.data.js}"></script>
+    <script th:src="@{/javascript/distpicker.js}"></script>
+    <script th:src="@{/javascript/main.js}"></script>
+    <script>
+        $(document).ready(function () {
+            $("table td img").click(function () {
+                var id=$(this).closest("tr").find("input[class='brandId']").val();
+                window.location.href = "/brands/detail/"+id;
+            });
+            var isCheckAll = false;
+            $("#checkAll").click(function () {
+                if (isCheckAll) {
+                    $("input[type='checkbox']").each(function () {
+                        this.checked = false;
+                    });
+                    isCheckAll = false;
+                } else {
+                    $("input[type='checkbox']").each(function () {
+                        this.checked = true;
+                    });
+                    isCheckAll = true;
+                }
+            });
+            $("#deleteAll").click(function () {
+                var chk_value = [];
+                $("input[type='checkbox']:checked").each(function () {
+                    chk_value.push($(this).val());
+                });
+                if (chk_value.length == 0) {
+                    alert('你还没有选择任何内容！');
+                }else {
+                    window.location.href = "/brands/deleteAll/"+chk_value;
+                }
+            })
+        })
+    </script>
 </head>
 <body>
+<div class="main-wrap">
+    <div class="side-nav">
+        <nav class="side-menu content mCustomScrollbar" data-mcs-theme="minimal-dark">
+            <h2>
+                <a href="index.html" class="InitialPage"><i class="icon-dashboard"></i>数据概况</a>
+            </h2>
+            <ul>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-columns"></i>页面基础布局<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="flex-layout.html">弹性盒子布局</a>
+                        </dd>
+                        <dd>
+                            <a href="flow-layout.html">瀑布流布局</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-inbox"></i>按钮UI<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="button.html">基础按钮</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-table"></i>表格UI<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="table.html">基础表格</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-list-alt"></i>表单UI<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="form.html">表单结构样式</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-external-link"></i>弹出窗口<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="popups.html">基础弹出层</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-bar-chart"></i>百度统计echarts图表<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="echarts.html">echarts统计图表</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-font"></i>文本编辑器<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="ueditor.html">百度UEDITOR编辑器</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-road"></i>进度条<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="progress.html">progress进度条兼容</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-tags"></i>Tab选项卡<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="tab.html">Tab选项卡</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-filter"></i>下拉菜单<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="button-dropdown.html">按钮式下拉菜单</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-sitemap"></i>页面分组标题<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="title.html">页面标题</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-columns"></i>分页<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="paging.html">jquery分页效果</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-spinner"></i>旋转动画<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="animation.html">刷新加载动画</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-fighter-jet"></i>面包屑导航<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="breadcrumb.html">面包屑</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-laptop"></i>文本面板<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="text-panel.html">文本面板</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-leaf"></i>块引用<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="blockquote.html">块引用</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-star"></i>第三方弹窗组件<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="layer.html">web弹层组件</a>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+        </nav>
+
+        <footer class="side-footer">© DeathGhost 版权所有</footer>
+
+    </div>
+    <div class="content-wrap">
+        <header class="top-hd">
+            <div class="hd-lt">
+                <a class="icon-reorder"></a>
+            </div>
+            <div class="hd-rt">
+                <ul>
+                    <li>
+                        <a href="#" target="_blank"><i class="icon-home"></i>前台访问</a>
+                    </li>
+                    <li>
+                        <a><i class="icon-random"></i>清除缓存</a>
+                    </li>
+                    <li>
+                        <a><i class="icon-user"></i>管理员:<em>DeathGhost</em></a>
+                    </li>
+                    <li>
+                        <a><i class="icon-bell-alt"></i>系统消息</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" id="JsSignOut"><i class="icon-signout"></i>安全退出</a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <main class="main-cont content mCustomScrollbar">
+            <div class="m_right">
+                <p></p>
+                <div class="mem_tit">品牌添加</div>
+                <div class="address">
+                    <input style="left: 50px" type="button" id="checkAll" value="全选">
+                    <input style="right: 150px" type="button" id="deleteAll" value="删除">
+                    <table border="0" class="add_t" align="center" style="width:98%; margin:10px auto;" cellspacing="0"
+                           cellpadding="0">
+                        <tr th:each="brand:${brands}">
+                            <td>
+                                <input type="checkbox" th:value="${brand.brandId}">
+                                <input type="hidden" class="brandId" th:value="${brand.brandId}">
+                                <img th:src="${brand.photo}">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </main>
+        <footer class="btm-ft">
+            <p class="clear">
+                <span class="fl">©Copyright 2016 <a href="#" title="DeathGhost" target="_blank">DeathGhost.cn</a></span>
+                <span class="fr text-info">
+					<em class="uppercase">
+						<i class="icon-user"></i>
+						author:deathghost
+					</em> |
+					<em class="uppercase"><i class="icon-envelope-alt"></i>
+						更多模板： <a href="http://www.aspku.com/" target="_blank">源码之家</a>
+					</em>
+					<a onclick="reciprocate()" class="text-primary"><i class="icon-qrcode"></i>捐赠</a>
+				</span>
+            </p>
+        </footer>
+    </div>
+</div>
+<div class="mask"></div>
+<div class="dialog">
+    <div class="dialog-hd">
+        <strong class="lt-title">标题</strong>
+        <a class="rt-operate icon-remove JclosePanel" title="关闭"></a>
+    </div>
+    <div class="dialog-bd">
+        <!--start::-->
+        <p>这里是基础弹窗,可以定义文本信息，HTML信息这里是基础弹窗,可以定义文本信息，HTML信息。</p>
+        <!--end::-->
+    </div>
+    <div class="dialog-ft">
+        <button class="btn btn-info JyesBtn">确认</button>
+        <button class="btn btn-secondary JnoBtn">关闭</button>
+    </div>
+</div>
 </body>
 </html>
