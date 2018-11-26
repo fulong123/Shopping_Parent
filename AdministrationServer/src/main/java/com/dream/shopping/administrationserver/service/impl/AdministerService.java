@@ -3,6 +3,7 @@ package com.dream.shopping.administrationserver.service.impl;
 import com.dream.shopping.administrationserver.mapper.AdministerMapper;
 import com.dream.shopping.administrationserver.service.IAdministraterService;
 import com.dream.shopping.facade.po.Administrator;
+import com.dream.shopping.facade.vo.AdminVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,8 +52,8 @@ public class AdministerService implements IAdministraterService {
     }
 
     @Override
-    public List<Administrator> selectByAdmin(Administrator admin) {
-        return administerMapper.selectByAdmin(admin);
+    public List<Administrator> selectByAdmin(AdminVo adminVo) {
+        return administerMapper.selectByAdmin(adminVo);
     }
 
     @Override

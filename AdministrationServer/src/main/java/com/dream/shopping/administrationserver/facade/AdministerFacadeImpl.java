@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.dream.shopping.administrationserver.service.IAdministraterService;
 import com.dream.shopping.facade.IServiceFacade.IAdministerFacade;
 import com.dream.shopping.facade.po.Administrator;
+import com.dream.shopping.facade.vo.AdminVo;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -49,8 +50,8 @@ public class AdministerFacadeImpl implements IAdministerFacade {
     }
 
     @Override
-    public List<Administrator> selectByAdmin(Administrator admin) {
-        return administraterService.selectByAdmin(admin);
+    public List<Administrator> selectByAdmin(AdminVo adminVo) {
+        return administraterService.selectByAdmin(adminVo);
     }
 
     @Override

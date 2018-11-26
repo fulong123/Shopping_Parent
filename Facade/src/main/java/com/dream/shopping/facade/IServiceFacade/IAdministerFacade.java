@@ -1,6 +1,7 @@
 package com.dream.shopping.facade.IServiceFacade;
 
 import com.dream.shopping.facade.po.Administrator;
+import com.dream.shopping.facade.vo.AdminVo;
 
 import java.util.List;
 
@@ -65,7 +66,7 @@ public interface IAdministerFacade {
      * @param []
      * @return java.util.List<User>
      */
-    List<Administrator> selectByAdmin(Administrator admin);
+    List<Administrator> selectByAdmin(AdminVo adminVo);
 
     /**
      * 描述 通过id修改

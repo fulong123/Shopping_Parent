@@ -1,7 +1,8 @@
 package com.dream.shopping.facade.vo;
 
-import com.dream.shopping.facade.po.Administrator;
 import org.springframework.stereotype.Component;
+
+import java.io.Serializable;
 
 /**
  * 描述:
@@ -11,14 +12,28 @@ import org.springframework.stereotype.Component;
  * Time: 20:06
  */
 @Component
-public class AdminVo extends Administrator {
+public class AdminVo implements Serializable {
 
     private static final long serialVersionUID = 167703936613214504L;
 
-    private String administratorName;
+    private AdminCustomer adminCustomer;
     private String startTime;
     private String endTime;
-    private Integer isSuperAdmin;
+
+    public AdminVo() {
+    }
+
+    public AdminVo(AdminCustomer adminCustomer) {
+        this.adminCustomer = adminCustomer;
+    }
+
+    public AdminCustomer getAdminCustomer() {
+        return adminCustomer;
+    }
+
+    public void setAdminCustomer(AdminCustomer adminCustomer) {
+        this.adminCustomer = adminCustomer;
+    }
 
     public String getStartTime() {
         return startTime;
@@ -37,29 +52,10 @@ public class AdminVo extends Administrator {
     }
 
     @Override
-    public String getAdministratorName() {
-        return administratorName;
-    }
-
-    @Override
-    public void setAdministratorName(String administratorName) {
-        this.administratorName = administratorName;
-    }
-
-    @Override
-    public Integer getIsSuperAdmin() {
-        return isSuperAdmin;
-    }
-
-    @Override
-    public void setIsSuperAdmin(Integer isSuperAdmin) {
-        this.isSuperAdmin = isSuperAdmin;
-    }
-
-    @Override
     public String toString() {
         return "AdminVo{" +
-                "startTime='" + startTime + '\'' +
+                "adminCustomer=" + adminCustomer +
+                ", startTime='" + startTime + '\'' +
                 ", endTime='" + endTime + '\'' +
                 '}';
     }

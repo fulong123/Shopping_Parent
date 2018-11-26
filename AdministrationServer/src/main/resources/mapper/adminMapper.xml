@@ -33,9 +33,6 @@
                 </if>
             </trim>
             <trim prefix="values (" suffix=")" suffixOverrides="," >
-                <!--<if test="administratorId != null" >-->
-                    <!--#{administratorId,jdbcType=INTEGER},-->
-                <!--</if>-->
                 <if test="administratorName != null">
                     #{administratorName,jdbcType=VARCHAR},
                 </if>
@@ -67,18 +64,18 @@
     </delete>
 
     <select id="selectByAdmin" resultMap="BaseResultMap"
-            parameterType="com.dream.shopping.facade.po.Administrator"
+            parameterType="com.dream.shopping.facade.vo.AdminVo"
             resultType="com.dream.shopping.facade.po.Administrator">
         select *from administrator where 1 = 1
         <trim suffixOverrides=" ">
-            <if test="administratorName != null">
-                and administrator_name like #{administratorName,jdbcType=VARCHAR}
+            <if test="adminCustomer != null and adminCustomer.administratorName != null">
+                and administrator_name like '%${adminCustomer.administratorName}%'
             </if>
-            <if test="createTime != null">
-                and create_time = #{createTime,jdbcType=VARCHAR}
+            <if test="startTime != null and startTime != ''">
+                and create_time between #{startTime,jdbcType=VARCHAR} and #{endTime,jdbcType=VARCHAR}
             </if>
-            <if test="isSuperAdmin != null">
-                and issuperadmin = #{isSuperAdmin,jdbcType=INTEGER}
+            <if test="adminCustomer != null and adminCustomer.isSuperAdmin != null">
+                and issuperadmin = #{adminCustomer.isSuperAdmin,jdbcType=INTEGER}
             </if>
         </trim>
     </select>
