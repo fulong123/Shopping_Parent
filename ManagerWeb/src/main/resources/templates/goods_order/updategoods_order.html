@@ -243,7 +243,7 @@
             </div>
         </header>
         <main class="main-cont content mCustomScrollbar">
-            <form th:action="@{goodsType/updateGoodsOrder}" method="post" th:object="${goods_order}">
+            <form th:action="@{goodsOrder/updateGoodsOrder}" method="post" th:object="${goods_order}">
             <div class="page-wrap">
                 <!--开始::内容-->
                 <section class="page-hd">
@@ -256,24 +256,22 @@
                     <thead>
                     <tr>
                         <th><input type="checkbox"/></th>
-                        <th>订单编号</th>
-                        <th>下单时间</th>
-                        <th>订单总金额</th>
-                        <th>订单状态</th>
-                        <th>操作</th>
+                        <th>地址</th>
+                        <th>电话</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="cen" th:each="goodsorder:${goods_orders}">
+                    <tr class="cen" th:each="goodsorder:${goods_order}">
                         <td><input type="checkbox"/></td>
-                        <td class="lt" th:test="${goodsorder.goods_OrderNum}"><a href="#"></a></td>
-                        <td th:text="${goodsorder.goods_OrderTime)"></td>
-                        <td th:text="${goodsorder.goods_OrderSumMoney}"></td>
-                        <td th:text="${goodsorder.goods_OrderState}"></td>
                         <td>
-                            <a title="编辑" class="mr-5">编辑</a>
-                            <a title="详情" class="mr-5">详情</a>
-                            <a title="删除">删除</a>
+                            <label>
+                                <input type="text" name="userAddress" th:value="${goodsorder.userAddress}">
+                            </label>
+                        </td>
+                        <td>
+                            <label>
+                                <input type="text" name="userNum" th:value="${goodsorder.userNum}">
+                            </label>
                         </td>
                     </tr>
                     </tbody>
@@ -292,6 +290,10 @@
                 </div>
                 <!--开始::结束-->
             </div>
+                <div class="form-cont">
+                    <input type="submit" class="btn btn-primary" value="修改" />
+                    <input type="reset" class="btn btn-disabled" value="取消" />
+                </div>
             </form>
         </main>
         <footer class="btm-ft">
