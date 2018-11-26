@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * 描述:管理员实体
@@ -28,14 +29,17 @@ public class Administrator implements Serializable {
     private String password;                //管理员密码
     @Column
     private String createTime;              //管理员创建时间
+    @Column
+    private Integer isSuperAdmin;           //是否为超级管理员
 
     public Administrator() {
     }
 
-    public Administrator(String administratorName, String password, String createTime) {
+    public Administrator(String administratorName, String password, String createTime, Integer isSuperAdmin) {
         this.administratorName = administratorName;
         this.password = password;
         this.createTime = createTime;
+        this.isSuperAdmin = isSuperAdmin;
     }
 
     public Integer getAdministratorId() {
@@ -70,6 +74,14 @@ public class Administrator implements Serializable {
         this.createTime = createTime;
     }
 
+    public Integer getIsSuperAdmin() {
+        return isSuperAdmin;
+    }
+
+    public void setIsSuperAdmin(Integer isSuperAdmin) {
+        this.isSuperAdmin = isSuperAdmin;
+    }
+
     @Override
     public String toString() {
         return "Administrator{" +
@@ -77,6 +89,16 @@ public class Administrator implements Serializable {
                 ", administratorName='" + administratorName + '\'' +
                 ", password='" + password + '\'' +
                 ", createTime='" + createTime + '\'' +
+                ", isSuperAdmin=" + isSuperAdmin +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Administrator that = (Administrator) o;
+        return Objects.equals(administratorName, that.administratorName) &&
+                Objects.equals(password, that.password);
     }
 }

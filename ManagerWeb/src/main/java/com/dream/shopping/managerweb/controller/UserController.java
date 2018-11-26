@@ -6,7 +6,6 @@ import com.dream.shopping.facade.po.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -24,19 +23,14 @@ public class UserController {
     @Reference(version = "1.0.0",timeout = 100000)
     private IUserFacade userFacade;
 
-    @RequestMapping("/index")
-    public String index(){
-        return "login";
-    }
-
     @RequestMapping("/register")
     public @ResponseBody User register(){
         return userFacade.selectById(36);
     }
 
     @RequestMapping("/login")
-    public String login(User user, Model model){
-        model.addAttribute("users",userFacade.selectByUser(user));
+    public String login(Model model){
+        model.addAttribute("users",userFacade.selectByUser(null));
         return "/user/main";
     }
 

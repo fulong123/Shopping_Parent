@@ -250,12 +250,30 @@
             </div>
         </header>
         <main class="main-cont content mCustomScrollbar">
-            <table>
-                <thead>
-                    登录名：<th th:each="user : ${users}" th:text="${user.userLoginName}"></th>
-                </thead>
-            </table>
             <div class="page-wrap">
+                <table th:each="user : ${users}">
+                    <tr>
+                        登录名：<span th:text="${user.userLoginName}"></span>&nbsp;&nbsp;&nbsp;
+                    </tr>
+                    <tr>
+                        密码：<span th:text="${user.userLoginName}"></span>
+                    </tr>
+                    <tr>
+                        密码：<span th:text="${user.userLoginName}"></span>
+                    </tr>
+                    <tr>
+                        密码：<span th:text="${user.userLoginName}"></span>
+                    </tr>
+                    <tr>
+                        密码：<span th:text="${user.userLoginName}"></span>
+                    </tr>
+                    <tr>
+                        密码：<span th:text="${user.userLoginName}"></span>
+                    </tr>
+                    <tr>
+                        密码：<span th:text="${user.userLoginName}"></span>
+                    </tr>
+                </table>
                 <!--<div class="form-group-col-2">-->
                     <!--<div class="form-cont">-->
                         <!--<label>-->
