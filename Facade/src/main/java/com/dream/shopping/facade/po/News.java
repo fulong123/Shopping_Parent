@@ -26,13 +26,24 @@ public class News implements Serializable {
     private String newsTitle;       //新闻标题
     @Column
     private String newsType;        //新闻类型
+    @Column
+    private String url;             //文件路径
 
     public News() {
     }
 
-    public News(String newsTitle, String newsType) {
+    public News(String newsTitle, String newsType, String url) {
         this.newsTitle = newsTitle;
         this.newsType = newsType;
+        this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public Integer getNewsId() {
@@ -65,6 +76,7 @@ public class News implements Serializable {
                 "newsId=" + newsId +
                 ", newsTitle='" + newsTitle + '\'' +
                 ", newsType='" + newsType + '\'' +
+                ", url='" + url + '\'' +
                 '}';
     }
 }

@@ -239,7 +239,7 @@
         </header>
         <main class="main-cont content mCustomScrollbar">
             <div class="page-wrap">
-                <table th:each="news : ${newsList}" class="table mb-15 ">
+                <table class="table mb-15 ">
                     <thead>
                         <tr>
                             <th>新闻标题</th>
@@ -248,17 +248,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="cen">
+                        <tr th:each="news : ${newsList}" class="cen">
                             <th>
-                                <span th:text="${news.newsTitle}"></span>
+                                <a th:href="${news.url}"><span th:text="${news.newsTitle}"></span></a>
                             </th>
                             <th>
                                 <span th:text="${news.newsType}"></span>
                             </th>
                             <th>
-                                <a th:href="@{/admin/initAdmin(administratorId=${admin.administratorId})}">修改新闻</a>
-                                <a th:href="@{/admin/deleteAdmin(administratorId=${admin.administratorId})}">删除新闻</a>
-                                <a th:href="@{/admin/addAdmin}">添加新闻</a>
+                                <a th:href="@{/news/initNews(newsId=${news.newsId})}">修改新闻</a>
+                                <a th:href="@{/news/deleteNews(newsId=${news.newsId})}">删除新闻</a>
+                                <a th:href="@{/news/add}">添加新闻</a>
                             </th>
                         </tr>
                     </tbody>
