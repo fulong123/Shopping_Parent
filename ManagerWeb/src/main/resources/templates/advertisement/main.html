@@ -18,6 +18,12 @@
     <script th:src="@{/editor/ueditor.all.js}"></script>
     <script th:src="@{/javascript/plug-ins/pagination.js}"></script>
     <script th:src="@{/javascript/public.js}"></script>
+    <!--suppress JSValidateTypes -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+    </script>
 </head>
 <body>
 <div class="main-wrap">
@@ -232,43 +238,33 @@
             </div>
         </header>
         <main class="main-cont content mCustomScrollbar">
-            <form th:action="@{/news/updateNews}" th:object="${news}" method="post">
             <div class="page-wrap">
-                <input type="hidden" name="newsId" th:value="${news.newsId}">
-                <div class="form-group-col-2">
-                    <div class="form-label">新闻标题：</div>
-                    <div class="form-cont">
-                        <label>
-                            <input type="text" name="newsTitle" th:value="${news.newsTitle}">
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group-col-2">
-                    <div class="form-label">新闻类型：</div>
-                    <div class="form-cont">
-                        <label>
-                            <input type="text" name="newsType" th:value="${news.newsType}">
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group-col-2">
-                    <div class="form-label">新闻URL：</div>
-                    <div class="form-cont">
-                        <label>
-                            <input type="text" name="url" th:value="${news.url}">
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group-col-2">
-                    <div class="form-label"></div>
-                    <div class="form-cont">
-                        <input type="submit" class="btn btn-primary" value="修改" />
-                        <input type="reset" class="btn btn-disabled" value="取消" />
-                    </div>
-                </div>
+                <table class="table mb-15 ">
+                    <thead>
+                        <tr>
+                            <th>新闻标题</th>
+                            <th>新闻类型</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="news : ${newsList}" class="cen">
+                            <th>
+                                <a th:href="${news.url}"><span th:text="${news.newsTitle}"></span></a>
+                            </th>
+                            <th>
+                                <span th:text="${news.newsType}"></span>
+                            </th>
+                            <th>
+                                <a th:href="@{/news/initNews(newsId=${news.newsId})}">修改新闻</a>
+                                <a th:href="@{/news/deleteNews(newsId=${news.newsId})}">删除新闻</a>
+                                <a th:href="@{/news/add}">添加新闻</a>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
                 <!--开始::结束-->
             </div>
-            </form>
         </main>
         <footer class="btm-ft">
             <p class="clear">

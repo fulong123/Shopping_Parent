@@ -239,6 +239,23 @@
         </header>
         <main class="main-cont content mCustomScrollbar">
             <div class="page-wrap">
+                <form th:action="@{/admin/query}" method="post">
+                    <div class="fr input-group">
+                        <label>
+                            <input type="text" name="administratorName" class="form-control" style="width:50px;"/>
+                        </label>
+                        <label>
+                            <input type="text" name="startTime" class="form-control" style="width:50px;"/>
+                        </label>
+                        <label>
+                            <input type="text" name="endTime" class="form-control" style="width:50px;"/>
+                        </label>
+                        <label>
+                            <input type="text" name="isSuperAdmin" class="form-control" style="width:50px;"/>
+                        </label>
+                    </div>
+                    <input type="submit" value="搜索">
+                </form>
                 <table class="table mb-15 colorBar">
                     <thead>
                         <tr>

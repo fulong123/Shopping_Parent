@@ -1,17 +1,17 @@
-package com.dream.shopping.adserver.service;
+package com.dream.shopping.facade.IServiceFacade;
 
 import com.dream.shopping.facade.po.Advertisement;
 
 import java.util.List;
 
 /**
- * 描述:广告的Service接口
+ * 描述:
  * Created with IntelliJ IDEA.
- * User: cx
- * Date: 2018/11/21
- * Time: 11:06
+ * User: sky
+ * Date: 2018/11/26
+ * Time: 19:12
  */
-public interface AdvertisementService {
+public interface IAdvertisementFacade {
 
     /**
      * 描述 按条件查询所有广告
