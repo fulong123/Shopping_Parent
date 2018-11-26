@@ -19,6 +19,39 @@
     <script th:src="@{/javascript/distpicker.data.js}"></script>
     <script th:src="@{/javascript/distpicker.js}"></script>
     <script th:src="@{/javascript/main.js}"></script>
+    <script>
+        $(document).ready(function () {
+            $("table td img").click(function () {
+                var id=$(this).closest("tr").find("input[class='brandId']").val();
+                window.location.href = "/brands/detail/"+id;
+            });
+            var isCheckAll = false;
+            $("#checkAll").click(function () {
+                if (isCheckAll) {
+                    $("input[type='checkbox']").each(function () {
+                        this.checked = false;
+                    });
+                    isCheckAll = false;
+                } else {
+                    $("input[type='checkbox']").each(function () {
+                        this.checked = true;
+                    });
+                    isCheckAll = true;
+                }
+            });
+            $("#deleteAll").click(function () {
+                var chk_value = [];
+                $("input[type='checkbox']:checked").each(function () {
+                    chk_value.push($(this).val());
+                });
+                if (chk_value.length == 0) {
+                    alert('你还没有选择任何内容！');
+                }else {
+                    window.location.href = "/brands/deleteAll/"+chk_value;
+                }
+            })
+        })
+    </script>
 </head>
 <body>
 <div class="main-wrap">
@@ -235,34 +268,18 @@
         <main class="main-cont content mCustomScrollbar">
             <div class="m_right">
                 <p></p>
-                <div class="mem_tit">收货地址</div>
+                <div class="mem_tit">品牌添加</div>
                 <div class="address">
+                    <input style="left: 50px" type="button" id="checkAll" value="全选">
+                    <input style="right: 150px" type="button" id="deleteAll" value="删除">
                     <table border="0" class="add_t" align="center" style="width:98%; margin:10px auto;" cellspacing="0"
                            cellpadding="0">
-                        <tr>
-                            <td>收货人姓名：</td>
-                            <td>配送区域：</td>
-                            <td>详细地址：</td>
-                            <td>邮政编码</td>
-                            <td>手机：</td>
-                            <td>电话：</td>
-                            <td>电子邮箱：</td>
-                            <td>标志建筑：</td>
-                            <td>默认地址</td>
-                            <td>操作</td>
-                        </tr>
-                        <tr th:each="address:${addresses}">
-                            <td th:text="${address.consigneeName}"></td>
-                            <td th:text="${address.distributionArea}"></td>
-                            <td th:text="${address.detailedAddress}"></td>
-                            <td th:text="${address.postalCode}"></td>
-                            <td th:text="${address.phone}"></td>
-                            <td th:text="${address.telNum}"></td>
-                            <td th:text="${address.email}"></td>
-                            <td th:text="${address.landmarkBuilding}"></td>
-                            <td th:text="${address.isDefault}==1?'是':'否'"></td>
-                            <td><a th:href="@{/address/init(id=${address.addressId})}">修改</a><a
-                                    th:href="@{/address/deleteById(id=${address.addressId})}">删除</a></td>
+                        <tr th:each="brand:${brands}">
+                            <td>
+                                <input type="checkbox" th:value="${brand.brandId}">
+                                <input type="hidden" class="brandId" th:value="${brand.brandId}">
+                                <img th:src="${brand.photo}">
+                            </td>
                         </tr>
                     </table>
                 </div>

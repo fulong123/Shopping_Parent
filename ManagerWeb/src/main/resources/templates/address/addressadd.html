@@ -238,11 +238,11 @@
                     <tr>
                         <td width="135" align="right">配送地区</td>
                         <td colspan="3" style="font-family:'宋体';">
-                            <div data-toggle="distpicker">
-                                <select id="eprovinceName" data-province="浙江省" name="provinceName"
+                            <div data-toggle="distpicker" id="address">
+                                <select id="eprovinceName" name="provinceName"
                                         style="width: 200px"></select>
-                                <select id="ecityName" data-city="杭州市" name="cityName" style="width: 200px"></select>
-                                <select id="edistrictName" data-district="西湖区" name="districtName"
+                                <select id="ecityName"  name="cityName" style="width: 200px"></select>
+                                <select id="edistrictName"  name="districtName"
                                         style="width: 200px"></select>
                             </div>
                             （必填）
@@ -251,12 +251,19 @@
                     </tr>
                     <script>
                         $(document).ready(function () {
+                            $("#address").distpicker.setDefaults({
+                                autoSelect: false,
+                                province: '----选择省 ----',
+                                city: '---- 选择市 ----',
+                                district: '---- 选择区/县 ----'
+                            });
+                            $("#eprovinceName").val("----选择省 ----");
+                            $("#eprovinceName").trigger("change");
                             $("#sub1").click(function () {
                                 var province = $("#eprovinceName").find("option:selected").text();
                                 var city = $("#ecityName").find("option:selected").text();
                                 var district = $("#edistrictName").find("option:selected").text();
-                                var val = $("#distributionArea").val(province + "#" + city + "#" + district);
-                                alert(val);
+                                $("#distributionArea").val(province + "#" + city + "#" + district);
                             });
                         })
                     </script>
@@ -271,7 +278,7 @@
                         <td style="font-family:'宋体';"><input type="text" name="detailedAddress" class="add_ipt"/>（必填）
                         </td>
                         <td align="right">邮政编码</td>
-                        <td style="font-family:'宋体';"><input type="text" name="postCode" class="add_ipt"/></td>
+                        <td style="font-family:'宋体';"><input type="text" name="postalCode" class="add_ipt"/></td>
                     </tr>
                     <tr>
                         <td align="right">手机</td>

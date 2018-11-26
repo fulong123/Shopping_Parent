@@ -19,6 +19,28 @@
     <script th:src="@{/javascript/distpicker.data.js}"></script>
     <script th:src="@{/javascript/distpicker.js}"></script>
     <script th:src="@{/javascript/main.js}"></script>
+    <script>
+        $(document).ready(function () {
+            function init() {
+                var area = $("#distributionArea").val();
+                var areas = area.split("#");
+                $("#eprovinceName").val(areas[0]);
+                $("#eprovinceName").trigger("change");
+                $("#ecityName").val(areas[1]);
+                $("#ecityName").trigger("change");
+                $("#edistrictName").val(areas[2]);
+                $("#edistrictName").trigger("change");
+            }
+
+            init();
+            $("#sub1").click(function () {
+                var province = $("#eprovinceName").find("option:selected").text();
+                var city = $("#ecityName").find("option:selected").text();
+                var district = $("#edistrictName").find("option:selected").text();
+                $("#distributionArea").val(province + "#" + city + "#" + district);
+            });
+        })
+    </script>
 </head>
 <body>
 <div class="main-wrap">
@@ -233,40 +255,54 @@
             </div>
         </header>
         <main class="main-cont content mCustomScrollbar">
-            <div class="m_right">
-                <p></p>
-                <div class="mem_tit">收货地址</div>
-                <div class="address">
-                    <table border="0" class="add_t" align="center" style="width:98%; margin:10px auto;" cellspacing="0"
-                           cellpadding="0">
-                        <tr>
-                            <td>收货人姓名：</td>
-                            <td>配送区域：</td>
-                            <td>详细地址：</td>
-                            <td>邮政编码</td>
-                            <td>手机：</td>
-                            <td>电话：</td>
-                            <td>电子邮箱：</td>
-                            <td>标志建筑：</td>
-                            <td>默认地址</td>
-                            <td>操作</td>
-                        </tr>
-                        <tr th:each="address:${addresses}">
-                            <td th:text="${address.consigneeName}"></td>
-                            <td th:text="${address.distributionArea}"></td>
-                            <td th:text="${address.detailedAddress}"></td>
-                            <td th:text="${address.postalCode}"></td>
-                            <td th:text="${address.phone}"></td>
-                            <td th:text="${address.telNum}"></td>
-                            <td th:text="${address.email}"></td>
-                            <td th:text="${address.landmarkBuilding}"></td>
-                            <td th:text="${address.isDefault}==1?'是':'否'"></td>
-                            <td><a th:href="@{/address/init(id=${address.addressId})}">修改</a><a
-                                    th:href="@{/address/deleteById(id=${address.addressId})}">删除</a></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+            <form th:action="@{/address/updateAddress}" method="post">
+                <input type="hidden" name="addressId" th:value="${address.addressId}">
+                <table border="0" class="add_tab" style="width:930px;" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="135" align="right">配送地区</td>
+                        <td colspan="3" style="font-family:'宋体';">
+                            <div data-toggle="distpicker" id="target">
+                                <select id="eprovinceName" data-province="---- 选择省 ----" name="provinceName"
+                                        style="width: 200px"></select>
+                                <select id="ecityName" data-province="---- 选择市 ----" name="cityName" style="width: 200px"></select>
+                                <select id="edistrictName" data-province="---- 选择区 ----" name="districtName"
+                                        style="width: 200px"></select>
+                            </div>
+                            （必填）
+                            <input type="hidden" id="distributionArea" name="distributionArea" th:value="${address.distributionArea}">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td align="right">收货人姓名</td>
+                        <td style="font-family:'宋体';"><input type="text" th:value="${address.consigneeName}" name="consigneeName" class="add_ipt"/>（必填）</td>
+                        <td align="right">电子邮箱</td>
+                        <td style="font-family:'宋体';"><input type="text" name="email" th:value="${address.email}" class="add_ipt"/>（必填）</td>
+                    </tr>
+                    <tr>
+                        <td align="right">详细地址</td>
+                        <td style="font-family:'宋体';"><input type="text" name="detailedAddress" th:value="${address.detailedAddress}" class="add_ipt"/>（必填）
+                        </td>
+                        <td align="right">邮政编码</td>
+                        <td style="font-family:'宋体';"><input type="text" name="postalCode" th:value="${address.postalCode}" class="add_ipt"/></td>
+                    </tr>
+                    <tr>
+                        <td align="right">手机</td>
+                        <td style="font-family:'宋体';"><input type="text" name="phone" th:value="${address.phone}" class="add_ipt"/>（必填）</td>
+                        <td align="right">电话</td>
+                        <td style="font-family:'宋体';"><input type="text" name="telNum" th:value="${address.telNum}" class="add_ipt"/></td>
+                    </tr>
+                    <tr>
+                        <td align="right">标志建筑</td>
+                        <td style="font-family:'宋体';"><input type="text" name="landmarkBuilding" th:value="${address.landmarkBuilding}" class="add_ipt"/></td>
+                        <td align="right">最佳送货时间</td>
+                        <td style="font-family:'宋体';"><input type="text" name="deliveryTime"  th:value="${address.deliveryTime}" class="add_ipt"/></td>
+                    </tr>
+                </table>
+                <p align="center">
+                    <input type="submit" id="sub1" value="确认修改" class="add_b"/>
+                </p>
+            </form>
         </main>
         <footer class="btm-ft">
             <p class="clear">
@@ -285,6 +321,7 @@
         </footer>
     </div>
 </div>
+
 <div class="mask"></div>
 <div class="dialog">
     <div class="dialog-hd">
