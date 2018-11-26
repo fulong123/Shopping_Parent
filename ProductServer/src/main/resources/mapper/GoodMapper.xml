@@ -19,6 +19,9 @@
         <if test="goodsPrice!=null and goodsPrice!=''">
             and goodsPrice like #{goodsPrice}
         </if>
+        <if test="goodsPhoto!=null and goodsPhoto!=''">
+            and goodsPhoto = #{goodsPhoto}
+        </if>
         <if test="goodsType!=null and goodsType!=''">
             and goodsType = #{goodsType}
         </if>
@@ -54,6 +57,9 @@
             <if test="quantityInStock != null">
                 quantityInStock,
             </if>
+            <if test="goodsPhoto != null">
+                goodsPhoto,
+            </if>
             <if test="goodsPrice != null">
                 goodsPrice,
             </if>
@@ -81,6 +87,9 @@
             <if test="goodsPrice != null">
                 #{goodsPrice},
             </if>
+            <if test="goodsPhoto != null">
+                #{goodsPhoto},
+            </if>
             <if test="goodsType != null">
                 #{goodsType},
             </if>
@@ -107,6 +116,9 @@
             </if>
             <if test="goodsPrice != null">
                 goodsPrice = #{goodsPrice},
+            </if>
+            <if test="goodsPhoto != null">
+                goodsPhoto = #{goodsPhoto},
             </if>
             <if test="goodsType != null">
                 goodsType = #{goodsType},

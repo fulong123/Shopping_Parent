@@ -38,11 +38,18 @@ public class GoodsServiceImpl implements GoodsService {
     public int insertGoods(Goods goods) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         goods.setCreateTime(dateFormat.format(new Date()));
+        goods.setSalesQuantity(0);
         return goodMapper.insertGoods(goods);
     }
 
     @Override
     public int updateGoods(Goods goods) {
+        Goods goods1 = selectGoodsById(goods.getGoodsId());
+        goods.setCreateTime(goods1.getCreateTime());
+        if (null == goods.getGoodsPhoto()){
+            goods.setGoodsPhoto(goods1.getGoodsPhoto());
+        }
+        goods.setSalesQuantity(goods1.getSalesQuantity());
         return goodMapper.updateGoods(goods);
     }
 

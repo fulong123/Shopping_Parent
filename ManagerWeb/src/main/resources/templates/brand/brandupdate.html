@@ -250,7 +250,7 @@
                         <img th:src="${brand.photo}"><br/>
                         <div class="form-cont">
                             <label>
-                                文件：<input type="file" name="file" id="inputs"/><br/>
+                                log：<input type="file" name="file" id="inputs"/><br/>
                             </label>
                         </div>
                     </div>
@@ -258,10 +258,7 @@
                         $(document).ready(function () {
                             $("#inputs").change(function () {
                                 var fil = this.files;
-                                console.log(fil.length);
                                 for (var i = 0; i < fil.length; i++) {
-                                    console.log(fil[0]);
-                                    console.log('--------------------------');
                                     reads(fil[0]);
                                 }
                             });

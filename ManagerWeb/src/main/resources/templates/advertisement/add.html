@@ -232,42 +232,41 @@
             </div>
         </header>
         <main class="main-cont content mCustomScrollbar">
-            <form th:action="@{/news/updateNews}" th:object="${news}" method="post">
-            <div class="page-wrap">
-                <input type="hidden" name="newsId" th:value="${news.newsId}">
-                <div class="form-group-col-2">
-                    <div class="form-label">新闻标题：</div>
-                    <div class="form-cont">
-                        <label>
-                            <input type="text" name="newsTitle" th:value="${news.newsTitle}">
-                        </label>
+            <form th:action="@{/ad/addNews}" th:object="${ad}" method="post">
+                <div class="page-wrap">
+                    <div class="form-group-col-2">
+                        <div class="form-label">新闻标题：</div>
+                        <div class="form-cont">
+                            <label>
+                                <input type="text" name="newsTitle">
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group-col-2">
-                    <div class="form-label">新闻类型：</div>
-                    <div class="form-cont">
-                        <label>
-                            <input type="text" name="newsType" th:value="${news.newsType}">
-                        </label>
+                    <div class="form-group-col-2">
+                        <div class="form-label">新闻类型：</div>
+                        <div class="form-cont">
+                            <label>
+                                <input type="text" name="newsType">
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group-col-2">
-                    <div class="form-label">新闻URL：</div>
-                    <div class="form-cont">
-                        <label>
-                            <input type="text" name="url" th:value="${news.url}">
-                        </label>
+                    <div class="form-group-col-2">
+                        <div class="form-label">新闻URL：</div>
+                        <div class="form-cont">
+                            <label>
+                                <input type="text" name="url">
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group-col-2">
-                    <div class="form-label"></div>
-                    <div class="form-cont">
-                        <input type="submit" class="btn btn-primary" value="修改" />
-                        <input type="reset" class="btn btn-disabled" value="取消" />
+                    <div class="form-group-col-2">
+                        <div class="form-label"></div>
+                        <div class="form-cont">
+                            <input type="submit" class="btn btn-primary" value="添加" />
+                            <input type="reset" class="btn btn-disabled" value="取消" />
+                        </div>
                     </div>
+                    <!--开始::结束-->
                 </div>
-                <!--开始::结束-->
-            </div>
             </form>
         </main>
         <footer class="btm-ft">

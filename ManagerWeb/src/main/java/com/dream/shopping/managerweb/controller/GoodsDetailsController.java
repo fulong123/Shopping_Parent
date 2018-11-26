@@ -18,7 +18,7 @@ import java.util.List;
  * Time: 12:12
  */
 @Controller
-@RequestMapping("goodsDetails")
+@RequestMapping("/goodsDetails")
 public class GoodsDetailsController {
 
     @Reference(version = "1.0.0",timeout = 100000)

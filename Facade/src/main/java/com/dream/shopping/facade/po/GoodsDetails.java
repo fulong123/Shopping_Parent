@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 @Component
 @Entity
-@Table
+@Table(name = "goodsDetails")
 public class GoodsDetails implements Serializable {
 
     private static final long serialVersionUID = 8879790089677387217L;
