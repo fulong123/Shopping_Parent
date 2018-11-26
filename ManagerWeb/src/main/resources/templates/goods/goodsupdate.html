@@ -19,6 +19,8 @@
     <script th:src="@{/javascript/distpicker.data.js}"></script>
     <script th:src="@{/javascript/distpicker.js}"></script>
     <script th:src="@{/javascript/main.js}"></script>
+    <script>
+    </script>
 </head>
 <body>
 <div class="main-wrap">
@@ -233,54 +235,67 @@
             </div>
         </header>
         <main class="main-cont content mCustomScrollbar">
-            <div class="mem_tit">品牌管理</div>
-            <form th:action="@{/brands/updateBrand}" method="post" enctype="multipart/form-data">
-                <div class="page-wrap">
-                    <div class="form-group-col-2">
-                        <div class="form-label">品牌名：</div>
-                        <div class="form-cont">
-                            <label>
-                                <input type="hidden" name="brandId" th:value="${brand.brandId}">
-                                <input type="text" name="brandName" th:value="${brand.brandName}">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group-col-2">
-                        <div class="form-label">品牌图片：</div>
-                        <img th:src="${brand.photo}"><br/>
-                        <div class="form-cont">
-                            <label>
-                                log：<input type="file" name="file" id="inputs"/><br/>
-                            </label>
-                        </div>
-                    </div>
-                    <script>
-                        $(document).ready(function () {
-                            $("#inputs").change(function () {
-                                var fil = this.files;
-                                for (var i = 0; i < fil.length; i++) {
-                                    reads(fil[0]);
-                                }
-                            });
-                        });
+            <div class="m_right">
+                <p></p>
+                <div class="mem_tit">商品添加</div>
+                <div class="address">
+                    <form th:actoion="@{/goods/addGoods}" method="post" enctype="multipart/form-data">
+                        <table border="0" class="add_t" align="center" style="width:98%; margin:10px auto;"
+                               cellspacing="0"
+                               cellpadding="0">
+                            <tr>
+                                <td>
+                                    商品名字：<input type="text" name="goodsTitle" th:value="${goodsDto.goods.goodsTitle}"
+                                                readonly="readonly"><br/>
+                                    商品分类：<input type="text" name="goodsType" th:value="${goodsDto.goodsTypeName}"><br/>
+                                    <input type="hidden" name="goodsType" id="goodsType">
+                                    商品价格：<input type="text" name="goodsPrice"
+                                                th:value="${goodsDto.goods.goodsPrice}"><br/>
+                                    商品库存：<input type="text" name="quantityInStock"
+                                                th:value="${goodsDto.goods.quantityInStock}"><br/>
+                                    是否上架：
+                                    <input type="radio" selected name="state"
+                                           th:checked="${goodsDto.goods.state} eq 1" th:value="1">上架
+                                    <input type="radio" selected name="state"
+                                           th:checked="${goodsDto.goods.state} eq 0" th:value="0">下架<br/>
+                                    商品图片：<img th:src="${goodsDto.goods.goodsPhoto}"><br/>
+                                    <input type="file" name="file" id="inputs"/><br/>
+                                    <input type="submit" value="修改">
+                                    <input type="button" value="取消" onclick="javascript:history.back(-1);">
+                                </td>
+                            </tr>
+                            <script>
+                                $(document).ready(function () {
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "",
+                                        dataType: "json",
+                                        success: function (result) {
+                                            for (var i = 0; i < result.length; i++) {
 
-                        function reads(fil){
-                            var reader = new FileReader();
-                            reader.readAsDataURL(fil);
-                            reader.onload = function(){
-                                $('#inputs').after("<img src='"+reader.result+"'>");
-                            };
-                        }
-                    </script>
-                    <div class="form-group-col-2">
-                        <div class="form-label"></div>
-                        <div class="form-cont">
-                            <input type="submit" class="btn btn-primary" value="修改"/>
-                            <input type="button" onclick="javascript:history.back(-1);" value="返回">
-                        </div>
-                    </div>
+                                            }
+                                        }
+                                    });
+                                    $("#inputs").change(function () {
+                                        var fil = this.files;
+                                        for (var i = 0; i < fil.length; i++) {
+                                            reads(fil[0]);
+                                        }
+                                    });
+                                });
+
+                                function reads(fil) {
+                                    var reader = new FileReader();
+                                    reader.readAsDataURL(fil);
+                                    reader.onload = function () {
+                                        $('#inputs').after("<img src='" + reader.result + "'>");
+                                    };
+                                }
+                            </script>
+                        </table>
+                    </form>
                 </div>
-            </form>
+            </div>
         </main>
         <footer class="btm-ft">
             <p class="clear">

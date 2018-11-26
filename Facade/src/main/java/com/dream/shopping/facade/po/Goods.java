@@ -24,11 +24,13 @@ public class Goods implements Serializable {
     @Column(name = "goodsId")
     private Integer goodsId;            //商品id
     @Column(name = "goodsType")
-    private Integer goodsType;           //商品类别
+    private String goodsType;           //商品类别
     @Column(name = "goodsTitle")
     private String goodsTitle;          //商品标题
     @Column(name = "goodsPrice")
     private Double goodsPrice;          //商品价格
+    @Column(name = "goodsPhoto")
+    private String goodsPhoto;            //商品图片
     @Column(name = "createTime")
     private String createTime;          //创建时间
     @Column(name = "quantityInStock")
@@ -41,14 +43,23 @@ public class Goods implements Serializable {
     public Goods() {
     }
 
-    public Goods(Integer goodsType, String goodsTitle, Double goodsPrice,  String createTime, Integer quantityInStock, Integer salesQuantity, Integer state) {
+    public Goods(String goodsType, String goodsTitle, Double goodsPrice, String goodsPhoto, String createTime, Integer quantityInStock, Integer salesQuantity, Integer state) {
         this.goodsType = goodsType;
         this.goodsTitle = goodsTitle;
         this.goodsPrice = goodsPrice;
+        this.goodsPhoto = goodsPhoto;
         this.createTime = createTime;
         this.quantityInStock = quantityInStock;
         this.salesQuantity = salesQuantity;
         this.state = state;
+    }
+
+    public String getGoodsPhoto() {
+        return goodsPhoto;
+    }
+
+    public void setGoodsPhoto(String goodsPhoto) {
+        this.goodsPhoto = goodsPhoto;
     }
 
     public Integer getGoodsId() {
@@ -59,11 +70,11 @@ public class Goods implements Serializable {
         this.goodsId = goodsId;
     }
 
-    public Integer getGoodsType() {
+    public String getGoodsType() {
         return goodsType;
     }
 
-    public void setGoodsType(Integer goodsType) {
+    public void setGoodsType(String goodsType) {
         this.goodsType = goodsType;
     }
 
@@ -119,13 +130,14 @@ public class Goods implements Serializable {
     public String toString() {
         return "Goods{" +
                 "goodsId=" + goodsId +
-                ", goodsType='" + goodsType + '\'' +
+                ", goodsType=" + goodsType +
                 ", goodsTitle='" + goodsTitle + '\'' +
                 ", goodsPrice=" + goodsPrice +
+                ", goodsPhoto='" + goodsPhoto + '\'' +
                 ", createTime='" + createTime + '\'' +
                 ", quantityInStock=" + quantityInStock +
                 ", salesQuantity=" + salesQuantity +
-                ", state='" + state + '\'' +
+                ", state=" + state +
                 '}';
     }
 }
