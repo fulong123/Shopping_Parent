@@ -243,6 +243,7 @@
             </div>
         </header>
         <main class="main-cont content mCustomScrollbar">
+            <form th:action="@{goodsType/updateGoodsOrder}" method="post" th:object="${goods_order}">
             <div class="page-wrap">
                 <!--开始::内容-->
                 <section class="page-hd">
@@ -251,16 +252,6 @@
                     </header>
                     <hr>
                 </section>
-                <div class="clear mt-20">
-                    <div class="fl">
-                        <button class="btn btn-secondary"><i class="icon-double-angle-left"></i>上一天</button>
-                        <button class="btn btn-secondary">下一天<i class="icon-double-angle-right"></i></button>
-                    </div>
-                    <div class="fr input-group">
-                        <input type="text" class="form-control" placeholder="搜索..." style="width:290px;"/>
-                        <button class="btn btn-secondary-outline">搜索</button>
-                    </div>
-                </div>
                 <table class="table mb-15">
                     <thead>
                     <tr>
@@ -273,12 +264,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="cen">
+                    <tr class="cen" th:each="goodsorder:${goods_orders}">
                         <td><input type="checkbox"/></td>
-                        <td class="lt"><a href="#">正宗陕西洛川红富士 新鲜水果特惠</a></td>
-                        <td>50000斤</td>
-                        <td>￥4.00</td>
-                        <td>￥3.80</td>
+                        <td class="lt" th:test="${goodsorder.goods_OrderNum}"><a href="#"></a></td>
+                        <td th:text="${goodsorder.goods_OrderTime)"></td>
+                        <td th:text="${goodsorder.goods_OrderSumMoney}"></td>
+                        <td th:text="${goodsorder.goods_OrderState}"></td>
                         <td>
                             <a title="编辑" class="mr-5">编辑</a>
                             <a title="详情" class="mr-5">详情</a>
@@ -301,6 +292,7 @@
                 </div>
                 <!--开始::结束-->
             </div>
+            </form>
         </main>
         <footer class="btm-ft">
             <p class="clear">
