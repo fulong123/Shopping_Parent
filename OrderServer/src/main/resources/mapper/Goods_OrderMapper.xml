@@ -13,7 +13,7 @@
         <result column="user_id" property="userId" jdbcType="INTEGER"/>
         <result column="user_num" property="userNum" jdbcType="VARCHAR"/>
     </resultMap>
-    <!--根据用户Id查询所有订单-->
+    <!--查询所有订单-->
     <select id="selectGoods_Order" resultMap="BaseResultMap"
             resultType="com.dream.shopping.facade.po.Goods_Order"
             parameterType="com.dream.shopping.facade.po.Goods_Order">
@@ -29,15 +29,23 @@
     </select>
     <!--根据Id查询订单-->
     <select id="selectGoods_OrderById" resultMap="BaseResultMap" parameterType="java.lang.Integer" resultType="com.dream.shopping.facade.po.Goods_Order">
-        select * from goods_order where goods_order_id=#{goods_order_id,jdbcType=INTEGER}
+        select * from goods_order where goods_order_id=#{goods_OrderId,jdbcType=INTEGER}
     </select>
     <!--删除订单-->
     <delete id="deleteGood_OrderById" parameterType="java.lang.Integer" >
-        delete from goods_order where goods_order_id=#{goods_order_id,jdbcType=INTEGER}
+        delete from goods_order where goods_order_id=#{goods_OrderId,jdbcType=INTEGER}
     </delete>
     <!--修改订单-->
-    <update id="updateGoods_OrderById" parameterType="java.lang.Integer">
-        update goods_order set user_address=#{user_address,jdbcType=VARCHAR},user_num=#{user_num,jdbcType=VARCHAR} where goods_order_id=#{goods_order_id,jdbcType=INTEGER}
+    <update id="updateGoods_Order" parameterType="com.dream.shopping.facade.po.Goods_Order">
+        update goods_order
+        <set>
+            <if test="userAddress!=null">
+                user_address=#{userAddress,jdbcType="VARCHAR}
+            </if>
+            <if test="userNum!=null">
+                user_num=#{userNum,jdbcType="VARCHAR}
+            </if>
+        </set>
     </update>
 </mapper>
 
