@@ -22,8 +22,8 @@ public class Goods_TypeServiceImpl implements IGoods_TypeService {
     Goods_TypeMapper goods_typeMapper;
 
     @Override
-    public int insertGoods_Type() {
-        return goods_typeMapper.insertGoods_Type();
+    public int insertGoods_Type(GoodsType goodsType) {
+        return goods_typeMapper.insertGoods_Type(goodsType);
     }
 
     @Override
@@ -37,9 +37,10 @@ public class Goods_TypeServiceImpl implements IGoods_TypeService {
     }
 
     @Override
-    public List<GoodsType> selectGoods_Type() {
-        return goods_typeMapper.selectGoods_Type();
+    public List<GoodsType> selectGoods_Type(GoodsType goodsType) {
+        return goods_typeMapper.selectGoods_Type(goodsType);
     }
+
 
     @Override
     public List<GoodsType> selectGoods_TypeByGoodsTypeGrade(int num) {

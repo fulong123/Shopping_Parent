@@ -19,7 +19,7 @@ public interface IGoods_TypeFacade {
      * @param []
      * @return int
      */
-    int insertGoods_Type();
+    int insertGoods_Type(GoodsType goodsType);
     /**
      * 描述 根据Id删除商品类别
      * @author cqq
@@ -43,7 +43,7 @@ public interface IGoods_TypeFacade {
      * @param []
      * @return java.util.List<com.dream.shopping.facade.po.GoodsType>
      */
-    List<GoodsType> selectGoods_Type();
+    List<GoodsType> selectGoods_Type(GoodsType goodsType);
     /**
      * 描述 根据等级查询商品类别
      * @author cqq

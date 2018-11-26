@@ -19,7 +19,7 @@ public interface IGoods_OrderFacade {
      * @param []
      * @return java.util.List<com.dream.shopping.facade.po.Goods_Order>
      */
-    List<Goods_Order> selectGoods_Order(int id);
+    List<Goods_Order> selectGoods_Order(Goods_Order goods_order);
     /**
      * 描述 根据Id查询订单
      * @author cqq
@@ -43,5 +43,5 @@ public interface IGoods_OrderFacade {
      * @param [id]
      * @return int
      */
-    int updateGoods_OrderById(int id);
+    int updateGoods_Order(Goods_Order goods_order);
 }
