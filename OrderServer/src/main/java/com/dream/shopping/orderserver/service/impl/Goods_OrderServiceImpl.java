@@ -23,7 +23,7 @@ public class Goods_OrderServiceImpl implements IGoods_OrderService {
 
     @Override
     public List<Goods_Order> selectGoods_Order(int id) {
-        return goods_orderMapper.selectGoods_Order(id);
+        return goods_orderMapper.selectGoods_OrderByUserId(id);
     }
 
     @Override

@@ -9,15 +9,16 @@
     <result column="administrator_name" property="administratorName" jdbcType="VARCHAR"/>
     <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
     <result column="password" property="password" jdbcType="VARCHAR"/>
+    <result column="issuperadmin" property="isSuperAdmin" jdbcType="INTEGER"/>
 
 </resultMap>
     <!-- 动态sql添加 -->
     <insert id="insertAdmin" parameterType="com.dream.shopping.facade.po.Administrator">
             insert into administrator
             <trim prefix="(" suffix=")" suffixOverrides="," >
-                <if test="administratorId != null">
-                    administrator_id,
-                </if>
+                <!--<if test="administratorId != null">-->
+                    <!--administrator_id,-->
+                <!--</if>-->
                 <if test="administratorName != null">
                     administrator_name,
                 </if>
@@ -27,11 +28,14 @@
                 <if test="password != null">
                     password,
                 </if>
+                <if test="isSuperAdmin != null">
+                    issuperadmin,
+                </if>
             </trim>
             <trim prefix="values (" suffix=")" suffixOverrides="," >
-                <if test="administratorId != null" >
-                    #{administratorId,jdbcType=INTEGER},
-                </if>
+                <!--<if test="administratorId != null" >-->
+                    <!--#{administratorId,jdbcType=INTEGER},-->
+                <!--</if>-->
                 <if test="administratorName != null">
                     #{administratorName,jdbcType=VARCHAR},
                 </if>
@@ -40,6 +44,9 @@
                 </if>
                 <if test="password != null">
                     #{password,jdbcType=VARCHAR},
+                </if>
+                <if test="isSuperAdmin != null">
+                    #{isSuperAdmin,jdbcType=INTEGER},
                 </if>
             </trim>
     </insert>
@@ -70,6 +77,9 @@
             <if test="createTime != null">
                 and create_time = #{createTime,jdbcType=VARCHAR}
             </if>
+            <if test="isSuperAdmin != null">
+                and issuperadmin = #{isSuperAdmin,jdbcType=INTEGER}
+            </if>
         </trim>
     </select>
 
@@ -88,6 +98,9 @@
             </if>
             <if test="password != null">
                 password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="isSuperAdmin != null">
+                issuperadmin = #{isSuperAdmin,jdbcType=VARCHAR},
             </if>
         </set>
         where  administrator_id= #{administratorId,jdbcType=INTEGER}

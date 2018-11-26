@@ -21,13 +21,13 @@
     <script th:src="@{/javascript/pages/login.js}"></script>
     <!--suppress JSJQueryEfficiency -->
     <script type="text/javascript">
-        $(document).ready(function () {
-            $("#login").click(function () {
-                var form = $("#loginForm").serialize();
-                $("#loginForm").attr("action","/user/login?" + form);
-                $("#loginForm").submit();
-            });
-        });
+        // $(document).ready(function () {
+        //     $("#login").click(function () {
+        //         var form = $("#loginForm").serialize();
+        //         $("#loginForm").attr("action","/admin/login?" + form);
+        //         $("#loginForm").submit();
+        //     });
+        // });
     </script>
 </head>
 <body class="login-page">
@@ -36,18 +36,18 @@
         <h1>登录界面</h1>
         <p>management system</p>
     </header>
-    <form id="loginForm">
+    <form id="loginForm" method="post" th:action="@{/admin/login}">
         <div class="form-content">
             <ul>
                 <li>
                     <div class="form-group">
-                        <label class="control-label">用户账号：</label>
-                        <label for="adminName"></label><input type="text" name="userLoginName" class="form-control form-underlined" id="adminName"/>
+                        <label class="control-label">管理员账号：</label>
+                        <label for="adminName"></label><input type="text" name="administratorName" class="form-control form-underlined" id="adminName"/>
                     </div>
                 </li>
                 <li>
                     <div class="form-group">
-                        <label class="control-label">用户密码：</label>
+                        <label class="control-label">管理员密码：</label>
                         <label for="adminPwd"></label><input type="password" name="password" class="form-control form-underlined" id="adminPwd"/>
                     </div>
                 </li>
@@ -58,7 +58,7 @@
                     </label>
                 </li>
                 <li>
-                    <button class="btn btn-lg btn-block" id="login">立即登录</button>
+                    <input type="submit" class="btn btn-lg btn-block" th:value="立即登录">
                 </li>
                 <li>
                     <p class="btm-info">©Copyright 2006-2010

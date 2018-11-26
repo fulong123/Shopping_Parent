@@ -84,6 +84,7 @@ public class TestAdministerMapper extends DBTestCase {
     @Test
     public void testSelectById(){
         Administrator byId = administerMapper.selectById(2);
+        System.out.println(byId);
         assertSame("成功",2,byId.getAdministratorId());
     }
 
