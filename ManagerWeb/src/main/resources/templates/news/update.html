@@ -232,95 +232,55 @@
             </div>
         </header>
         <main class="main-cont content mCustomScrollbar">
-            <form th:action="@{/user/updateUser}" method="post" th:object="${user}">
-                <input type="hidden" name="uId" th:value="${user.uId}">
-                <div class="page-wrap">
-                    <div class="form-group-col-2">
-                        <div class="form-label">用户登陆名：</div>
-                        <div class="form-cont">
-                            <label>
-                                <input type="text" name="userLoginName" th:value="${user.userLoginName}">
-                            </label>
-                        </div>
+            <form th:action="@{/admin/updateAdmin}" th:object="${admin}" method="post">
+            <div class="page-wrap">
+                <input type="hidden" name="administratorId" th:value="${admin.administratorId}">
+                <div class="form-group-col-2">
+                    <div class="form-label">管理员登陆名：</div>
+                    <div class="form-cont">
+                        <label>
+                            <input type="text" name="administratorName" th:value="${admin.administratorName}">
+                        </label>
                     </div>
-                    <div class="form-group-col-2">
-                        <div class="form-label">用户真实姓名：</div>
-                        <div class="form-cont">
-                            <label>
-                                <input type="text" name="userRealName" th:value="${user.userLoginName}">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group-col-2">
-                        <div class="form-label">用户密码：</div>
-                        <div class="form-cont">
-                            <label>
-                                <input type="password" name="password" th:value="${user.password}">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group-col-2">
-                        <div class="form-label">性别：</div>
-                        <div class="form-cont">
-                            <label th:if="${user.sex} eq '男'">
-                                <span>男</span>
-                                <input type="hidden" name="isSuperAdmin" th:value="${user.sex}">
-                            </label>
-                            <label th:if="${user.sex} eq '女'">
-                                <span>女</span>
-                                <input type="hidden" name="isSuperAdmin" th:value="${user.sex}">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group-col-2">
-                        <div class="form-label">年龄：</div>
-                        <div class="form-cont">
-                            <label>
-                                <input type="text" name="age" th:value="${user.age}">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group-col-2">
-                        <div class="form-label">邮箱：</div>
-                        <div class="form-cont">
-                            <label>
-                                <input type="text" name="email" th:value="${user.email}">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group-col-2">
-                        <div class="form-label">qq：</div>
-                        <div class="form-cont">
-                            <label>
-                                <input type="text" name="qq" th:value="${user.qq}">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group-col-2">
-                        <div class="form-label">电话号码：</div>
-                        <div class="form-cont">
-                            <label>
-                                <input type="text" name="tel" th:value="${user.tel}">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group-col-2">
-                        <div class="form-label">微信：</div>
-                        <div class="form-cont">
-                            <label>
-                                <input type="text" name="weChat" th:value="${user.weChat}">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group-col-2">
-                        <div class="form-label"></div>
-                        <div class="form-cont">
-                            <input type="submit" class="btn btn-primary" value="修改" />
-                            <input type="reset" class="btn btn-disabled" value="取消" />
-                        </div>
-                    </div>
-                <!--开始::结束-->
                 </div>
+                <div class="form-group-col-2">
+                    <div class="form-label">管理员密码：</div>
+                    <div class="form-cont">
+                        <label>
+                            <input type="text" name="password" th:value="${admin.password}">
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group-col-2">
+                    <div class="form-label">管理员创建时间：</div>
+                    <div class="form-cont">
+                        <label>
+                            <input type="text" name="createTime" th:value="${admin.createTime}" readonly>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group-col-2">
+                    <div class="form-label">管理员权限：</div>
+                    <div class="form-cont">
+                        <label th:if="${admin.isSuperAdmin} eq '1'">
+                            <span>超级管理员</span>
+                            <input type="hidden" name="isSuperAdmin" th:value="${admin.isSuperAdmin}">
+                        </label>
+                        <label th:if="${admin.isSuperAdmin} eq '0'">
+                            <span>普通管理员</span>
+                            <input type="hidden" name="isSuperAdmin" th:value="${admin.isSuperAdmin}">
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group-col-2">
+                    <div class="form-label"></div>
+                    <div class="form-cont">
+                        <input type="submit" class="btn btn-primary" value="修改" />
+                        <input type="reset" class="btn btn-disabled" value="取消" />
+                    </div>
+                </div>
+                <!--开始::结束-->
+            </div>
             </form>
         </main>
         <footer class="btm-ft">

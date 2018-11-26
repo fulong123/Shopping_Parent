@@ -1,4 +1,4 @@
-package com.dream.shopping.managerweb;
+package com.dream.shopping.managerweb.config;
 
 import com.dream.shopping.managerweb.interceptor.MyInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;

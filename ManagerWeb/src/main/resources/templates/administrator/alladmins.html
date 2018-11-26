@@ -239,38 +239,42 @@
         </header>
         <main class="main-cont content mCustomScrollbar">
             <div class="page-wrap">
-                <table th:each="admin : ${admins}">
-                    <tr>
-                        <th>登录名</th>
-                        <th>密码</th>
-                        <th>创建时间</th>
-                        <th>是否为超级管理员</th>
-                        <th>操作</th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <span th:text="${admin.administratorName}"></span>
-                        </th>
-                        <th>
-                            <span th:text="${admin.password}"></span>
-                        </th>
-                        <th>
-                            <span th:text="${admin.createTime}"></span>
-                        </th>
-                        <th>
-                            <label th:if="${admin.isSuperAdmin} eq '1'">
-                                <span th:text="是"></span>
-                            </label>
-                            <label th:if="${admin.isSuperAdmin} eq '0'">
-                                <span th:text="不是"></span>
-                            </label>
-                        </th>
-                        <th>
-                            <a th:href="@{/admin/initAdmin(administratorId=${admin.administratorId})}">修改管理员</a>
-                            <a th:href="@{/admin/deleteAdmin(administratorId=${admin.administratorId})}">删除管理员</a>
-                            <a th:href="@{/admin/addAdmin}">添加管理员</a>
-                        </th>
-                    </tr>
+                <table class="table mb-15 colorBar">
+                    <thead>
+                        <tr>
+                            <th>登录名</th>
+                            <th>密码</th>
+                            <th>创建时间</th>
+                            <th>是否为超级管理员</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="cen" th:each="admin : ${admins}" >
+                            <th>
+                                <span th:text="${admin.administratorName}"></span>
+                            </th>
+                            <th>
+                                <span th:text="${admin.password}"></span>
+                            </th>
+                            <th>
+                                <span th:text="${admin.createTime}"></span>
+                            </th>
+                            <th>
+                                <label th:if="${admin.isSuperAdmin} eq '1'">
+                                    <span th:text="是"></span>
+                                </label>
+                                <label th:if="${admin.isSuperAdmin} eq '0'">
+                                    <span th:text="不是"></span>
+                                </label>
+                            </th>
+                            <th>
+                                <a th:href="@{/admin/initAdmin(administratorId=${admin.administratorId})}">修改管理员</a>
+                                <a th:href="@{/admin/deleteAdmin(administratorId=${admin.administratorId})}">删除管理员</a>
+                                <a th:href="@{/admin/addAdmin}">添加管理员</a>
+                            </th>
+                        </tr>
+                    </tbody>
                 </table>
                 <!--开始::结束-->
             </div>

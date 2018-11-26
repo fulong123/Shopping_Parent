@@ -84,7 +84,7 @@ public class User implements Serializable {
         this.addressId = addressId;
         this.createTime = createTime;
         this.lastLoginTime = lastLoginTime;
-        Monetary = monetary;
+        this.Monetary = monetary;
         this.integral = integral;
         this.balance = balance;
         this.red_Envelopes_Count = red_Envelopes_Count;
