@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-    <goods goodsId="3" goodsType="12" goodsTitle="111" goodsPrice="123" createTime="2018-12-5"
+    <goods goodsId="3" goodsType="12" goodsTitle="111" goodsPrice="123" goodsPhoto="11111" createTime="2018-12-5"
            quantityInStock="123" salesQuantity="1111" state="1"/>
 </dataset>

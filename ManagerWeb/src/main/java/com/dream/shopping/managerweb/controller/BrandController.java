@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -50,6 +51,11 @@ public class BrandController {
         return "brand/brandadd";
     }
 
+    @RequestMapping("/type")
+    @ResponseBody
+    public List<Brand> getType(){
+        return brandFacade.selectAll(null);
+    }
     @RequestMapping("/deleteAll/{ids}")
     public String deleteAll(@PathVariable(value = "ids") String ids) {
         String[] is = ids.split(",");

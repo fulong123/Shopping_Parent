@@ -125,7 +125,7 @@ public class GoodTest extends DBTestCase {
     @DatabaseTearDown(type = DatabaseOperation.CLEAN_INSERT,
             value = "classpath:sourceDBUnit/goods.xml")
     public void testInsert() {
-        Goods goods = new Goods(12,"111",123.0,"2018-12-5",123,1111,1);
+        Goods goods = new Goods("12","111",123.0,"11111","2018-12-5",123,1111,1);
 
         int i = goodMapper.insertGoods(goods);
         Assert.assertEquals(1, i);
@@ -137,7 +137,7 @@ public class GoodTest extends DBTestCase {
     @DatabaseTearDown(type = DatabaseOperation.CLEAN_INSERT,
             value = "classpath:sourceDBUnit/goods.xml")
     public void testUpdate() {
-        Goods goods = new Goods(5,"222",1233.0,"2018-12-5"
+        Goods goods = new Goods("5","222",1233.0,"11111","2018-12-5"
                 ,13,11,1);
         goods.setGoodsId(3);
         int i = goodMapper.updateGoods(goods);
