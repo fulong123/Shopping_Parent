@@ -53,4 +53,9 @@ public class GoodsTypeController {
         goods_typeFacade.deleteGoods_TypeById(id);
         return "redirect:/goodsType/getAll";
     }
+
+    @RequestMapping("/add")
+    public String add(){
+        return "goodsType/addgoodstype";
+    }
 }
