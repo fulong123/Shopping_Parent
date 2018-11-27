@@ -30,7 +30,6 @@ public class AdminController {
         return "login";
     }
 
-
     @RequestMapping("/login")
     public String login(AdminVo adminVo, Model model){
         Administrator administrator = admin.selectByAdmin(adminVo).get(0);
@@ -51,6 +50,7 @@ public class AdminController {
 
     @RequestMapping("/query")
     public String query(AdminVo adminVo, Model model){
+        System.out.println(adminVo);
         model.addAttribute("admins",admin.selectByAdmin(adminVo));
         return "administrator/alladmins";
     }
