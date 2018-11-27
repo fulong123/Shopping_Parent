@@ -36,4 +36,9 @@ public class OrderDetailsServiceImpl implements IOrderDetailsService {
     public int deleteOrderDetaIlsById(int id) {
         return orderDetailsMapper.deleteOrderDetaIlsById(id);
     }
+
+    @Override
+    public List<OrderDetails> selectOrderDetails() {
+        return orderDetailsMapper.selectOrderDetails();
+    }
 }

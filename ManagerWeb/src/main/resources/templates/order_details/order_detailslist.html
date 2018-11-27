@@ -247,7 +247,7 @@
                 <!--开始::内容-->
                 <section class="page-hd">
                     <header>
-                        <h2 class="title">订单管理页面</h2>
+                        <h2 class="title">订单项管理页面</h2>
                     </header>
                     <hr>
                 </section>
@@ -279,12 +279,10 @@
                         <td class="lt" th:text="${orderDetails.orderId}"><a href="#"></a></td>
                         <td th:text="${orderDetails.goodsId}"></td>
                         <td th:text="${orderDetails.merchantId}"></td>
-                        <td th:text="orderDetails.createTime"></td>
-                        <td th:text="orderDetails.dealNum"></td>
+                        <td th:text="${orderDetails.createTime}"></td>
+                        <td th:text="${orderDetails.dealNum}"></td>
                         <td>
-                            <a title="编辑" class="mr-5">编辑</a>
-                            <a title="详情" class="mr-5">详情</a>
-                            <a title="删除">删除</a>
+                            <a title="删除" th:href="@{/orderDetails/deleteOrderDetails(id=${orderDetails.orderDetailsId})}">删除</a>
                         </td>
                     </tr>
                     </tbody>

@@ -37,4 +37,9 @@ public class Order_DetailsFacadeImpl implements IOrder_DetailsFacade {
     public int deleteOrderDetaIlsById(int id) {
         return orderDetailsService.deleteOrderDetaIlsById(id);
     }
+
+    @Override
+    public List<OrderDetails> selectOrderDetails() {
+        return orderDetailsService.selectOrderDetails();
+    }
 }

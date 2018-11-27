@@ -36,4 +36,12 @@ public interface IOrder_DetailsFacade {
      * @return int
      */
     int deleteOrderDetaIlsById(int id);
+    /**
+     * 描述 查询所有订单项
+     * @author cqq
+     * @date 2018/11/27 11:21
+     * @param []
+     * @return java.util.List<com.dream.shopping.facade.po.OrderDetails>
+     */
+    List<OrderDetails> selectOrderDetails();
 }
