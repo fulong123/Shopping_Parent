@@ -56,6 +56,6 @@ public class GoodsTypeController {
 
     @RequestMapping("/add")
     public String add(){
-        return "goodsType/addgoodstype";
+        return "goods_type/addgoodstype";
     }
 }
