@@ -43,7 +43,7 @@ public class Goods implements Serializable {
     public Goods() {
     }
 
-    public Goods(String goodsType, String goodsTitle, Double goodsPrice, String goodsPhoto, String createTime, Integer quantityInStock, Integer salesQuantity, Integer state) {
+    public Goods(String goodsType, String goodsTitle,  String goodsPhoto, String createTime, Integer quantityInStock,Double goodsPrice, Integer salesQuantity, Integer state) {
         this.goodsType = goodsType;
         this.goodsTitle = goodsTitle;
         this.goodsPrice = goodsPrice;
@@ -52,14 +52,6 @@ public class Goods implements Serializable {
         this.quantityInStock = quantityInStock;
         this.salesQuantity = salesQuantity;
         this.state = state;
-    }
-
-    public String getGoodsPhoto() {
-        return goodsPhoto;
-    }
-
-    public void setGoodsPhoto(String goodsPhoto) {
-        this.goodsPhoto = goodsPhoto;
     }
 
     public Integer getGoodsId() {
@@ -92,6 +84,14 @@ public class Goods implements Serializable {
 
     public void setGoodsPrice(Double goodsPrice) {
         this.goodsPrice = goodsPrice;
+    }
+
+    public String getGoodsPhoto() {
+        return goodsPhoto;
+    }
+
+    public void setGoodsPhoto(String goodsPhoto) {
+        this.goodsPhoto = goodsPhoto;
     }
 
     public String getCreateTime() {
@@ -130,7 +130,7 @@ public class Goods implements Serializable {
     public String toString() {
         return "Goods{" +
                 "goodsId=" + goodsId +
-                ", goodsType=" + goodsType +
+                ", goodsType='" + goodsType + '\'' +
                 ", goodsTitle='" + goodsTitle + '\'' +
                 ", goodsPrice=" + goodsPrice +
                 ", goodsPhoto='" + goodsPhoto + '\'' +

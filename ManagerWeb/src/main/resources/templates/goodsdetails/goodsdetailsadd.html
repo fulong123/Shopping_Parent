@@ -19,18 +19,25 @@
     <script th:src="@{/javascript/distpicker.data.js}"></script>
     <script th:src="@{/javascript/distpicker.js}"></script>
     <script th:src="@{/javascript/main.js}"></script>
+    <style type="text/css">
+        img {
+            width: 20%;
+            height: 100%;
+            padding: 5px;
+        }
+    </style>
     <script>
         $(document).ready(function () {
-            var photos = $("#goodsDetailPicture").val();
-            var photo = photos.split("#");
-            for (var i = 0; i < photo.length; i++) {
-                $("#span1").append("<img src='" + photo[i] + "'>")
-            }
-
-             var packags = $("#goodsSpecificationPackaging").val();
-            for (var packag in  packags) {
-               // $("#div1").append("'" + packag + "':<span th:text='" + packags[packag] + "'>");
-            }
+            $.ajax({
+                type: "POST",
+                url: "/brands/type",
+                success: function (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        var name = result[i].brandName;
+                        $("#select1").append("<option value='" + name + "'>" + name + "</option>")
+                    }
+                }
+            })
         })
     </script>
 </head>
@@ -249,30 +256,61 @@
         <main class="main-cont content mCustomScrollbar">
             <div class="m_right">
                 <p></p>
-                <div class="mem_tit">商品详情</div>
+                <div class="mem_tit">商品详情添加</div>
                 <div class="address">
-                    <table border="0" class="add_t" align="center" style="width:98%; margin:10px auto;" cellspacing="0"
-                           cellpadding="0">
-                        <tr>
-                            <td>
-                                <span id="span1"></span><br/>
-                                <input type="hidden" name="goodsDetailsId" th:value="${goodsDetails.goodsDetailsId}">
-                                <input type="hidden" id="goodsDetailPicture"
-                                       th:value="${goodsDetails.goodsDetailPicture}">
-                                商品名字：<span th:text="${goodsDetails.goodsName}"></span><br/>
-                                商品产地：<span th:text="${goodsDetails.goodsOrigin}"></span><br/>
-                                商品品牌：<span th:text="${goodsDetails.goodsBrand}"></span><br/>
-                                商品重量<span th:text="${goodsDetails.goodsWeight}"></span><br/>
-                                <input type="hidden" id="goodsSpecificationPackaging"
-                                       th:value="${goodsDetails.goodsSpecificationPackaging}">
-                                规格和包装：<div id="div1">
+                    <form th:action="@{/goodsDetails/addGoodsDetails}" method="post"
+                          enctype="multipart/form-data">
+                        <div>
+                            <div>
+                                <input type="hidden" name="goodsId" th:value="${goodsId}">
+                                商品名字：<span th:text="${goodsName}"></span><br/>
+                                <input type="hidden" name="goodsName" th:value="${goodsName}">
+                                商品产地：<label>
+                                <input type="text" name="goodsOrigin">
+                            </label><br/>
+                                商品品牌：<label for="select1"></label><select name="goodsBrand" id="select1"
+                                                                          style="width: 160px"></select><br/>
+                                商品重量：<label>
+                                <input type="text" name="goodsWeight">Kg
+                            </label><br/>
+                                规格和包装:
+                                <br/>
+                                <div >
+                                    商品图片：<input type="file" name="file" value="浏览" multiple id="inputs"/><br/>
                                 </div>
-                                <a th:href="@{/goods/init(id=${goodsDetails.goodsDetailsId})}">修改</a>
-                                <a th:href="@{/goods/deleteById(id=${goodsDetails.goodsId})}">删除</a>
-                            </td>
-                        </tr>
-                    </table>
-                    <input type="button" onclick="javascript:history.back(-1);" value="返回">
+                                <input type="submit" value="添加">
+                                <input type="button" onclick="history.back(-1);" value="返回">
+                            </div>
+                        </div>
+                        <script>
+                            $(document).ready(function () {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "",
+                                    dataType: "json",
+                                    success: function (result) {
+                                        for (var i = 0; i < result.length; i++) {
+
+                                        }
+                                    }
+                                });
+                                $("#inputs").change(function () {
+                                    var fil = this.files;
+                                    for (var i = 0; i < fil.length; i++) {
+                                        reads(fil[i]);
+                                    }
+                                });
+                            });
+
+                            function reads(fil) {
+                                var reader = new FileReader();
+                                reader.readAsDataURL(fil);
+                                reader.onload = function () {
+                                    $('#inputs').after("<img style='width: 150px;height: 200px' src='" + reader.result + "'>");
+                                };
+                            }
+                        </script>
+                    </form>
                 </div>
             </div>
         </main>

@@ -237,9 +237,9 @@
         <main class="main-cont content mCustomScrollbar">
             <div class="m_right">
                 <p></p>
-                <div class="mem_tit">商品添加</div>
+                <div class="mem_tit">商品修改</div>
                 <div class="address">
-                    <form th:actoion="@{/goods/addGoods}" method="post" enctype="multipart/form-data">
+                    <form th:action="@{/goods/updateGoods}" method="post" enctype="multipart/form-data">
                         <table border="0" class="add_t" align="center" style="width:98%; margin:10px auto;"
                                cellspacing="0"
                                cellpadding="0">
@@ -254,11 +254,15 @@
                                     商品库存：<input type="text" name="quantityInStock"
                                                 th:value="${goodsDto.goods.quantityInStock}"><br/>
                                     是否上架：
-                                    <input type="radio" selected name="state"
-                                           th:checked="${goodsDto.goods.state} eq 1" th:value="1">上架
-                                    <input type="radio" selected name="state"
-                                           th:checked="${goodsDto.goods.state} eq 0" th:value="0">下架<br/>
-                                    商品图片：<img th:src="${goodsDto.goods.goodsPhoto}"><br/>
+                                    <label>
+                                        <input type="radio" name="state"
+                                               th:checked="${goodsDto.goods.state} eq 1" th:value="1">
+                                    </label>上架
+                                    <label>
+                                        <input type="radio" name="state"
+                                               th:checked="${goodsDto.goods.state} eq 0" th:value="0">
+                                    </label>下架<br/>
+                                    商品图片：<img th:src="${goodsDto.goods.goodsPhoto}" src=""><br/>
                                     <input type="file" name="file" id="inputs"/><br/>
                                     <input type="submit" value="修改">
                                     <input type="button" value="取消" onclick="javascript:history.back(-1);">
