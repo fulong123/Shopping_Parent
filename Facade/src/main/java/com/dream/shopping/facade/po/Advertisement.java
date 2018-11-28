@@ -70,6 +70,7 @@ public class Advertisement implements Serializable {
         this.goodsId = goodsId;
     }
 
+
     @Override
     public String toString() {
         return "Advertisement{" +
