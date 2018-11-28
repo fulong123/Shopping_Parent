@@ -17,6 +17,10 @@
     <select id="selectOrderDetailsById" resultMap="BaseResultMap" resultType="com.dream.shopping.facade.po.OrderDetails" parameterType="java.lang.Integer">
         select * from order_details where order_details_id=#{order_details_id}
     </select>
+    <!--查询所有订单项-->
+    <select id="selectOrderDetails" resultMap="BaseResultMap" resultType="com.dream.shopping.facade.po.OrderDetails">
+        select * from order_details
+    </select>
     <!--根据Id删除订单项-->
     <delete id="deleteOrderDetaIlsById" parameterType="java.lang.Integer" >
         delete from order_details where order_details_id=#{order_details_id}

@@ -275,14 +275,14 @@
                     <tbody>
                     <tr class="cen" th:each="goodsorder:${goods_orders}">
                         <td><input type="checkbox"/></td>
-                        <td class="lt" th:test="${goodsorder.goods_OrderNum}"><a href="#"></a></td>
-                        <td th:text="${goodsorder.goods_OrderTime)"></td>
+                        <td class="lt" th:text="${goodsorder.goods_OrderNum}"></td>
+                        <td th:text="${goodsorder.goods_OrderTime}"></td>
                         <td th:text="${goodsorder.goods_OrderSumMoney}"></td>
                         <td th:text="${goodsorder.goods_OrderState}"></td>
                         <td>
-                            <a title="编辑" class="mr-5">编辑</a>
-                            <a title="详情" class="mr-5">详情</a>
-                            <a title="删除">删除</a>
+                            <a title="详情" class="mr-5" th:href="@{/goodsOrder/getOrderDetails(id=${goodsorder.goods_OrderId})}">详情</a>
+                            <a title="修改" class="mr-5" th:href="@{/goodsOrder/init(id=${goodsorder.goods_OrderId})}">修改</a>
+                            <a title="删除" th:href="@{/goodsOrder/deleteGoodsOrder(id=${goodsorder.goods_OrderId})}">删除</a>
                         </td>
                     </tr>
                     </tbody>

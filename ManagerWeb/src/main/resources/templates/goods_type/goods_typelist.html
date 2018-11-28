@@ -29,7 +29,7 @@
 					<i class="i-l-2"></i>
 					<i class="i-l-3"></i>
 				</span>
-                <strong>订单管理页面</strong>
+                <strong>商品分类管理页面</strong>
             </div>
         </div>
 
@@ -243,35 +243,37 @@
             </div>
         </header>
         <main class="main-cont content mCustomScrollbar">
-            <form th:action="@{/goodsOrder/updateGoodsOrder}" method="post" >
             <div class="page-wrap">
                 <!--开始::内容-->
                 <section class="page-hd">
                     <header>
-                        <h2 class="title">订单管理页面</h2>
+                        <h2 class="title">商品分类管理页面</h2>
                     </header>
                     <hr>
                 </section>
+                <div class="clear mt-20">
+                    <div class="fr input-group">
+                        <input type="text" class="form-control" placeholder="搜索..." style="width:290px;"/>
+                        <button class="btn btn-secondary-outline">搜索</button>
+                    </div>
+                </div>
                 <table class="table mb-15">
                     <thead>
                     <tr>
                         <th><input type="checkbox"/></th>
-                        <th>地址</th>
-                        <th>电话</th>
+                        <th>商品类别名字</th>
+                        <th>商品类别描述</th>
+                        <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="cen" th:each="goodsorder:${goods_order}">
+                    <tr class="cen" th:each="goodType:${goodsTypes}">
                         <td><input type="checkbox"/></td>
+                        <td class="lt" th:text="${goodType.goodsName}"></td>
+                        <td th:text="${goodType.goodsDes}"></td>
                         <td>
-                            <label>
-                                <input type="text" name="userAddress" th:value="${goodsorder.userAddress}">
-                            </label>
-                        </td>
-                        <td>
-                            <label>
-                                <input type="text" name="userNum" th:value="${goodsorder.userNum}">
-                            </label>
+                            <a title="添加" class="mr-5" th:href="@{/goodsType/add}">添加</a>
+                            <a title="删除" th:href="@{/goodsType/deleteGoodsType(id=${goodType.goodsTypeId})}">删除</a>
                         </td>
                     </tr>
                     </tbody>
@@ -290,11 +292,6 @@
                 </div>
                 <!--开始::结束-->
             </div>
-                <div class="form-cont">
-                    <input type="submit" class="btn btn-primary" value="修改" />
-                    <input type="reset" class="btn btn-disabled" value="取消" />
-                </div>
-            </form>
         </main>
         <footer class="btm-ft">
             <p class="clear">

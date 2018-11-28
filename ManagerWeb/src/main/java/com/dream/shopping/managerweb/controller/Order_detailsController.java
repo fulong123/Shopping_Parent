@@ -26,8 +26,8 @@ public class Order_detailsController {
     private IOrder_DetailsFacade order_detailsFacade;
 
     @RequestMapping("/getAll")
-    public String getOrderDetails(@RequestParam(value = "id")Integer id,Model model){
-        List<OrderDetails> orderDetailses = order_detailsFacade.selectOrderDetailsByOrderId(id);
+    public String getOrderDetails(Model model){
+        List<OrderDetails> orderDetailses = order_detailsFacade.selectOrderDetails();
         model.addAttribute("orderDetailses",orderDetailses);
         return "order_details/order_detailslist";
     }

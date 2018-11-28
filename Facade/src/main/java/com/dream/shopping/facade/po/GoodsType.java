@@ -23,9 +23,9 @@ public class GoodsType implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)     //主键生成策略
     private Integer goodsTypeId;        //商品类别id
     @Column
-    private String goodsName;           //商品名字
+    private String goodsName;           //类别名字
     @Column
-    private String goodsDes;            //商品描述
+    private String goodsDes;            //类别描述
     @Column
     private Integer goodsTypeGrade;     //等级
     @Column
