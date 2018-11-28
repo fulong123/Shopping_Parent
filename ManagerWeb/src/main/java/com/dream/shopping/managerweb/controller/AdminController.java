@@ -42,7 +42,7 @@ public class AdminController {
 //        }
 //    }
 
-    @RequestMapping("/selectAll")
+    @RequestMapping("/main")
     public String selectAll(Model model){
         model.addAttribute("admins",admin.selectByAdmin(null));
         return "administrator/alladmins";
@@ -64,27 +64,27 @@ public class AdminController {
     @RequestMapping("/updateAdmin")
     public void updateAdmin(Administrator administrator, HttpServletResponse resp){
         if (admin.updateAdmin(administrator) > 0){
-            WindowUtil.window(resp,"更新成功","/admin/selectAll");
+            WindowUtil.window(resp,"更新成功","/admin/main");
         }else {
-            WindowUtil.window(resp,"更新失败","/admin/selectAll");
+            WindowUtil.window(resp,"更新失败","/admin/main");
         }
     }
 
     @RequestMapping("/deleteAdmin")
     public void deleteAdmin(Integer administratorId, HttpServletResponse resp){
         if (admin.deleteAdminById(administratorId) > 0){
-            WindowUtil.window(resp,"删除成功","/admin/selectAll");
+            WindowUtil.window(resp,"删除成功","/admin/main");
         }else {
-            WindowUtil.window(resp,"删除失败","/admin/selectAll");
+            WindowUtil.window(resp,"删除失败","/admin/main");
         }
     }
 
     @RequestMapping("/add")
     public void add(Administrator administrator, HttpServletResponse resp){
         if (admin.insertAdmin(administrator) > 0){
-            WindowUtil.window(resp,"添加成功","/admin/selectAll");
+            WindowUtil.window(resp,"添加成功","/admin/main");
         }else {
-            WindowUtil.window(resp,"添加失败","/admin/selectAll");
+            WindowUtil.window(resp,"添加失败","/admin/main");
         }
     }
 
