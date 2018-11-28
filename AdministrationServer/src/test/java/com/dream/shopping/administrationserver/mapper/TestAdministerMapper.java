@@ -1,6 +1,8 @@
 package com.dream.shopping.administrationserver.mapper;
 
 import com.dream.shopping.facade.po.Administrator;
+import com.dream.shopping.facade.vo.AdminCustomer;
+import com.dream.shopping.facade.vo.AdminVo;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
@@ -133,9 +135,11 @@ public class TestAdministerMapper extends DBTestCase {
 
     @Test
     public void testSelectByAdmin(){
-        Administrator admin = new Administrator();
+        AdminCustomer admin = new AdminCustomer();
         admin.setAdministratorName("水");
-        List<Administrator> users = administerMapper.selectByAdmin(admin);
+        AdminVo adminVo = new AdminVo();
+        adminVo.setAdminCustomer(admin);
+        List<Administrator> users = administerMapper.selectByAdmin(adminVo);
         System.out.println("1     " + users.size());
         for (Administrator admin1:users) {
             System.out.println(admin1);

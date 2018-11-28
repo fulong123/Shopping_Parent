@@ -3,6 +3,7 @@ package com.dream.shopping.managerweb.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.dream.shopping.facade.IServiceFacade.IAdministerFacade;
 import com.dream.shopping.facade.po.Administrator;
+import com.dream.shopping.facade.vo.AdminVo;
 import com.dream.shopping.managerweb.utils.WindowUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,11 +30,12 @@ public class AdminController {
         return "login";
     }
 
-
     @RequestMapping("/login")
-    public String login(Administrator administrator, Model model){
-        if (admin.selectByAdmin(administrator).contains(administrator)){
-            model.addAttribute("admin",admin.selectByAdmin(administrator).get(0));
+    public String login(AdminVo adminVo, Model model){
+        Administrator administrator = admin.selectByAdmin(adminVo).get(0);
+        if (administrator.getAdministratorName().equals(adminVo.getAdminCustomer().getAdministratorName()) &&
+            administrator.getPassword().equals(adminVo.getAdminCustomer().getPassword())){
+            model.addAttribute("admin",admin.selectByAdmin(adminVo).get(0));
             return "administrator/main";
         }else {
             return "login";
@@ -43,6 +45,13 @@ public class AdminController {
     @RequestMapping("/selectAll")
     public String selectAll(Model model){
         model.addAttribute("admins",admin.selectByAdmin(null));
+        return "administrator/alladmins";
+    }
+
+    @RequestMapping("/query")
+    public String query(AdminVo adminVo, Model model){
+        System.out.println(adminVo);
+        model.addAttribute("admins",admin.selectByAdmin(adminVo));
         return "administrator/alladmins";
     }
 

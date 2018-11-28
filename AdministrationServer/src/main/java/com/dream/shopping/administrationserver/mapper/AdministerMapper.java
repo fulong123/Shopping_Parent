@@ -1,6 +1,7 @@
 package com.dream.shopping.administrationserver.mapper;
 
 import com.dream.shopping.facade.po.Administrator;
+import com.dream.shopping.facade.vo.AdminVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -69,7 +70,7 @@ public interface AdministerMapper {
      * @param []
      * @return java.util.List<User>
      */
-    List<Administrator> selectByAdmin(Administrator admin);
+    List<Administrator> selectByAdmin(AdminVo adminVo);
 
     /**
      * 描述 通过id修改

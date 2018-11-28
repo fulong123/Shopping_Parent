@@ -21,7 +21,9 @@
     <!--suppress JSValidateTypes -->
     <script type="text/javascript">
         $(document).ready(function () {
-
+            $("#reset").click(function () {
+               window.location.href = "/admin/selectAll";
+            });
         });
     </script>
 </head>
@@ -242,19 +244,27 @@
                 <form th:action="@{/admin/query}" method="post">
                     <div class="fr input-group">
                         <label>
-                            <input type="text" name="administratorName" class="form-control" style="width:50px;"/>
+                            登录名：<input type="text" name="adminCustomer.administratorName" />
                         </label>
                         <label>
-                            <input type="text" name="startTime" class="form-control" style="width:50px;"/>
+                            开始时间：<input type="date" name="startTime" />
                         </label>
                         <label>
-                            <input type="text" name="endTime" class="form-control" style="width:50px;"/>
+                            结束时间：<input type="date" name="endTime" />
                         </label>
                         <label>
-                            <input type="text" name="isSuperAdmin" class="form-control" style="width:50px;"/>
+                            是否为管理员：<label class="radio">
+                            <input type="radio" name="adminCustomer.isSuperAdmin" value="1"/>
+                            <span>是</span>
                         </label>
+                            <label class="radio">
+                                <input type="radio" name="adminCustomer.isSuperAdmin" value="0" checked="checked"/>
+                                <span>不是</span>
+                            </label>
+                        </label>
+                        <input type="submit" value="搜索">
+                        <input type="button" id="reset" value="重置">
                     </div>
-                    <input type="submit" value="搜索">
                 </form>
                 <table class="table mb-15 colorBar">
                     <thead>
