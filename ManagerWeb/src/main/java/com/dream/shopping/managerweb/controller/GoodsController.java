@@ -1,7 +1,6 @@
 package com.dream.shopping.managerweb.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.dream.shopping.facade.Dto.GoodsDto;
 import com.dream.shopping.facade.IServiceFacade.IGoodsDetailsFacade;
 import com.dream.shopping.facade.IServiceFacade.IGoodsFacade;
 import com.dream.shopping.facade.IServiceFacade.IGoods_TypeFacade;
@@ -77,29 +76,16 @@ public class GoodsController {
 
     @RequestMapping("/init")
     public String goodsDetail(String id, Model model) {
-        StringBuffer sb = new StringBuffer();
         Goods goods = iGoodsFacade.selectGoodsById(Integer.parseInt(id));
-//        String type = goods.getGoodsType();
-//        String[] types = type.split(",");
-//        for (String t:
-//             types) {
-//            System.out.println(t);
-//            System.out.println(iGoodsTypeFacade);
-//            GoodsType goodsType = iGoodsTypeFacade.selectGoods_TypeByGoodsTypeId(Integer.parseInt(t));
-//            sb.append(goodsType.getGoodsName());
-//            sb.append("    ");
-//        }
-        GoodsDto goodsDto = new GoodsDto();
-        goodsDto.setGoods(goods);
-        //   goodsDto.setGoodsTypeName(sb.substring(0,sb.length()-1));
-        model.addAttribute("goodsDto", goodsDto);
+        System.out.println(goods);
+        model.addAttribute("goods", goods);
         return "goods/goodsupdate";
     }
 
     @RequestMapping("/addGoods")
     public String addGoods(MultipartFile file, Goods goods) throws IOException {
-
         uploadFile(file, goods);
+        System.out.println(goods);
         int i = iGoodsFacade.insertGoods(goods);
         if (i > 0) {
             return "redirect:/goods/getAll";

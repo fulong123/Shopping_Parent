@@ -76,7 +76,6 @@ public class GoodsDetailsController {
                 String lastName = Objects.requireNonNull(file.getOriginalFilename()).split("\\.")[1];
                 StorePath storePath = storageClient.uploadFile(null, file.getInputStream(), file.getSize(), lastName);
                 String path = "http://47.107.33.131:8888/" + storePath.getGroup() + "/" + storePath.getPath();
-                System.out.println(path);
                 sb.append(path);
                 sb.append("#");
             }

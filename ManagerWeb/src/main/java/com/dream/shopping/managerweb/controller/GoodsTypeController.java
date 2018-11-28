@@ -5,6 +5,7 @@ import com.dream.shopping.facade.IServiceFacade.IGoods_TypeFacade;
 import com.dream.shopping.facade.po.GoodsType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -60,9 +61,15 @@ public class GoodsTypeController {
         return "goods_type/addgoodstype";
     }
 
-    @RequestMapping("/getByPId")
+    @RequestMapping("/getByPId/{pid}")
     @ResponseBody
-    public List<GoodsType> selectByPId(Integer PId){
-        return goods_typeFacade.selectGoods_TypeByParentId(PId);
+    public List<GoodsType> selectByPId(@PathVariable(value = "pid") Integer pid){
+        return goods_typeFacade.selectGoods_TypeByParentId(pid);
+    }
+
+    @RequestMapping("/type")
+    @ResponseBody
+    public List<GoodsType> selectAll(){
+        return goods_typeFacade.selectGoods_Type(null);
     }
 }

@@ -16,10 +16,46 @@
     <script th:src="@{/javascript/plug-ins/layerUi/layer.js}"></script>
     <script th:src="@{/javascript/plug-ins/pagination.js}"></script>
     <script th:src="@{/javascript/public.js}"></script>
-    <script th:src="@{/javascript/distpicker.data.js}"></script>
-    <script th:src="@{/javascript/distpicker.js}"></script>
-    <script th:src="@{/javascript/main.js}"></script>
     <script>
+        $(document).ready(function () {
+            var name = "";
+            var goodsType = $("#goodsType").val();
+            var types = goodsType.split(",");
+            $.ajax({
+                type: "POST",
+                url: "/goodsType/type",
+                dataType: "json",
+                success: function (result) {
+                    alert(111)
+                    for (var j = 0; j < types.length; j++) {
+                        for (var i = 0; i < result.length; i++) {
+                            var goodsName = result[i].goodsName;
+                            var goodsTypeId = result[i].goodsTypeId;
+                            if (goodsTypeId == types[j]) {
+                                name += goodsName;
+                                name += " ";
+                            }
+                        }
+                    }
+                    $("#span2").html(name);
+                }
+            });
+
+            $("#inputs").change(function () {
+                var fil = this.files;
+                for (var i = 0; i < fil.length; i++) {
+                    reads(fil[0]);
+                }
+            });
+
+            function reads(fil) {
+                var reader = new FileReader();
+                reader.readAsDataURL(fil);
+                reader.onload = function () {
+                    $('#inputs').after("<img src='" + reader.result + "'>");
+                };
+            }
+        })
     </script>
 </head>
 <body>
@@ -33,133 +69,181 @@
                 <li>
                     <dl>
                         <dt>
-                            <i class="icon-columns"></i>管理员管理<i class="icon-angle-right"></i>
+                            <i class="icon-columns"></i>页面基础布局<i class="icon-angle-right"></i>
                         </dt>
                         <dd>
-                            <a th:href="@{/admin/main}">管理员主页面</a>
+                            <a href="flex-layout.html">弹性盒子布局</a>
                         </dd>
                         <dd>
-                            <a th:href="@{/page/adminAdd}">管理员添加</a>
+                            <a href="flow-layout.html">瀑布流布局</a>
                         </dd>
                     </dl>
                 </li>
                 <li>
                     <dl>
                         <dt>
-                            <i class="icon-inbox"></i>用户管理<i class="icon-angle-right"></i>
+                            <i class="icon-inbox"></i>按钮UI<i class="icon-angle-right"></i>
                         </dt>
                         <dd>
-                            <a th:href="@{/user/main}">用户主页面</a>
-                        </dd>
-                        <dd>
-                            <a th:href="@{/page/userAdd}">用户注册</a>
+                            <a href="button.html">基础按钮</a>
                         </dd>
                     </dl>
                 </li>
                 <li>
                     <dl>
                         <dt>
-                            <i class="icon-table"></i>地址管理<i class="icon-angle-right"></i>
+                            <i class="icon-table"></i>表格UI<i class="icon-angle-right"></i>
                         </dt>
                         <dd>
-                            <a th:href="@{/address/getAll}">地址主页面</a>
-                        </dd>
-                        <dd>
-                            <a th:href="@{/page/addressAdd}">地址添加</a>
+                            <a href="table.html">基础表格</a>
                         </dd>
                     </dl>
                 </li>
                 <li>
                     <dl>
                         <dt>
-                            <i class="icon-list-alt"></i>广告管理<i class="icon-angle-right"></i>
+                            <i class="icon-list-alt"></i>表单UI<i class="icon-angle-right"></i>
                         </dt>
                         <dd>
-                            <a th:href="@{/ad/main}">广告主页面</a>
-                        </dd>
-                        <dd>
-                            <a th:href="@{/page/adAdd}">广告添加</a>
+                            <a href="form.html">表单结构样式</a>
                         </dd>
                     </dl>
                 </li>
                 <li>
                     <dl>
                         <dt>
-                            <i class="icon-external-link"></i>品牌管理<i class="icon-angle-right"></i>
+                            <i class="icon-external-link"></i>弹出窗口<i class="icon-angle-right"></i>
                         </dt>
                         <dd>
-                            <a th:href="@{/brands/getAll}">品牌主页面</a>
-                        </dd>
-                        <dd>
-                            <a th:href="@{/page/brandAdd}">品牌添加</a>
+                            <a href="popups.html">基础弹出层</a>
                         </dd>
                     </dl>
                 </li>
                 <li>
                     <dl>
                         <dt>
-                            <i class="icon-bar-chart"></i>商品管理<i class="icon-angle-right"></i>
+                            <i class="icon-bar-chart"></i>百度统计echarts图表<i class="icon-angle-right"></i>
                         </dt>
                         <dd>
-                            <a th:href="@{/goods/getAll}">商品主页面</a>
-                        </dd>
-                        <dd>
-                            <a th:href="@{/page/goodsAdd}">商品添加</a>
+                            <a href="echarts.html">echarts统计图表</a>
                         </dd>
                     </dl>
                 </li>
                 <li>
                     <dl>
                         <dt>
-                            <i class="icon-font"></i>商品详情管理<i class="icon-angle-right"></i>
+                            <i class="icon-font"></i>文本编辑器<i class="icon-angle-right"></i>
                         </dt>
                         <dd>
-                            <a th:href="@{/goodsDetails/getAll}">商品详情主页面</a>
-                        </dd>
-                        <dd>
-                            <a th:href="@{/page/goodsDetailsAdd}">商品详情添加</a>
+                            <a href="ueditor.html">百度UEDITOR编辑器</a>
                         </dd>
                     </dl>
                 </li>
                 <li>
                     <dl>
                         <dt>
-                            <i class="icon-road"></i>订单管理<i class="icon-angle-right"></i>
+                            <i class="icon-road"></i>进度条<i class="icon-angle-right"></i>
                         </dt>
                         <dd>
-                            <a th:href="@{/goodsOrder/getAll}">订单主页面</a>
+                            <a href="progress.html">progress进度条兼容</a>
                         </dd>
                     </dl>
                 </li>
                 <li>
                     <dl>
                         <dt>
-                            <i class="icon-tags"></i>商品分类管理<i class="icon-angle-right"></i>
+                            <i class="icon-tags"></i>Tab选项卡<i class="icon-angle-right"></i>
                         </dt>
                         <dd>
-                            <a th:href="@{/goodsType/getAll}">商品分类主页面</a>
-                        </dd>
-                        <dd>
-                            <a th:href="@{/page/goodsTypeAdd}">商品分类添加</a>
+                            <a href="tab.html">Tab选项卡</a>
                         </dd>
                     </dl>
                 </li>
                 <li>
                     <dl>
                         <dt>
-                            <i class="icon-filter"></i>新闻管理<i class="icon-angle-right"></i>
+                            <i class="icon-filter"></i>下拉菜单<i class="icon-angle-right"></i>
                         </dt>
                         <dd>
-                            <a th:href="@{/news/main}">新闻主页面</a>
+                            <a href="button-dropdown.html">按钮式下拉菜单</a>
                         </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-sitemap"></i>页面分组标题<i class="icon-angle-right"></i>
+                        </dt>
                         <dd>
-                            <a th:href="@{/page/newsAdd}">新闻添加</a>
+                            <a href="title.html">页面标题</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-columns"></i>分页<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="paging.html">jquery分页效果</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-spinner"></i>旋转动画<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="animation.html">刷新加载动画</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-fighter-jet"></i>面包屑导航<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="breadcrumb.html">面包屑</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-laptop"></i>文本面板<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="text-panel.html">文本面板</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-leaf"></i>块引用<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="blockquote.html">块引用</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            <i class="icon-star"></i>第三方弹窗组件<i class="icon-angle-right"></i>
+                        </dt>
+                        <dd>
+                            <a href="layer.html">web弹层组件</a>
                         </dd>
                     </dl>
                 </li>
             </ul>
         </nav>
+
         <footer class="side-footer">© DeathGhost 版权所有</footer>
+
     </div>
     <div class="content-wrap">
         <header class="top-hd">
@@ -192,63 +276,33 @@
                 <div class="mem_tit">商品修改</div>
                 <div class="address">
                     <form th:action="@{/goods/updateGoods}" method="post" enctype="multipart/form-data">
-                        <table border="0" class="add_t" align="center" style="width:98%; margin:10px auto;"
-                               cellspacing="0"
-                               cellpadding="0">
-                            <tr>
-                                <td>
-                                    商品名字：<input type="text" name="goodsTitle" th:value="${goodsDto.goods.goodsTitle}"
-                                                readonly="readonly"><br/>
-                                    商品分类：<input type="text" name="goodsType" th:value="${goodsDto.goodsTypeName}"><br/>
-                                    <input type="hidden" name="goodsType" id="goodsType">
-                                    商品价格：<input type="text" name="goodsPrice"
-                                                th:value="${goodsDto.goods.goodsPrice}"><br/>
-                                    商品库存：<input type="text" name="quantityInStock"
-                                                th:value="${goodsDto.goods.quantityInStock}"><br/>
-                                    是否上架：
-                                    <label>
-                                        <input type="radio" name="state"
-                                               th:checked="${goodsDto.goods.state} eq 1" th:value="1">
-                                    </label>上架
-                                    <label>
-                                        <input type="radio" name="state"
-                                               th:checked="${goodsDto.goods.state} eq 0" th:value="0">
-                                    </label>下架<br/>
-                                    商品图片：<img th:src="${goodsDto.goods.goodsPhoto}" src=""><br/>
-                                    <input type="file" name="file" id="inputs"/><br/>
-                                    <input type="submit" value="修改">
-                                    <input type="button" value="取消" onclick="javascript:history.back(-1);">
-                                </td>
-                            </tr>
-                            <script>
-                                $(document).ready(function () {
-                                    $.ajax({
-                                        type: "POST",
-                                        url: "",
-                                        dataType: "json",
-                                        success: function (result) {
-                                            for (var i = 0; i < result.length; i++) {
+                        商品名字：<input type="hidden" name="goodsTitle" th:value="${goods.goodsTitle}">
+                        <span th:text="${goods.goodsTitle}"></span><br/>
+                        商品分类：<input type="hidden" id="goodsType" name="goodsType" th:value="${goods.goodsType}">
+                        <span id="span2"></span>
+                        <br/>
+                        商品价格：<label>
+                        <input type="text" name="goodsPrice"
+                               th:value="${goods.goodsPrice}">
+                    </label><br/>
+                        商品库存：<label>
+                        <input type="text" name="quantityInStock"
+                               th:value="${goods.quantityInStock}">
+                    </label><br/>
+                        是否上架：
+                        <label>
+                            <input type="radio" name="state"
+                                   th:checked="${goods.state} eq 1" th:value="1">
+                        </label>上架
+                        <label>
+                            <input type="radio" name="state"
+                                   th:checked="${goods.state} eq 0" th:value="0">
+                        </label>下架<br/>
+                        商品图片：<img th:src="${goods.goodsPhoto}" src=""><br/>
+                        <input type="file" name="file" id="inputs"/><br/>
+                        <input type="submit" id="submit1" value="修改">
+                        <input type="button" value="取消" onclick="history.back(-1);">
 
-                                            }
-                                        }
-                                    });
-                                    $("#inputs").change(function () {
-                                        var fil = this.files;
-                                        for (var i = 0; i < fil.length; i++) {
-                                            reads(fil[0]);
-                                        }
-                                    });
-                                });
-
-                                function reads(fil) {
-                                    var reader = new FileReader();
-                                    reader.readAsDataURL(fil);
-                                    reader.onload = function () {
-                                        $('#inputs').after("<img src='" + reader.result + "'>");
-                                    };
-                                }
-                            </script>
-                        </table>
                     </form>
                 </div>
             </div>
