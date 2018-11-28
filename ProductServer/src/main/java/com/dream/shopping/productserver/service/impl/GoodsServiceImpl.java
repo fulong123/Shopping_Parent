@@ -39,6 +39,7 @@ public class GoodsServiceImpl implements GoodsService {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         goods.setCreateTime(dateFormat.format(new Date()));
         goods.setSalesQuantity(0);
+        System.out.println(goods);
         return goodMapper.insertGoods(goods);
     }
 

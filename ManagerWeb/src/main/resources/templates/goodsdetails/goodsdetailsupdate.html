@@ -19,6 +19,25 @@
     <script th:src="@{/javascript/distpicker.data.js}"></script>
     <script th:src="@{/javascript/distpicker.js}"></script>
     <script th:src="@{/javascript/main.js}"></script>
+    <script>
+        $(document).ready(function () {
+            var goodsBrand = $("#goodsBrand").val();
+            $.ajax({
+                type: "POST",
+                url: "/brands/type",
+                success: function (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        var name = result[i].brandName;
+                        if (name === goodsBrand) {
+                            $("#select1").append("<option selected value='" + name + "'>" + name + "</option>")
+                        } else {
+                            $("#select1").append("<option value='" + name + "'>" + name + "</option>")
+                        }
+                    }
+                }
+            })
+        })
+    </script>
 </head>
 <body>
 <div class="main-wrap">
@@ -233,52 +252,65 @@
             </div>
         </header>
         <main class="main-cont content mCustomScrollbar">
-            <div class="mem_tit">品牌管理</div>
-            <form th:action="@{/brands/addBrand}" method="post" enctype="multipart/form-data">
-                <div>
-                    <div class="form-group-col-2">
-                        <div class="form-label">品牌名：</div>
-                        <div class="form-cont">
-                            <label>
-                                <input type="text" name="brandName">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group-col-2">
-                        <div class="form-label">品牌图片：</div>
-                        <div class="form-cont">
-                            <label>
-                                文件：<input type="file" name="file" id="inputs"/><br/>
-                            </label>
-                        </div>
-                    </div>
-                    <script>
-                        $(document).ready(function () {
-                            $("#inputs").change(function () {
-                                var fil = this.files;
-                                for (var i = 0; i < fil.length; i++) {
-                                    reads(fil[0]);
-                                }
-                            });
-                        });
+            <div class="m_right">
+                <p></p>
+                <div class="mem_tit">商品详情修改</div>
+                <div class="address">
+                    <form th:action="@{/goodsDetails/updateGoodsDetails}" method="post" enctype="multipart/form-data">
+                        <div>
+                            <div class="form-group-col-2">
+                                <input type="hidden" name="goodsDetailsId" th:value="${details.goodsDetailsId}">
+                                商品名字：<label>
+                                <input type="text" name="goodsName" th:value="${details.goodsName}">
+                            </label><br/>
+                                商品产地：<label>
+                                <input type="text" name="goodsOrigin" th:value="${details.goodsOrigin}">
+                            </label><br/>
+                                <input type="hidden" id="goodsBrand" th:value="${details.goodsBrand}">
+                                商品品牌：<label for="select1"></label><select name="goodsBrand" id="select1"
+                                                                          style="width: 150px;text-align:center"></select><br/>
+                                商品重量：<label>
+                                <input type="text" name="goodsWeight" th:value="${details.goodsWeight}">
+                            </label><br/>
+                                规格和包装:
 
-                        function reads(fil){
-                            var reader = new FileReader();
-                            reader.readAsDataURL(fil);
-                            reader.onload = function(){
-                                $('#inputs').after("<img src='"+reader.result+"'>");
-                            };
-                        }
-                    </script>
-                    <div class="form-group-col-2">
-                        <div class="form-label"></div>
-                        <div class="form-cont">
-                            <input type="submit" value="添加"/>
-                            <input type="button" onclick="javascript:history.back(-1);" value="返回">
+                                <input type="hidden" id="goodsDetailPicture"
+                                       th:value="${details.goodsDetailPicture}">
+                                商品图片：
+                                <div><span id="span1"></span></div>
+                                <div>
+                                    商品图片：<input type="file" name="file" value="浏览" multiple id="inputs"/><br/>
+                                </div>
+                                <input type="submit" value="修改">
+                                <input type="button" onclick="history.back(-1);" value="返回">
+                            </div>
                         </div>
-                    </div>
+                        <script>
+                            $(document).ready(function () {
+                                var photo = $("#goodsDetailPicture").val();
+                                var photos = photo.split("#");
+                                for (var i = 0; i < photos.length; i++) {
+                                    $("#span1").append("<img style='width: 150px;height: 200px' src='" + photos[i] + "'>")
+                                }
+                                $("#inputs").change(function () {
+                                    var fil = this.files;
+                                    for (var i = 0; i < fil.length; i++) {
+                                        reads(fil[i]);
+                                    }
+                                });
+                            });
+                            function reads(fil) {
+                                var reader = new FileReader();
+                                reader.readAsDataURL(fil);
+                                reader.onload = function () {
+                                    $('#inputs').after("<img style='width: 150px;height: 200px' src='" + reader.result + "'>");
+                                };
+                            }
+                        </script>
+                        </table>
+                    </form>
                 </div>
-            </form>
+            </div>
         </main>
         <footer class="btm-ft">
             <p class="clear">

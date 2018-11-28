@@ -237,18 +237,15 @@
                 <p></p>
                 <div class="mem_tit">品牌详情</div>
                 <div class="address">
-                    <table border="0" class="add_t" align="center" style="width:98%; margin:10px auto;" cellspacing="0"
-                           cellpadding="0">
-                        <tr>
-                            <td>
-                                <img th:src="${brand.photo}"><br/>
-                                <span th:text="${brand.brandName}"></span><br/>
-                                <a th:href="@{/brands/init(id=${brand.brandId})}">修改</a>
-                                <a th:href="@{/brands/deleteById(id=${brand.brandId})}">删除</a>
-                            </td>
-                        </tr>
-                    </table>
-                    <input type="button" onclick="javascript:history.back(-1);" value="返回">
+                    <div>
+                        <div class="form-group-col-2">
+                            <img th:src="${brand.photo}"><br/>
+                            <span th:text="${brand.brandName}"></span><br/>
+                            <a th:href="@{/brands/init(id=${brand.brandId})}">修改</a>
+                            <a th:href="@{/brands/deleteById(id=${brand.brandId})}">删除</a>
+                        </div>
+                    </div>
+                    <input type="button" onclick="history.back(-1);" value="返回">
                 </div>
             </div>
         </main>

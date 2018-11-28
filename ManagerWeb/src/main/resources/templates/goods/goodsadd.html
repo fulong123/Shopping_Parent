@@ -19,7 +19,32 @@
     <script th:src="@{/javascript/distpicker.data.js}"></script>
     <script th:src="@{/javascript/distpicker.js}"></script>
     <script th:src="@{/javascript/main.js}"></script>
-    <script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                url: "",
+                dataType: "json",
+                success: function (result) {
+                    for (var i = 0; i < result.length; i++) {
+
+                    }
+                }
+            });
+            $("#inputs").change(function () {
+                var fil = this.files;
+                for (var i = 0; i < fil.length; i++) {
+                    reads(fil[0]);
+                }
+            });
+        });
+        function reads(fil) {
+            var reader = new FileReader();
+            reader.readAsDataURL(fil);
+            reader.onload = function () {
+                $('#inputs').after("<img src='" + reader.result + "'>");
+            };
+        }
     </script>
 </head>
 <body>
@@ -238,54 +263,43 @@
             <div class="m_right">
                 <p></p>
                 <div class="mem_tit">商品添加</div>
-                <div class="address">
-                    <form th:actoion="@{/goods/addGoods}" method="post" enctype="multipart/form-data">
-                        <table border="0" class="add_t" align="center" style="width:98%; margin:10px auto;"
-                               cellspacing="0"
-                               cellpadding="0">
-                            <tr>
-                                <td>
-                                    商品名字：<input type="text" name="goodsTitle"><br/>
-                                    商品价格：<input type="text" name="goodsPrice"><br/>
-                                    商品分类：<span id="span1"></span>
-                                    <input type="hidden" name="goodsType" id="goodsType">
-                                    商品库存：<input type="text" name="quantityInStock"><br/>
-                                    是否上架：<input type="radio" selected name="state" th:value="1">上架
-                                    <input type="radio" name="state" th:value="0"> <br/>
-                                    商品图片：<input type="file" name="file" id="inputs"/>
-                                </td>
-                            </tr>
+                <form th:action="@{/goods/addGoods}" method="post" enctype="multipart/form-data">
+                    <div>
+                        <div class="form-group-col-2">
+                            商品名字：<input type="text" name="goodsTitle"><br/>
+                            商品价格：<input type="text" name="goodsPrice"><br/>
+                            商品分类：<input type="text" id="goodsType" name="goodsType"><br/>
+                            <select id="select1"></select>
+                            <select id="select2"></select>
+                            <select id="select3"></select>
                             <script>
-                                $(document).ready(function () {
-                                    $.ajax({
-                                        type: "POST",
-                                        url: "",
-                                        dataType: "json",
-                                        success: function (result) {
-                                            for (var i = 0; i < result.length; i++) {
-
-                                            }
-                                        }
-                                    });
-                                    $("#inputs").change(function () {
-                                        var fil = this.files;
-                                        for (var i = 0; i < fil.length; i++) {
-                                            reads(fil[0]);
-                                        }
-                                    });
-                                });
-
-                                function reads(fil) {
-                                    var reader = new FileReader();
-                                    reader.readAsDataURL(fil);
-                                    reader.onload = function () {
-                                        $('#inputs').after("<img src='" + reader.result + "'>");
-                                    };
-                                }
+                                $.ajax({
+                                    type:"POST",
+                                    url:"/goods"
+                                })
                             </script>
-                        </table>
-                    </form>
-                </div>
+                            商品库存：<input type="text" name="quantityInStock"><br/>
+                            是否上架：<input type="radio" th:checked="checked" name="state" th:value="1">上架
+                            <input type="radio" name="state" th:value="0"> <br/>
+                            <div class="form-group-col-2">
+                                <div class="form-label">品牌图片：</div>
+                                <div class="form-cont">
+                                    <label>
+                                        文件：<input type="file" name="file" id="inputs"/><br/>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group-col-2">
+                                <div class="form-label"></div>
+                                <div class="form-cont">
+                                    <input type="submit" value="添加"/>
+                                    <input type="button" onclick="javascript:history.back(-1);" value="返回">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </main>
         <footer class="btm-ft">

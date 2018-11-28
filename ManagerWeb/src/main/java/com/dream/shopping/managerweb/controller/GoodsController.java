@@ -51,17 +51,28 @@ public class GoodsController {
         return "goods/goodslist";
     }
 
+    @RequestMapping("/pageAdd")
+    public String getGood() {
+        System.out.println(1111);
+        return "goods/goodsadd";
+    }
+
     @RequestMapping("/detail/{id}")
     public String getGoodsById(@PathVariable(value = "id") String id, Model model) {
         List<GoodsDetails> goodsDetailses = iGoodsDetailsFacade.selectAll(null);
         for (GoodsDetails goodsDetails :
                 goodsDetailses) {
-            if (Integer.parseInt(id) == goodsDetails.getGoodsId()) {
-                System.out.println(goodsDetails);
-                model.addAttribute("goodsDetails", goodsDetails);
+            if (null != goodsDetails) {
+                if (Integer.parseInt(id) == goodsDetails.getGoodsId()) {
+                    model.addAttribute("goodsDetails", goodsDetails);
+                    return "goodsdetails/goodsdetail";
+                }
             }
         }
-        return "goods/goodsdetail";
+        Goods goods = iGoodsFacade.selectGoodsById(Integer.parseInt(id));
+        model.addAttribute("goodsName",goods.getGoodsTitle());
+        model.addAttribute("goodsId",goods.getGoodsId());
+        return "goodsdetails/goodsdetailsadd";
     }
 
     @RequestMapping("/init")
@@ -80,19 +91,15 @@ public class GoodsController {
 //        }
         GoodsDto goodsDto = new GoodsDto();
         goodsDto.setGoods(goods);
-        System.out.println(goods);
-     //   goodsDto.setGoodsTypeName(sb.substring(0,sb.length()-1));
-        model.addAttribute("goodsDto",goodsDto);
+        //   goodsDto.setGoodsTypeName(sb.substring(0,sb.length()-1));
+        model.addAttribute("goodsDto", goodsDto);
         return "goods/goodsupdate";
     }
 
     @RequestMapping("/addGoods")
     public String addGoods(MultipartFile file, Goods goods) throws IOException {
-        if (!file.isEmpty()) {
-            StorePath storePath = storageClient.uploadFile(null, file.getInputStream(), file.getSize(), "jpg");
-            String path = "http://47.107.33.131:8888/"+storePath.getGroup() + "/" + storePath.getPath();
-            goods.setGoodsPhoto(path);
-        }
+
+        uploadFile(file, goods);
         int i = iGoodsFacade.insertGoods(goods);
         if (i > 0) {
             return "redirect:/goods/getAll";
@@ -102,7 +109,8 @@ public class GoodsController {
     }
 
     @RequestMapping("/updateGoods")
-    public String updateGoods(Goods goods) {
+    public String updateGoods(MultipartFile file, Goods goods) throws IOException {
+        uploadFile(file, goods);
         int i = iGoodsFacade.updateGoods(goods);
         if (i > 0) {
             return "redirect:/goods/getAll";
@@ -111,13 +119,23 @@ public class GoodsController {
         }
     }
 
-    @RequestMapping("/deleteById{id}")
-    public String deleteGoods(@PathVariable(value = "id") String id) {
+    private void uploadFile(MultipartFile file, Goods goods) throws IOException {
+        if (!file.isEmpty()) {
+            String lastName = file.getOriginalFilename().split("\\.")[1];
+            StorePath storePath = storageClient.uploadFile(null, file.getInputStream(), file.getSize(), lastName);
+            String path = "http://47.107.33.131:8888/" + storePath.getGroup() + "/" + storePath.getPath();
+            goods.setGoodsPhoto(path);
+        }
+    }
+
+
+    @RequestMapping("/deleteById")
+    public String deleteGoods(String id) {
         iGoodsFacade.deleteGoodsById(Integer.parseInt(id));
         List<GoodsDetails> details = iGoodsDetailsFacade.selectAll(null);
         for (GoodsDetails detail :
                 details) {
-            if (detail.getGoodsId()==Integer.parseInt(id)) {
+            if (detail.getGoodsId() == Integer.parseInt(id)) {
                 iGoodsDetailsFacade.deleteGoodsDetailsById(detail.getGoodsDetailsId());
             }
         }

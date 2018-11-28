@@ -1,4 +1,4 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-  <goods goodsId="3" createTime="2018-12-5" goodsPrice="123.0" goodsTitle="111" goodsType="12" quantityInStock="123" salesQuantity="1111" state="1"/>
+  <goods goodsId="3" createTime="2018-12-5" goodsPrice="123.0" goodsTitle="111" goodsType="12" quantityInStock="123" salesQuantity="1111" state="1" goodsPhoto="11111"/>
 </dataset>
