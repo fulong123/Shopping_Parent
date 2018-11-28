@@ -26,11 +26,6 @@ public class AddressController {
     private IAddressFacade iAddressFacade;
 
 
-    @RequestMapping("/login")
-    public String login() {
-        return "address/addressadd";
-    }
-
     @RequestMapping("/init")
     public String register(@RequestParam(value = "id") String id, Model model) {
         Address address = iAddressFacade.selectAddressById(Integer.parseInt(id));
