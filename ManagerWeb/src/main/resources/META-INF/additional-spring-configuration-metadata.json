@@ -9,5 +9,10 @@
       "name": "spring.dubbo.application.name",
       "type": "java.lang.String",
       "description": "Description for spring.dubbo.application.name."
+    },
+    {
+      "name": "cas.adminPagesSecurity.jdbc.query",
+      "type": "java.lang.String",
+      "description": "Description for cas.adminPagesSecurity.jdbc.query."
     }
   ] }
