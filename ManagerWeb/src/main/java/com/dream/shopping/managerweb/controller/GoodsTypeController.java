@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -57,5 +58,11 @@ public class GoodsTypeController {
     @RequestMapping("/add")
     public String add(){
         return "goods_type/addgoodstype";
+    }
+
+    @RequestMapping("/getByPId")
+    @ResponseBody
+    public List<GoodsType> selectByPId(Integer PId){
+        return goods_typeFacade.selectGoods_TypeByParentId(PId);
     }
 }
