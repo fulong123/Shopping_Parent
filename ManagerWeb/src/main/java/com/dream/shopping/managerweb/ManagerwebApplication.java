@@ -8,10 +8,11 @@ import org.springframework.context.annotation.Import;
 
 
 @Import(FdfsClientConfig.class)
-@EnableCasClient
+//@EnableCasClient
 @SpringBootApplication
 public class ManagerwebApplication {
     public static void main(String[] args) {
+
         SpringApplication.run(ManagerwebApplication.class,args);
     }
 }
