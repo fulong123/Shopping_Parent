@@ -47,7 +47,7 @@
            $("#add").click(function () {
                var issuperadmin = [[${admin.isSuperAdmin}]];
                if (issuperadmin === 1 ){
-                   window.location.href = "add.html";
+                   window.location.href = "/admin/add";
                } else {
                    confirm("你还不是超级管理员，充点钱钱吧！！！");
                }

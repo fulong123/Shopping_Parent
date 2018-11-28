@@ -25,22 +25,22 @@ public class AdminController {
     @Reference(version = "1.0.0",timeout = 100000)
     private IAdministerFacade admin;
 
-    @RequestMapping("/index")
-    public String index(){
-        return "login";
-    }
+//    @RequestMapping("/index")
+//    public String index(){
+//        return "login";
+//    }
 
-    @RequestMapping("/login")
-    public String login(AdminVo adminVo, Model model){
-        Administrator administrator = admin.selectByAdmin(adminVo).get(0);
-        if (administrator.getAdministratorName().equals(adminVo.getAdminCustomer().getAdministratorName()) &&
-            administrator.getPassword().equals(adminVo.getAdminCustomer().getPassword())){
-            model.addAttribute("admin",admin.selectByAdmin(adminVo).get(0));
-            return "administrator/main";
-        }else {
-            return "login";
-        }
-    }
+//    @RequestMapping("/login")
+//    public String login(AdminVo adminVo, Model model){
+//        Administrator administrator = admin.selectByAdmin(adminVo).get(0);
+//        if (administrator.getAdministratorName().equals(adminVo.getAdminCustomer().getAdministratorName()) &&
+//            administrator.getPassword().equals(adminVo.getAdminCustomer().getPassword())){
+//            model.addAttribute("admin",admin.selectByAdmin(adminVo).get(0));
+//            return "administrator/main";
+//        }else {
+//            return "login";
+//        }
+//    }
 
     @RequestMapping("/selectAll")
     public String selectAll(Model model){
