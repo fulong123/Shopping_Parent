@@ -10,15 +10,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <link rel="icon" th:href="@{/images/icon/favicon.ico}" type="image/x-icon">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap/bootstrap.min.css}"/>
     <script th:src="@{/javascript/jquery.js}"></script>
     <script th:src="@{/javascript/plug-ins/customScrollbar.min.js}"></script>
     <script th:src="@{/javascript/plug-ins/echarts.min.js}"></script>
     <script th:src="@{/javascript/plug-ins/layerUi/layer.js}"></script>
     <script th:src="@{/javascript/plug-ins/pagination.js}"></script>
     <script th:src="@{/javascript/public.js}"></script>
-    <script th:src="@{/javascript/distpicker.data.js}"></script>
-    <script th:src="@{/javascript/distpicker.js}"></script>
-    <script th:src="@{/javascript/main.js}"></script>
+    <script th:src="@{/javascript/add.js}"></script>
+    <script th:src="@{/javascript/bootstrap/bootstrap.min.js}"></script>
     <style type="text/css">
         img {
             width: 20%;
@@ -28,17 +28,74 @@
     </style>
     <script>
         $(document).ready(function () {
+            var brandId = null;
             $.ajax({
                 type: "POST",
                 url: "/brands/type",
                 success: function (result) {
                     for (var i = 0; i < result.length; i++) {
                         var name = result[i].brandName;
+                        brandId = result[i].brandId;
                         $("#select1").append("<option value='" + name + "'>" + name + "</option>")
                     }
                 }
-            })
-        })
+            });
+            $("#inputs").change(function () {
+                var fil = this.files;
+                for (var i = 0; i < fil.length; i++) {
+                    reads(fil[i]);
+                }
+            });
+        });
+        $('.input-group-add').initInputGroup({
+            'widget': 'input', //输入框组中间的空间类型
+            'field': 'data',
+            'data': ['250', '300', 'hi', 'dj']
+        });
+        function addInput() {
+            var input = $(" <div class='input-group form-inline'><input type='text' class='form-control' style='width:50%;margin-bottom:2px;' name='desc[]' placeholder='请输入名字'> <input type='text' name='price[]'  class='form-control' style='width:30%;margin-bottom:2px;'>&nbsp;&nbsp;&nbsp;&nbsp;<button class='removeclass btn btn-default' type='button'><span class='glyphicon glyphicon-minus'></span></button></div>'");
+
+            // append 表示添加在标签内， appendTo 表示添加在元素外尾
+
+            $(".input-dyna-add").append(input);
+
+        }
+        function getValue() {
+            var names = [];
+            var values = [];
+            $("input[name='desc[]']").each(function(index, item){
+                values[index] = document.getElementsByName("price[]")[index].value;
+                names[index] = $(this).val();
+                names.join(',');
+                values.join(',')
+            });
+            var standard="";
+            for (var i=0;i<names.length;i++){
+                var str = "";
+                if (null !== names[i]&&"" !== names[i]){
+                    if (null !== values[i]&&"" !== values[i]){
+                        str = '"'+names[i]+'":"'+values[i]+'",';
+                    }
+                }
+                standard += str;
+            }
+            var s ='{'+standard.substring(0,standard.length-1)+'}';
+            $("#specification").val(s);
+        }
+
+        $("body").on("click", ".removeclass", function (e) {
+
+            $(this).parent('div').remove();
+
+            return false;
+        });
+        function reads(fil) {
+            var reader = new FileReader();
+            reader.readAsDataURL(fil);
+            reader.onload = function () {
+                $('#inputs').after("<img style='width: 150px;height: 200px' src='" + reader.result + "'>");
+            };
+        }
     </script>
 </head>
 <body>
@@ -198,9 +255,9 @@
                           enctype="multipart/form-data">
                         <div>
                             <div>
-                                <input type="hidden" name="goodsId" th:value="${goodsId}">
-                                商品名字：<span th:text="${goodsName}"></span><br/>
-                                <input type="hidden" name="goodsName" th:value="${goodsName}">
+                                <input type="hidden" name="goodsId" th:value="${goods.goodsId}">
+                                商品名字：<span th:text="${goods.goodsTitle}"></span><br/>
+                                <input type="hidden" name="goodsName" th:value="${goods.goodsTitle}">
                                 商品产地：<label>
                                 <input type="text" name="goodsOrigin">
                             </label><br/>
@@ -209,43 +266,24 @@
                                 商品重量：<label>
                                 <input type="text" name="goodsWeight">Kg
                             </label><br/>
-                                规格和包装:
-                                <br/>
-                                <div >
+                                <div>
+                                    添加商品属性:<br/>
+                                    <input type="hidden" id="specification" name="goodsSpecificationPackaging">
+                                    <div class="container">
+                                        <div class="input-dyna-add">
+
+                                        </div>
+                                        <input type="button" onclick="addInput()" value="添加规格参数"/>
+                                        <input type="button" onclick="getValue()" value="添加"/>
+                                    </div>
+                                </div>
+                                <div>
                                     商品图片：<input type="file" name="file" value="浏览" multiple id="inputs"/><br/>
                                 </div>
                                 <input type="submit" value="添加">
                                 <input type="button" onclick="history.back(-1);" value="返回">
                             </div>
                         </div>
-                        <script>
-                            $(document).ready(function () {
-                                $.ajax({
-                                    type: "POST",
-                                    url: "",
-                                    dataType: "json",
-                                    success: function (result) {
-                                        for (var i = 0; i < result.length; i++) {
-
-                                        }
-                                    }
-                                });
-                                $("#inputs").change(function () {
-                                    var fil = this.files;
-                                    for (var i = 0; i < fil.length; i++) {
-                                        reads(fil[i]);
-                                    }
-                                });
-                            });
-
-                            function reads(fil) {
-                                var reader = new FileReader();
-                                reader.readAsDataURL(fil);
-                                reader.onload = function () {
-                                    $('#inputs').after("<img style='width: 150px;height: 200px' src='" + reader.result + "'>");
-                                };
-                            }
-                        </script>
                     </form>
                 </div>
             </div>

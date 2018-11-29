@@ -128,6 +128,7 @@
                 }
             });
             $("#inputs").change(function () {
+                $("#img1").remove();
                 var fil = this.files;
                 for (var i = 0; i < fil.length; i++) {
                     reads(fil[0]);
@@ -139,7 +140,7 @@
             var reader = new FileReader();
             reader.readAsDataURL(fil);
             reader.onload = function () {
-                $('#inputs').after("<img src='" + reader.result + "'>");
+                $('#inputs').after("<img id='img1' src='" + reader.result + "'>");
             };
         }
     </script>

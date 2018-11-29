@@ -4,8 +4,10 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.dream.shopping.facade.IServiceFacade.IGoodsDetailsFacade;
 import com.dream.shopping.facade.IServiceFacade.IGoodsFacade;
 import com.dream.shopping.facade.IServiceFacade.IGoods_TypeFacade;
+import com.dream.shopping.facade.dto.GoodsDto;
 import com.dream.shopping.facade.po.Goods;
 import com.dream.shopping.facade.po.GoodsDetails;
+import com.dream.shopping.facade.po.GoodsType;
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,7 +36,7 @@ public class GoodsController {
     private IGoodsFacade iGoodsFacade;
     @Reference(version = "1.0.0", timeout = 100000)
     private IGoodsDetailsFacade iGoodsDetailsFacade;
-    @Reference(version = "1.0.0", timeout = 100000)
+    @Reference(timeout = 100000)
     private IGoods_TypeFacade iGoodsTypeFacade;
     @Resource
     private FastFileStorageClient storageClient;
@@ -45,8 +48,23 @@ public class GoodsController {
     public String getGoods(Goods goods, Model model) {
 
         List<Goods> goodsList = iGoodsFacade.selectGoodsAll(goods);
-
-        model.addAttribute("goodsList", goodsList);
+        List<GoodsDto> goodsDtos = new ArrayList<>();
+        for (Goods goods1 :
+                goodsList) {
+            StringBuffer sb = new StringBuffer();
+            GoodsDto goodsDto = new GoodsDto();
+            goodsDto.setGoods(goods1);
+            String[] strings = goods1.getGoodsType().split(",");
+            for (String goodsTypeId :
+                    strings) {
+                GoodsType goodsType = iGoodsTypeFacade.selectGoods_TypeByGoodsTypeId(Integer.parseInt(goodsTypeId));
+                sb.append(goodsType.getGoodsName());
+                sb.append(" ");
+            }
+            goodsDto.setGoodsTypeName(sb.substring(0, sb.length() - 1));
+            goodsDtos.add(goodsDto);
+        }
+        model.addAttribute("goodsDtos", goodsDtos);
         return "goods/goodslist";
     }
 
@@ -63,15 +81,13 @@ public class GoodsController {
             }
         }
         Goods goods = iGoodsFacade.selectGoodsById(Integer.parseInt(id));
-        model.addAttribute("goodsName",goods.getGoodsTitle());
-        model.addAttribute("goodsId",goods.getGoodsId());
+        model.addAttribute("goods", goods);
         return "goodsdetails/goodsdetailsadd";
     }
 
     @RequestMapping("/init")
     public String goodsDetail(String id, Model model) {
         Goods goods = iGoodsFacade.selectGoodsById(Integer.parseInt(id));
-        System.out.println(goods);
         model.addAttribute("goods", goods);
         return "goods/goodsupdate";
     }
@@ -79,7 +95,6 @@ public class GoodsController {
     @RequestMapping("/addGoods")
     public String addGoods(MultipartFile file, Goods goods) throws IOException {
         uploadFile(file, goods);
-        System.out.println(goods);
         int i = iGoodsFacade.insertGoods(goods);
         if (i > 0) {
             return "redirect:/goods/getAll";
@@ -90,7 +105,9 @@ public class GoodsController {
 
     @RequestMapping("/updateGoods")
     public String updateGoods(MultipartFile file, Goods goods) throws IOException {
-        uploadFile(file, goods);
+        if (!file.isEmpty()) {
+            uploadFile(file, goods);
+        }
         int i = iGoodsFacade.updateGoods(goods);
         if (i > 0) {
             return "redirect:/goods/getAll";
@@ -100,12 +117,11 @@ public class GoodsController {
     }
 
     private void uploadFile(MultipartFile file, Goods goods) throws IOException {
-        if (!file.isEmpty()) {
-            String lastName = file.getOriginalFilename().split("\\.")[1];
-            StorePath storePath = storageClient.uploadFile(null, file.getInputStream(), file.getSize(), lastName);
-            String path = "http://47.107.33.131:8888/" + storePath.getGroup() + "/" + storePath.getPath();
-            goods.setGoodsPhoto(path);
-        }
+
+        String lastName = file.getOriginalFilename().split("\\.")[1];
+        StorePath storePath = storageClient.uploadFile(null, file.getInputStream(), file.getSize(), lastName);
+        String path = "http://47.107.33.131:8888/" + storePath.getGroup() + "/" + storePath.getPath();
+        goods.setGoodsPhoto(path);
     }
 
 
@@ -121,6 +137,7 @@ public class GoodsController {
         }
         return "redirect:/goods/getAll";
     }
+
     @RequestMapping("/deleteAll/{ids}")
     public String deleteAll(@PathVariable(value = "ids") String ids) {
         String[] strs = ids.split(",");

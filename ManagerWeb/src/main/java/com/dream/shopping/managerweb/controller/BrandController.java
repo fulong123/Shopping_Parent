@@ -56,6 +56,8 @@ public class BrandController {
     public List<Brand> getType(){
         return brandFacade.selectAll(null);
     }
+
+
     @RequestMapping("/deleteAll/{ids}")
     public String deleteAll(@PathVariable(value = "ids") String ids) {
         String[] is = ids.split(",");

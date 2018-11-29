@@ -205,25 +205,34 @@
             <div class="m_right">
                 <p></p>
                 <div class="mem_tit">商品列表</div>
-                <div >
-                    <input style="left: 50px" type="button" id="checkAll" value="全选">
+                <div>
                     <input style="right: 150px" type="button" id="deleteAll" value="删除">
                     <table border="0" class="add_t" align="center" style="width:98%; margin:10px auto;" cellspacing="0"
                            cellpadding="0">
-                        <tr th:each="goods:${goodsList}">
+                        <tr>
+                            <td><input style="left: 50px" type="button" id="checkAll" value="全选"></td>
+                            <td>商品名字</td>
+                            <td>商品图片</td>
+                            <td>商品类型</td>
+                            <td>商品库存</td>
+                            <td>商品销售量</td>
+                            <td>商品上架时间</td>
+                            <td>商品状态</td>
+                            <td>操作</td>
+                        </tr>
+                        <tr th:each="goodsDto:${goodsDtos}">
+                            <td><input type="checkbox" th:value="${goodsDto.goods.goodsId}"></td>
+                            <td><span th:text="${goodsDto.goods.goodsTitle}"></span></td>
+                            <td><input type="hidden" class="goodsId" th:value="${goodsDto.goods.goodsId}"><img
+                                    style="width: 75px;height: 100px" th:src="${goodsDto.goods.goodsPhoto}"></td>
                             <td>
-                                <input type="checkbox" th:value="${goods.goodsId}">
-                                <input type="hidden" class="goodsId" th:value="${goods.goodsId}">
-                                <img th:src="${goods.goodsPhoto}"><br/>
-                                &nbsp&nbsp&nbsp&nbsp<span th:text="${goods.goodsTitle}"></span><br/>
-                                价&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp格：<span th:text="${goods.goodsPrice}"></span><br/>
-                                类&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp型：<span th:text="${goods.goodsType}"></span><br/>
-                                库&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp存：<span th:text="${goods.quantityInStock}"></span><br/>
-                                销售数量：<span th:text="${goods.salesQuantity}"></span><br/>
-                                上架时间：<span th:text="${goods.createTime}"></span><br/>
-                                商品状态：<span th:text="${goods.state}==1?'上架':'下架'"></span><br/>
-                                &nbsp&nbsp<a th:href="@{/goods/init(id=${goods.goodsId})}">修改</a>
-                                &nbsp&nbsp&nbsp&nbsp<a th:href="@{/goods/deleteById(id=${goods.goodsId})}">删除</a>
+                                <span th:text="${goodsDto.goodsTypeName}"></span></td>
+                            <td><span th:text="${goodsDto.goods.quantityInStock}"></span></td>
+                            <td><span th:text="${goodsDto.goods.salesQuantity}"></span></td>
+                            <td><span th:text="${goodsDto.goods.createTime}"></span></td>
+                            <td><span th:text="${goodsDto.goods.state}==1?'上架':'下架'"></span></td>
+                            <td><a th:href="@{/goods/init(id=${goodsDto.goods.goodsId})}">修改</a>
+                                <a th:href="@{/goods/deleteById(id=${goodsDto.goods.goodsId})}">删除</a>
                             </td>
                         </tr>
                     </table>
