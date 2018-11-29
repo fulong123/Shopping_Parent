@@ -50,12 +50,6 @@ public class GoodsController {
         return "goods/goodslist";
     }
 
-    @RequestMapping("/pageAdd")
-    public String getGood() {
-        System.out.println(1111);
-        return "goods/goodsadd";
-    }
-
     @RequestMapping("/detail/{id}")
     public String getGoodsById(@PathVariable(value = "id") String id, Model model) {
         List<GoodsDetails> goodsDetailses = iGoodsDetailsFacade.selectAll(null);
@@ -123,6 +117,22 @@ public class GoodsController {
                 details) {
             if (detail.getGoodsId() == Integer.parseInt(id)) {
                 iGoodsDetailsFacade.deleteGoodsDetailsById(detail.getGoodsDetailsId());
+            }
+        }
+        return "redirect:/goods/getAll";
+    }
+    @RequestMapping("/deleteAll/{ids}")
+    public String deleteAll(@PathVariable(value = "ids") String ids) {
+        String[] strs = ids.split(",");
+        for (String id :
+                strs) {
+            iGoodsFacade.deleteGoodsById(Integer.parseInt(id));
+            List<GoodsDetails> details = iGoodsDetailsFacade.selectAll(null);
+            for (GoodsDetails detail :
+                    details) {
+                if (detail.getGoodsId() == Integer.parseInt(id)) {
+                    iGoodsDetailsFacade.deleteGoodsDetailsById(detail.getGoodsDetailsId());
+                }
             }
         }
         return "redirect:/goods/getAll";

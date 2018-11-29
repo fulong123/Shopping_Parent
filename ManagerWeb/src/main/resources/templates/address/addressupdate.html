@@ -130,19 +130,6 @@
                 <li>
                     <dl>
                         <dt>
-                            <i class="icon-font"></i>商品详情管理<i class="icon-angle-right"></i>
-                        </dt>
-                        <dd>
-                            <a th:href="@{/goodsDetails/getAll}">商品详情主页面</a>
-                        </dd>
-                        <dd>
-                            <a th:href="@{/page/goodsDetailsAdd}">商品详情添加</a>
-                        </dd>
-                    </dl>
-                </li>
-                <li>
-                    <dl>
-                        <dt>
                             <i class="icon-road"></i>订单管理<i class="icon-angle-right"></i>
                         </dt>
                         <dd>
@@ -266,6 +253,7 @@
                 </table>
                 <p align="center">
                     <input type="submit" id="sub1" value="确认修改" class="add_b"/>
+                    <input type="button" onclick="history.back(-1);" value="返回">
                 </p>
             </form>
         </main>
