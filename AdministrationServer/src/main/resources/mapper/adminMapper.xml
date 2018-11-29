@@ -10,6 +10,7 @@
     <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
     <result column="password" property="password" jdbcType="VARCHAR"/>
     <result column="issuperadmin" property="isSuperAdmin" jdbcType="INTEGER"/>
+    <result column="valid" property="valid" jdbcType="INTEGER"/>
 
 </resultMap>
     <!-- 动态sql添加 -->
@@ -31,6 +32,9 @@
                 <if test="isSuperAdmin != null">
                     issuperadmin,
                 </if>
+                <if test="valid != null">
+                    valid,
+                </if>
             </trim>
             <trim prefix="values (" suffix=")" suffixOverrides="," >
                 <if test="administratorName != null">
@@ -44,6 +48,9 @@
                 </if>
                 <if test="isSuperAdmin != null">
                     #{isSuperAdmin,jdbcType=INTEGER},
+                </if>
+                <if test="valid != null">
+                    #{valid,jdbcType=INTEGER},
                 </if>
             </trim>
     </insert>
@@ -98,6 +105,9 @@
             </if>
             <if test="isSuperAdmin != null">
                 issuperadmin = #{isSuperAdmin,jdbcType=VARCHAR},
+            </if>
+            <if test="valid != null">
+                valid = #{valid,jdbcType=VARCHAR},
             </if>
         </set>
         where  administrator_id= #{administratorId,jdbcType=INTEGER}

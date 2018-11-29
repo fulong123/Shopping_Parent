@@ -24,6 +24,20 @@
             $("#reset").click(function () {
                window.location.href = "/admin/selectAll";
             });
+
+            $("#addAdmin").click(function () {
+               window.location.href ="/admin/addAdmin";
+            });
+
+            $("#checkNo").click(function () {
+                $(".checkBox").removeProp("checked");
+            });
+
+            $("#checkAll").click(function () {
+                $(".checkBox").each(function () {
+                    $(this).prop("checked", "true");
+                });
+            });
         });
     </script>
 </head>
@@ -221,15 +235,25 @@
                 <table class="table mb-15 colorBar">
                     <thead>
                         <tr>
+                            <th>
+                                <input type="button" id="addAdmin" value="添加管理员">
+                                <input type='button' id='checkAll' name='checkAll' class='checkAll btn btn-primary radius size-s' value='全选'/>&nbsp;&nbsp;
+                                <input type='button' id='checkNo' class='checkAll btn btn-primary radius size-s' value='全不选'/>
+                            </th>
                             <th>登录名</th>
                             <th>密码</th>
                             <th>创建时间</th>
                             <th>是否为超级管理员</th>
+                            <th>是否启用</th>
                             <th>操作</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="cen" th:each="admin : ${admins}" >
+                            <th>
+                                <label for='check'></label>
+                                <input type='checkbox' id='check' name='checkBox' class='checkBox' th:value="${admin.administratorId}"/>
+                            </th>
                             <th>
                                 <span th:text="${admin.administratorName}"></span>
                             </th>
@@ -248,9 +272,16 @@
                                 </label>
                             </th>
                             <th>
+                                <label th:if="${admin.valid} eq '1'">
+                                    <span th:text="已启用"></span>
+                                </label>
+                                <label th:if="${admin.valid} eq '0'">
+                                    <span th:text="未启用"></span>
+                                </label>
+                            </th>
+                            <th>
                                 <a th:href="@{/admin/initAdmin(administratorId=${admin.administratorId})}">修改管理员</a>
                                 <a th:href="@{/admin/deleteAdmin(administratorId=${admin.administratorId})}">删除管理员</a>
-                                <a th:href="@{/admin/addAdmin}">添加管理员</a>
                             </th>
                         </tr>
                     </tbody>

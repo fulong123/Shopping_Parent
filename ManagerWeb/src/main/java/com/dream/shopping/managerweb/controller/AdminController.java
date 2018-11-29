@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.dream.shopping.facade.IServiceFacade.IAdministerFacade;
 import com.dream.shopping.facade.po.Administrator;
 import com.dream.shopping.facade.vo.AdminVo;
+import com.dream.shopping.managerweb.utils.MD5;
 import com.dream.shopping.managerweb.utils.WindowUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,6 +64,7 @@ public class AdminController {
 
     @RequestMapping("/updateAdmin")
     public void updateAdmin(Administrator administrator, HttpServletResponse resp){
+        administrator.setPassword(MD5.getMd5(administrator.getPassword()));
         if (admin.updateAdmin(administrator) > 0){
             WindowUtil.window(resp,"更新成功","/admin/main");
         }else {
@@ -81,6 +83,7 @@ public class AdminController {
 
     @RequestMapping("/add")
     public void add(Administrator administrator, HttpServletResponse resp){
+        administrator.setPassword(MD5.getMd5(administrator.getPassword()));
         if (admin.insertAdmin(administrator) > 0){
             WindowUtil.window(resp,"添加成功","/admin/main");
         }else {

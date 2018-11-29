@@ -31,15 +31,17 @@ public class Administrator implements Serializable {
     private String createTime;              //管理员创建时间
     @Column
     private Integer isSuperAdmin;           //是否为超级管理员
-
+    @Column
+    private Integer valid;                  //是否启用
     public Administrator() {
     }
 
-    public Administrator(String administratorName, String password, String createTime, Integer isSuperAdmin) {
+    public Administrator(String administratorName, String password, String createTime, Integer isSuperAdmin, Integer valid) {
         this.administratorName = administratorName;
         this.password = password;
         this.createTime = createTime;
         this.isSuperAdmin = isSuperAdmin;
+        this.valid = valid;
     }
 
     public Integer getAdministratorId() {
@@ -82,6 +84,14 @@ public class Administrator implements Serializable {
         this.isSuperAdmin = isSuperAdmin;
     }
 
+    public Integer getValid() {
+        return valid;
+    }
+
+    public void setValid(Integer valid) {
+        this.valid = valid;
+    }
+
     @Override
     public String toString() {
         return "Administrator{" +
@@ -90,6 +100,7 @@ public class Administrator implements Serializable {
                 ", password='" + password + '\'' +
                 ", createTime='" + createTime + '\'' +
                 ", isSuperAdmin=" + isSuperAdmin +
+                ", valid=" + valid +
                 '}';
     }
 

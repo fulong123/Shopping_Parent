@@ -24,7 +24,7 @@
            $("#selectAll").click(function () {
                   var issuperadmin = [[${admin.isSuperAdmin}]];
                   if (issuperadmin === 1 ){
-                      window.location.href = "/admin/selectAll";
+                      window.location.href = "/admin/main";
                   } else {
                       confirm("你还不是超级管理员，充点钱钱吧！！！");
                   }
@@ -38,7 +38,7 @@
            $("#delete").click(function () {
                var issuperadmin = [[${admin.isSuperAdmin}]];
                if (issuperadmin === 1 ){
-                   window.location.href = "/admin/selectAll";
+                   window.location.href = "/admin/main";
                } else {
                    confirm("你还不是超级管理员，充点钱钱吧！！！");
                }
@@ -225,9 +225,9 @@
                     <tr>
                         <th>管理员登录名：<span th:text="${admin.administratorName}"></span></th>
                     </tr>
-                    <tr>
-                        <th>管理员密码：<span th:text="${admin.password}"></span></th>
-                    </tr>
+                    <!--<tr>-->
+                        <!--<th>管理员密码：<span th:text="${admin.password}"></span></th>-->
+                    <!--</tr>-->
                     <tr>
                         <th>管理员创建时间：<span th:text="${admin.createTime}"></span></th>
                     </tr>
@@ -237,6 +237,15 @@
                         </label>
                             <label th:if="${admin.isSuperAdmin} eq '0'">
                                 <span th:text="不是"></span>
+                            </label>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>是否启用：<label th:if="${admin.valid} eq '1'">
+                            <span th:text="启用"></span>
+                        </label>
+                            <label th:if="${admin.valid} eq '0'">
+                                <span th:text="禁止"></span>
                             </label>
                         </th>
                     </tr>
