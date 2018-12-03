@@ -42,13 +42,17 @@ public class GoodsDetailsController {
     @RequestMapping("/init")
     public String getGoodsDetailsById(String id, Model model){
         GoodsDetails details = iGoodsDetailsFacade.selectGoodsDetailsById(Integer.parseInt(id));
+        System.out.println(details);
         model.addAttribute("details",details);
         return "goodsdetails/goodsdetailsupdate";
     }
 
     @RequestMapping("/addGoodsDetails")
     public String addGoodsDetails(@RequestParam(value = "file") MultipartFile[] files, GoodsDetails goodsDetails) throws IOException {
-        uploadFile(files, goodsDetails);
+       if (null !=files) {
+           uploadFile(files, goodsDetails);
+       }
+        System.out.println(goodsDetails);
         int i = iGoodsDetailsFacade.insertGoodsDetails(goodsDetails);
         if (i > 0) {
             return "redirect:/goods/getAll";
