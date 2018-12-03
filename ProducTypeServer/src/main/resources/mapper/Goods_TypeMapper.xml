@@ -30,19 +30,19 @@
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="goodsTypeId!=null">
-                #{goods_type_id,jdbcType=INTEGER}
+                #{goodsTypeId,jdbcType=INTEGER}
             </if>
             <if test="goodsDes!=null">
-                #{goods_des,jdbcType=VARCHAR}
+                #{goodsDes,jdbcType=VARCHAR}
             </if>
             <if test="goodsName!=null">
-                #{goods_name,jdbcType=VARCHAR}
+                #{goodsName,jdbcType=VARCHAR}
             </if>
             <if test="goodsTypeGrade!=null">
-                #{goods_type_grade,jdbcType=INTEGER}
+                #{goodsTypeGrade,jdbcType=INTEGER}
             </if>
             <if test="parentId!=null">
-                #{parent_id,jdbcType=INTEGER}
+                #{parentId,jdbcType=INTEGER}
             </if>
         </trim>
     </insert>
