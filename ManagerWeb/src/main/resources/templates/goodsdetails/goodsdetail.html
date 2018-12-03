@@ -28,7 +28,9 @@
             }
 
             var packags = $("#goodsSpecificationPackaging").val();
-            for (var packag in  packags) {
+            var parse = JSON.parse(packags);
+            for (var packag in  parse) {
+                $("#span2").append("<span >"+ packag +":"+ parse[packag] +"</span><br/>");
             }
         })
     </script>
@@ -200,6 +202,7 @@
                                    th:value="${goodsDetails.goodsSpecificationPackaging}">
                             规格和包装：
                             <div id="div1">
+                                <span id="span2"></span>
                             </div>
                             <a th:href="@{/goodsDetails/init(id=${goodsDetails.goodsDetailsId})}">修改</a>
                             <a th:href="@{/goods/deleteById(id=${goodsDetails.goodsId})}">删除</a>
