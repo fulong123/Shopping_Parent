@@ -221,39 +221,48 @@
         </header>
         <main class="main-cont content mCustomScrollbar">
             <div class="page-wrap">
-                <table>
-                    <tr>
-                        <th>管理员登录名：<span th:text="${admin.administratorName}"></span></th>
-                    </tr>
-                    <!--<tr>-->
-                        <!--<th>管理员密码：<span th:text="${admin.password}"></span></th>-->
-                    <!--</tr>-->
-                    <tr>
-                        <th>管理员创建时间：<span th:text="${admin.createTime}"></span></th>
-                    </tr>
-                    <tr>
-                        <th>是否为超级管理员：<label th:if="${admin.isSuperAdmin} eq '1'">
-                            <span th:text="是"></span>
-                        </label>
-                            <label th:if="${admin.isSuperAdmin} eq '0'">
-                                <span th:text="不是"></span>
+                <table class="table mb-15 colorBar">
+                    <tbody>
+                        <tr class="cen">
+                            <th>管理员登录名：<span th:text="${admin.administratorName}"></span></th>
+                        </tr>
+                        <tr class="cen">
+                            <th>管理员创建时间：<span th:text="${admin.createTime}"></span></th>
+                        </tr>
+                        <tr class="cen">
+                            <th>是否为超级管理员：<label th:if="${admin.isSuperAdmin} eq '1'">
+                                <span th:text="是"></span>
                             </label>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>是否启用：<label th:if="${admin.valid} eq '1'">
-                            <span th:text="启用"></span>
-                        </label>
-                            <label th:if="${admin.valid} eq '0'">
-                                <span th:text="禁止"></span>
+                                <label th:if="${admin.isSuperAdmin} eq '0'">
+                                    <span th:text="不是"></span>
+                                </label>
+                            </th>
+                        </tr>
+                        <tr class="cen">
+                            <th>是否启用：<label th:if="${admin.valid} eq '1'">
+                                <span th:text="启用"></span>
                             </label>
-                        </th>
-                    </tr>
+                                <label th:if="${admin.valid} eq '0'">
+                                    <span th:text="禁止"></span>
+                                </label>
+                            </th>
+                        </tr>
+                        <tr class="cen">
+                            <th>
+                                <input type="button" id="selectAll" value="查看所有管理员">
+                            </th>
+                            <th>
+                                <input type="button" id="update" value="修改信息">
+                            </th>
+                            <th>
+                                <input type="button" id="delete" value="删除管理员">
+                            </th>
+                            <th>
+                                <input type="button" id="add" value="添加管理员">
+                            </th>
+                        </tr>
+                    </tbody>
                 </table>
-                <input type="button" id="selectAll" value="查看所有管理员">
-                <input type="button" id="update" value="修改信息">
-                <input type="button" id="delete" value="删除管理员">
-                <input type="button" id="add" value="添加管理员">
                 <!--开始::结束-->
             </div>
         </main>

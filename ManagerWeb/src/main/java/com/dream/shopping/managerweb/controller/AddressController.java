@@ -25,7 +25,6 @@ public class AddressController {
     @Reference(version = "1.0.0", timeout = 100000)
     private IAddressFacade iAddressFacade;
 
-
     @RequestMapping("/init")
     public String register(@RequestParam(value = "id") String id, Model model) {
         Address address = iAddressFacade.selectAddressById(Integer.parseInt(id));

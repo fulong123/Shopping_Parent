@@ -9,6 +9,9 @@
     </writeAnnotations>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/ChannelService" />
+  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
@@ -29,6 +32,7 @@
         <option value="$PROJECT_DIR$/AdServer/pom.xml" />
         <option value="$PROJECT_DIR$/AdministrationServer/pom.xml" />
         <option value="$PROJECT_DIR$/AddressServer/pom.xml" />
+        <option value="$PROJECT_DIR$/ChannelService/pom.xml" />
       </list>
     </option>
   </component>

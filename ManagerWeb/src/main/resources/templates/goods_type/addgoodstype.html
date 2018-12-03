@@ -32,10 +32,10 @@
                 maxmin : false,
                 shadeClose : false, //点击遮罩关闭层
                 area : [ '500px', '' ],
-                content : $('#issuance_1'),
+                content : $('#issuance_1')
             });
 
-            $('#submin-one').on("click",function(){
+            $('#submin-one').on("click","#form1",function(){
                 $.ajax({
                     type: 'post',
                     data: $('#form1').serialize(),
@@ -52,14 +52,13 @@
             })
         }
 
-
         function issuance_two(obj) {
             var mytwo = layer.open({
                 type : 1,
                 maxmin : false,
                 shadeClose : false, //点击遮罩关闭层
                 area : [ '500px', '' ],
-                content : $('#issuance_2'),
+                content : $('#issuance_2')
             });
 
             $('#submin-two').on("click",function(){
@@ -86,7 +85,7 @@
                 maxmin : false,
                 shadeClose : false, //点击遮罩关闭层
                 area : [ '500px', '' ],
-                content : $('#issuance_3'),
+                content : $('#issuance_3')
             });
 
             $('#submin-three').on("click",function(){

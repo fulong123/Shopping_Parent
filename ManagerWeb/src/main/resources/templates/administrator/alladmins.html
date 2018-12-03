@@ -18,7 +18,8 @@
     <script th:src="@{/editor/ueditor.all.js}"></script>
     <script th:src="@{/javascript/plug-ins/pagination.js}"></script>
     <script th:src="@{/javascript/public.js}"></script>
-    <!--suppress JSValidateTypes -->
+    <script th:src="@{/javascript/jquery.js/jquery.min.js}"></script>
+    <!--suppress JSVali/dateTypes -->
     <script type="text/javascript">
         $(document).ready(function () {
             $("#reset").click(function () {
@@ -29,14 +30,14 @@
                window.location.href ="/admin/addAdmin";
             });
 
-            $("#checkNo").click(function () {
-                $(".checkBox").removeProp("checked");
-            });
-
             $("#checkAll").click(function () {
                 $(".checkBox").each(function () {
                     $(this).prop("checked", "true");
                 });
+            });
+
+            $("#deleteAll").click(function () {
+
             });
         });
     </script>
@@ -236,9 +237,9 @@
                     <thead>
                         <tr>
                             <th>
-                                <input type="button" id="addAdmin" value="添加管理员">
-                                <input type='button' id='checkAll' name='checkAll' class='checkAll btn btn-primary radius size-s' value='全选'/>&nbsp;&nbsp;
-                                <input type='button' id='checkNo' class='checkAll btn btn-primary radius size-s' value='全不选'/>
+                                <input type="button" id="addAdmin" value="添加管理员">&nbsp;&nbsp;
+                                <input type="button" id="deleteAll" value="删除管理员">&nbsp;&nbsp;
+                                <input type='button' id='checkAll' name='checkAll' class='checkAll btn btn-primary radius size-s' value='全选'/>
                             </th>
                             <th>登录名</th>
                             <th>密码</th>
