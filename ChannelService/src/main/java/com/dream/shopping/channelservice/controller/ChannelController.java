@@ -31,10 +31,11 @@ public class ChannelController {
 
     @RequestMapping("/index")
     public String index(Model model){
-        List<GoodsType> goodsTypes = iGoods_typeFacade.selectGoods_Type(null);
-        redisTemplate.opsForValue().set("goodsType", JSON.toJSONString(goodsTypes));
         model.addAttribute("index", redisTemplate.boundValueOps("goodsType").get());
-        return "index";
+        return "Index";
     }
+
+
+
 
 }
