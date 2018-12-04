@@ -3,7 +3,6 @@ package com.dream.shopping.managerweb.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.dream.shopping.facade.IServiceFacade.INewsFacade;
 import com.dream.shopping.facade.po.News;
-import com.dream.shopping.managerweb.utils.WindowUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

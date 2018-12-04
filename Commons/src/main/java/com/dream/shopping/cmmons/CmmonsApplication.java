@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CmmonsApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(CmmonsApplication.class, args);
     }
 }
