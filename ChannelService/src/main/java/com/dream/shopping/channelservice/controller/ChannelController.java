@@ -8,7 +8,6 @@ import com.dream.shopping.facade.IServiceFacade.IGoods_TypeFacade;
 import com.dream.shopping.facade.IServiceFacade.INewsFacade;
 import com.dream.shopping.facade.IServiceFacade.IUserFacade;
 import com.dream.shopping.facade.po.GoodsType;
-import com.dream.shopping.facade.po.News;
 import com.dream.shopping.facade.po.User;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.redis.core.RedisTemplate;
