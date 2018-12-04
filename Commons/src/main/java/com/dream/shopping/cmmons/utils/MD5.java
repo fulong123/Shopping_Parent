@@ -1,4 +1,4 @@
-package com.dream.shopping.managerweb.utils;
+package com.dream.shopping.cmmons.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

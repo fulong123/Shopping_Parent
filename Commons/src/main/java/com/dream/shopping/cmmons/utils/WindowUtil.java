@@ -1,4 +1,4 @@
-package com.dream.shopping.managerweb.utils;
+package com.dream.shopping.cmmons.utils;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
