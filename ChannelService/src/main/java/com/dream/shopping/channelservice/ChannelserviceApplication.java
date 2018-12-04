@@ -8,6 +8,8 @@ public class ChannelserviceApplication {
 
     public static void main(String[] args) {
 
-        SpringApplication.run(ChannelserviceApplication.class, args);
+       SpringApplication.run(ChannelserviceApplication.class, args);
+//        CacheRedis bean = run.getBean(CacheRedis.class);
+//        bean.CacheToRedis();
     }
 }
