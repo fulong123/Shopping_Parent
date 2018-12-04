@@ -17,6 +17,7 @@
         <module name="CarServer" />
         <module name="carserver" />
         <module name="ChannelService" />
+        <module name="channelservice" />
         <module name="cmmons" />
         <module name="Commons" />
         <module name="daocommons" />
