@@ -26,6 +26,4 @@ public class CacheRedisUtil {
     void selectGoods_TypeByParentId(){
         redisTemplate.opsForValue().set("goodsTypesPId",iGoods_typeFacade.selectGoods_TypeByParentId(-1) + "");
     }
-    
-    
 }
