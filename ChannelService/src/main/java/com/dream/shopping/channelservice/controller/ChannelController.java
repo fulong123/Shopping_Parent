@@ -1,6 +1,8 @@
 package com.dream.shopping.channelservice.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.dream.shopping.channelservice.utils.CheckLoginUtil;
 import com.dream.shopping.cmmons.utils.MD5;
 import com.dream.shopping.cmmons.utils.WindowUtil;
@@ -13,6 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -55,6 +58,41 @@ public class ChannelController {
     @RequestMapping("/getChildrenByParentId")
     public @ResponseBody List<GoodsType> getChildrenByParentId(Integer parentId){
         return iGoods_typeFacade.selectGoods_TypeByParentId(parentId);
+    }
+
+    //测试
+    @RequestMapping("/test")
+    public String test(Model model){
+        List<GoodsType> goodsTypeList=null;
+        String goodsTypeOne= (String) redisTemplate.opsForValue().get("goodsTypesPId");
+        goodsTypeList=JSONObject.parseArray(goodsTypeOne,GoodsType.class);
+        if (null==goodsTypeOne){
+            GoodsType goodsType = new GoodsType();
+            goodsType.setGoodsTypeGrade(1);
+            goodsTypeList = iGoods_typeFacade.selectGoods_Type(goodsType);
+            goodsTypeOne = JSON.toJSONString(goodsTypeList);
+            redisTemplate.opsForValue().set("goodsTypesPId",goodsTypeOne);
+        }
+        model.addAttribute("goodsTypeList",goodsTypeList);
+        return "Index";
+    }
+
+    //商品分类根据Id查询
+    @RequestMapping("/findByPId/")
+    @ResponseBody
+    public List<GoodsType> findByPId(Integer id){
+        List<GoodsType> goodsType = iGoods_typeFacade.selectGoods_TypeByParentId(id);
+        return goodsType;
+    }
+
+    //查全部
+    @RequestMapping("/query/")
+    @ResponseBody
+    public List<GoodsType> getList(Integer id,GoodsType goodsType,Model model){
+        goodsType.setGoodsTypeGrade(3);
+        goodsType.setParentId(id);
+        List<GoodsType> list = iGoods_typeFacade.selectGoods_Type(goodsType);
+        return list;
     }
 
     @RequestMapping("/toLogin")
