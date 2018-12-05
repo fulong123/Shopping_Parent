@@ -11,6 +11,7 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/ChannelService" />
+    <file type="web" url="file://$PROJECT_DIR$/SolrService" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -33,6 +34,7 @@
         <option value="$PROJECT_DIR$/AdministrationServer/pom.xml" />
         <option value="$PROJECT_DIR$/AddressServer/pom.xml" />
         <option value="$PROJECT_DIR$/ChannelService/pom.xml" />
+        <option value="$PROJECT_DIR$/SolrService/pom.xml" />
       </list>
     </option>
   </component>
