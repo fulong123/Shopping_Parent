@@ -14,8 +14,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -131,5 +133,21 @@ public class LoginController {
         } else {
             WindowUtil.window(resp,"登录失败","/channel/toLogin");
         }
+    }
+
+    //商品分类根据Id查询
+    @RequestMapping("/findByPId/{id}")
+    @ResponseBody
+    public List<GoodsType> findByPId(@PathVariable("id") Integer id){
+        return iGoods_typeFacade.selectGoods_TypeByParentId(id);
+    }
+
+    //查全部
+    @RequestMapping("/query/{id}")
+    @ResponseBody
+    public List<GoodsType> getList(@PathVariable("id") Integer id,GoodsType goodsType){
+        goodsType.setGoodsTypeGrade(3);
+        goodsType.setParentId(id);
+        return iGoods_typeFacade.queryGoodsType(goodsType);
     }
 }

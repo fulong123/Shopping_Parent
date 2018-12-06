@@ -33,22 +33,6 @@ public class ChannelController {
     @Reference(version = "1.0.0",timeout = 10000)
     private INewsFacade iNewsFacade;
 
-    //商品分类根据Id查询
-    @RequestMapping("/findByPId/{id}")
-    @ResponseBody
-    public List<GoodsType> findByPId(@PathVariable("id") Integer id){
-        return iGoods_typeFacade.selectGoods_TypeByParentId(id);
-    }
-
-    //查全部
-    @RequestMapping("/query/{id}")
-    @ResponseBody
-    public List<GoodsType> getList(@PathVariable("id") Integer id,GoodsType goodsType){
-        goodsType.setGoodsTypeGrade(3);
-        goodsType.setParentId(id);
-        return iGoods_typeFacade.queryGoodsType(goodsType);
-    }
-
     @RequestMapping("/getChildrenByParentId")
     public @ResponseBody List<GoodsType> getChildrenByParentId(Integer parentId){
         return iGoods_typeFacade.selectGoods_TypeByParentId(parentId);

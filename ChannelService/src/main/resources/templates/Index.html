@@ -35,7 +35,7 @@
 <script type="text/javascript">
     function ShowTwoLv(obj, id) {
         $.ajax({
-            url : '/channel/findByPId/' + id,
+            url : '/findByPId/' + id,
             type : 'post',
             dataType : 'json',
             success : function(result) {
@@ -47,7 +47,7 @@
                     $("#twoLv_" + id).append(html);
 
                     $.ajax({
-                        url : '/channel/query/'+ value.goodsTypeId,
+                        url : '/query/'+ value.goodsTypeId,
                         type : 'post',
                         dataType : 'json',
                         success : function(data) {
