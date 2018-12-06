@@ -10,14 +10,12 @@ import com.dream.shopping.facade.IServiceFacade.IUserFacade;
 import com.dream.shopping.facade.po.GoodsType;
 import com.dream.shopping.facade.po.User;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -43,30 +41,6 @@ public class ChannelController {
     @Reference(version = "1.0.0",timeout = 10000)
     private INewsFacade iNewsFacade;
 
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate;
-
-    @RequestMapping("/index")
-    public String index(Model model){
-        model.addAttribute("goodsTypeList", redisTemplate.boundValueOps("goodsTypesPId").get());
-        return "Index";
-    }
-
-    @RequestMapping("/getChildrenByParentId")
-    public @ResponseBody List<GoodsType> getChildrenByParentId(Integer parentId){
-        return iGoods_typeFacade.selectGoods_TypeByParentId(parentId);
-    }
-
-    @RequestMapping("/toLogin")
-    public String toLogin(){
-        return "Login";
-    }
-
-    @RequestMapping("/toRegister")
-    public String toRegister(){
-        return "Regist";
-    }
-
     @RequestMapping("/login")
     public void login(String userLoginName, String password, HttpServletResponse resp, HttpServletRequest req){
 
@@ -87,6 +61,11 @@ public class ChannelController {
         } else {
             WindowUtil.window(resp,"登录失败","/channel/toLogin");
         }
+    }
+
+    @RequestMapping("/getChildrenByParentId")
+    public @ResponseBody List<GoodsType> getChildrenByParentId(Integer parentId){
+        return iGoods_typeFacade.selectGoods_TypeByParentId(parentId);
     }
 
     @RequestMapping("/register")
