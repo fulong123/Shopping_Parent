@@ -37,18 +37,16 @@ public class ChannelController {
     @RequestMapping("/findByPId/{id}")
     @ResponseBody
     public List<GoodsType> findByPId(@PathVariable("id") Integer id){
-        List<GoodsType> goodsType = iGoods_typeFacade.selectGoods_TypeByParentId(id);
-        return goodsType;
+        return iGoods_typeFacade.selectGoods_TypeByParentId(id);
     }
 
     //查全部
     @RequestMapping("/query/{id}")
     @ResponseBody
-    public List<GoodsType> getList(@PathVariable("id") Integer id,GoodsType goodsType,Model model){
+    public List<GoodsType> getList(@PathVariable("id") Integer id,GoodsType goodsType){
         goodsType.setGoodsTypeGrade(3);
         goodsType.setParentId(id);
-        List<GoodsType> list = iGoods_typeFacade.queryGoodsType(goodsType);
-        return list;
+        return iGoods_typeFacade.queryGoodsType(goodsType);
     }
 
     @RequestMapping("/getChildrenByParentId")

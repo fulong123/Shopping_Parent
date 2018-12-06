@@ -42,7 +42,6 @@ public class LoginController {
     @Reference(version = "1.0.0",timeout = 10000)
     private IUserFacade iUserFacade;
 
-    //测试
     @RequestMapping("/index")
     public String test(Model model){
         List<GoodsType> goodsTypeList=null;
