@@ -49,19 +49,10 @@ public class ChannelController {
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
 
-    @RequestMapping("/index")
-    public String index(Model model){
-        model.addAttribute("goodsTypeList", redisTemplate.boundValueOps("goodsTypesPId").get());
-        return "Index";
-    }
-
-    @RequestMapping("/getChildrenByParentId")
-    public @ResponseBody List<GoodsType> getChildrenByParentId(Integer parentId){
-        return iGoods_typeFacade.selectGoods_TypeByParentId(parentId);
-    }
+    
 
     //测试
-    @RequestMapping("/test")
+    @RequestMapping("/index")
     public String test(Model model){
         List<GoodsType> goodsTypeList=null;
         String goodsTypeOne= (String) redisTemplate.opsForValue().get("goodsTypesPId");
@@ -78,20 +69,20 @@ public class ChannelController {
     }
 
     //商品分类根据Id查询
-    @RequestMapping("/findByPId/")
+    @RequestMapping("/findByPId/{id}")
     @ResponseBody
-    public List<GoodsType> findByPId(Integer id){
+    public List<GoodsType> findByPId(@PathVariable("id") Integer id){
         List<GoodsType> goodsType = iGoods_typeFacade.selectGoods_TypeByParentId(id);
         return goodsType;
     }
 
     //查全部
-    @RequestMapping("/query/")
+    @RequestMapping("/query/{id}")
     @ResponseBody
-    public List<GoodsType> getList(Integer id,GoodsType goodsType,Model model){
+    public List<GoodsType> getList(@PathVariable("id") Integer id,GoodsType goodsType,Model model){
         goodsType.setGoodsTypeGrade(3);
         goodsType.setParentId(id);
-        List<GoodsType> list = iGoods_typeFacade.selectGoods_Type(goodsType);
+        List<GoodsType> list = iGoods_typeFacade.queryGoodsType(goodsType);
         return list;
     }
 
