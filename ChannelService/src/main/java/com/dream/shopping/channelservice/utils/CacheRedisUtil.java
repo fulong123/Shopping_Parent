@@ -1,6 +1,7 @@
 package com.dream.shopping.channelservice.utils;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.fastjson.JSON;
 import com.dream.shopping.facade.IServiceFacade.IGoods_TypeFacade;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -24,10 +25,8 @@ public class CacheRedisUtil {
     private IGoods_TypeFacade iGoods_typeFacade;
 
     void selectGoods_TypeByParentId(){
-        redisTemplate.opsForValue().set("goodsTypesPId",iGoods_typeFacade.selectGoods_TypeByParentId(-1) + "");
+        String jsonString = JSON.toJSONString(iGoods_typeFacade.selectGoods_TypeByParentId(-1));
+        redisTemplate.opsForValue().set("goodsTypesPId",jsonString);
     }
-
-
-
 
 }
