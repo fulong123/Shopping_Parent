@@ -25,10 +25,8 @@ public class CacheRedisUtil {
     private IGoods_TypeFacade iGoods_typeFacade;
 
     void selectGoods_TypeByParentId(){
-        redisTemplate.opsForValue().set("goodsTypesPId", JSON.toJSONString(iGoods_typeFacade.selectGoods_TypeByParentId(-1)));
+        String jsonString = JSON.toJSONString(iGoods_typeFacade.selectGoods_TypeByParentId(-1));
+        redisTemplate.opsForValue().set("goodsTypesPId",jsonString);
     }
-
-
-
 
 }
