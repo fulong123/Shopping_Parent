@@ -86,4 +86,26 @@
             resultType="com.dream.shopping.facade.po.GoodsType">
         select * from goods_type where goods_type_id=#{goodsTypeId,jdbcType=INTEGER}
     </select>
+
+    <select id="queryGoodsType" resultMap="BaseResultMap">
+        select * from goods_type
+        <include refid="goodsTypeSql"/>
+    </select>
+
+    <sql id="goodsTypeSql">
+        <where>
+            <if test="goodsName != null and goodsName != ''">
+                and goods_name like '%${goodsName}%'
+            </if>
+            <if test="goodsDes != null and goodsDes != ''">
+                and goods_des like '%${goodsDes}'
+            </if>
+            <if test="goodsTypeGrade != null and goodsTypeGrade != ''">
+                and goods_type_grade = #{goodsTypeGrade,jdbcType=INTEGER}
+            </if>
+            <if test="parentId != null and parentId != ''">
+                and parent_id = #{parentId,jdbcType=INTEGER}
+            </if>
+        </where>
+    </sql>
 </mapper>

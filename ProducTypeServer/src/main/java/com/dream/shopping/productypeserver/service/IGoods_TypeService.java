@@ -75,4 +75,13 @@ public interface IGoods_TypeService {
      * @return com.dream.shopping.facade.po.GoodsType
      */
     GoodsType selectGoods_TypeByGoodsTypeId(int id);
+
+    /**
+     * 描述
+     * @author cqq
+     * @date 2018/12/6 15:23
+     * @param [goodsType]
+     * @return java.util.List<com.dream.shopping.facade.po.GoodsType>
+     */
+    List<GoodsType> queryGoodsType(GoodsType goodsType);
 }
