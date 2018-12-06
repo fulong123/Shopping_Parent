@@ -49,7 +49,7 @@ public class ChannelController {
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
 
-    
+
 
     //测试
     @RequestMapping("/index")
