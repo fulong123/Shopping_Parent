@@ -144,7 +144,7 @@
         </span>
         <!--End 所在收货地区 End-->
         <span class="fr">
-           <span class="fl">你好，请<a th:href="@{/Login.html}">登录</a>&nbsp; <a th:href="@{/Regist.html}" style="color:#ff4e00;">免费注册</a>&nbsp;|&nbsp;<a th:href="@{/#}">我的订单</a>&nbsp;|</span>
+           <span class="fl">你好，请<a th:href="@{/channel/index}">登录</a>&nbsp; <a th:href="@{/toRegister}" style="color:#ff4e00;">免费注册</a>&nbsp;|&nbsp;<a th:href="@{/#}">我的订单</a>&nbsp;|</span>
            <span class="ss">
                <div class="ss_list">
                    <a th:href="@{/#}">收藏夹</a>
@@ -205,7 +205,7 @@
         <div class="car_t">购物车 [ <span>3</span> ]</div>
         <div class="car_bg">
             <!--Begin 购物车未登录 Begin-->
-            <div class="un_login">还未登录！<a th:href="@{/Login.html}" style="color:#ff4e00;">马上登录</a> 查看购物车！</div>
+            <div class="un_login">还未登录！<a th:href="@{/channel/index}" style="color:#ff4e00;">马上登录</a> 查看购物车！</div>
             <!--End 购物车未登录 End-->
             <!--Begin 购物车已登录 Begin-->
             <ul class="cars">
@@ -300,12 +300,14 @@
             <div class="news_t">
                 <span class="fr"><a href="#">更多 ></a></span>新闻资讯
             </div>
-            <ul>
-                <li><span>[ 特惠 ]</span><a th:href="@{/#}">掬一轮明月 表无尽惦念</a></li>
-                <li><span>[ 公告 ]</span><a th:href="@{/#}">好奇金装成长裤新品上市</a></li>
-                <li><span>[ 特惠 ]</span><a th:href="@{/#}">大牌闪购 · 抢！</a></li>
-                <li><span>[ 公告 ]</span><a th:href="@{/#}">发福利 买车就抢千元油卡</a></li>
-                <li><span>[ 公告 ]</span><a th:href="@{/#}">家电低至五折</a></li>
+            <ul >
+                <li th:each="news : ${newsList}">
+                    <span>[</span>&nbsp;<span th:text="${news.newsType}"></span>&nbsp;<span>]</span><a th:href="${news.url}"><span th:text="${news.newsTitle}"></span></a>
+                </li>
+                <!--<li><span>[ 公告 ]</span><a th:href="@{/#}">好奇金装成长裤新品上市</a></li>-->
+                <!--<li><span>[ 特惠 ]</span><a th:href="@{/#}">大牌闪购 · 抢！</a></li>-->
+                <!--<li><span>[ 公告 ]</span><a th:href="@{/#}">发福利 买车就抢千元油卡</a></li>-->
+                <!--<li><span>[ 公告 ]</span><a th:href="@{/#}">家电低至五折</a></li>-->
             </ul>
             <div class="charge_t">
                 话费充值<div class="ch_t_icon"></div>

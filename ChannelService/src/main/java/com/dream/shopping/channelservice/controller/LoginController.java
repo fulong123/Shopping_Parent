@@ -1,9 +1,7 @@
 package com.dream.shopping.channelservice.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.dream.shopping.channelservice.utils.CheckLoginUtil;
+import com.dream.shopping.channelservice.utils.JumpIndex;
 import com.dream.shopping.cmmons.utils.MD5;
 import com.dream.shopping.cmmons.utils.WindowUtil;
 import com.dream.shopping.facade.IServiceFacade.IGoods_TypeFacade;
@@ -11,7 +9,7 @@ import com.dream.shopping.facade.IServiceFacade.IUserFacade;
 import com.dream.shopping.facade.po.GoodsType;
 import com.dream.shopping.facade.po.User;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -35,8 +32,7 @@ import java.util.List;
 @Controller
 public class LoginController {
 
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate;
+    private JumpIndex jumpIndex;
 
     @Reference(timeout = 10000)
     private IGoods_TypeFacade iGoods_typeFacade;
@@ -44,20 +40,14 @@ public class LoginController {
     @Reference(version = "1.0.0",timeout = 10000)
     private IUserFacade iUserFacade;
 
+    @Autowired
+    public LoginController(JumpIndex jumpIndex){
+        this.jumpIndex = jumpIndex;
+    }
+
     @RequestMapping("/index")
     public String test(Model model){
-        List<GoodsType> goodsTypeList=null;
-        String goodsTypeOne= (String) redisTemplate.opsForValue().get("goodsTypesPId");
-        goodsTypeList= JSONObject.parseArray(goodsTypeOne,GoodsType.class);
-        if (null==goodsTypeOne){
-            GoodsType goodsType = new GoodsType();
-            goodsType.setGoodsTypeGrade(1);
-            goodsTypeList = iGoods_typeFacade.selectGoods_Type(goodsType);
-            goodsTypeOne = JSON.toJSONString(goodsTypeList);
-            redisTemplate.opsForValue().set("goodsTypesPId",goodsTypeOne);
-        }
-        model.addAttribute("goodsTypeList",goodsTypeList);
-        return "Index";
+        return jumpIndex.jumpToIndex(model);
     }
 
     @RequestMapping("/toLogin")
@@ -75,27 +65,19 @@ public class LoginController {
             @RequestParam(value = "userLoginName") String userLoginName,
             @RequestParam (value = "password") String password,
             @RequestParam (value = "passwordRepeat") String passwordRepeat,
-            @RequestParam (value = "sex") String sex,
             @RequestParam (value = "userRealName", required = false) String userRealName,
-            @RequestParam (value = "age", required = false) Integer age,
-            @RequestParam (value = "qq", required = false) String qq,
-            @RequestParam (value = "weChat", required = false) String weChat,
             @RequestParam (value = "tel", required = false) String tel,
             @RequestParam (value = "email", required = false) String email,
             HttpServletRequest req,
             HttpServletResponse resp
     ){
         if (!StringUtils.equalsIgnoreCase(password, passwordRepeat)) {
-            WindowUtil.window(resp,"密码不正确","/channel/toLogin");
+            WindowUtil.window(resp,"密码不正确","/register");
         }else {
             User user = new User();
             user.setUserLoginName(userLoginName);
             user.setPassword(MD5.getMd5(password));
             user.setUserRealName(userRealName);
-            user.setSex(sex);
-            user.setAge(age);
-            user.setQq(qq);
-            user.setWeChat(weChat);
             user.setTel(tel);
             user.setEmail(email);
             try {
@@ -105,33 +87,11 @@ public class LoginController {
                     session.setAttribute("loginUser", user);
                     WindowUtil.window(resp,"注册成功","/channel/index");
                 } else {
-                    WindowUtil.window(resp,"注册失败","/channel/toRegister");
+                    WindowUtil.window(resp,"注册失败","/register");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    @RequestMapping("/login")
-    public void login(String userLoginName, String password, HttpServletResponse resp, HttpServletRequest req){
-
-        HttpSession session = req.getSession();
-        /*code = StringUtils.trim(code);
-        Object scode = session.getAttribute("code");
-        String sessionCode = null;
-        if (scode != null)
-            sessionCode = scode.toString();
-        if (!StringUtils.equalsIgnoreCase(code, sessionCode)) {
-            msg.put("error", "验证码错误");
-            return msg;
-        }*/
-        User user = CheckLoginUtil.checkLogin(StringUtils.trim(userLoginName), StringUtils.trim(password));
-        if (null != user) {
-            session.setAttribute("loginUser", user);
-            WindowUtil.window(resp,"登陆成功","/channel/index");
-        } else {
-            WindowUtil.window(resp,"登录失败","/channel/toLogin");
         }
     }
 

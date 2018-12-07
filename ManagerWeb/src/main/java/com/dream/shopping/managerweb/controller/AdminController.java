@@ -26,8 +26,8 @@ public class AdminController {
     @Reference(version = "1.0.0",timeout = 100000)
     private IAdministerFacade admin;
 
-//    @RequestMapping("/index")
-//    public String index(){
+//    @RequestMapping("/jumpToIndex")
+//    public String jumpToIndex(){
 //        return "login";
 //    }
 
