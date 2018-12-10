@@ -1,6 +1,7 @@
 package com.dream.shopping.managerweb.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.dream.shopping.cmmons.utils.WindowUtil;
 import com.dream.shopping.facade.IServiceFacade.INewsFacade;
 import com.dream.shopping.facade.po.News;
 import org.springframework.stereotype.Controller;

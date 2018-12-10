@@ -2,17 +2,16 @@ package com.dream.shopping.channelservice.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.dream.shopping.channelservice.utils.JumpIndex;
-import com.dream.shopping.facade.IServiceFacade.IGoods_TypeFacade;
-import com.dream.shopping.facade.IServiceFacade.INewsFacade;
-import com.dream.shopping.facade.IServiceFacade.IUserFacade;
+import com.dream.shopping.facade.IServiceFacade.*;
 import com.dream.shopping.facade.po.GoodsType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.annotation.Resource;
 import java.util.List;
 
 
@@ -29,11 +28,23 @@ public class ChannelController {
 
     private JumpIndex jumpIndex;
 
-    @Reference(timeout = 10000)
+    @Reference(version = "1.0.0",timeout = 100000)
+    private INewsFacade iNewsFacade;
+
+    @Reference(version = "1.0.0",timeout = 100000)
+    private IAdvertisementFacade iAdvertisementFacade;
+
+    @Reference(timeout = 100000)
     private IGoods_TypeFacade iGoods_typeFacade;
 
-    @Reference(version = "1.0.0",timeout = 10000)
+    @Reference(version = "1.0.0",timeout = 100000)
     private IUserFacade iUserFacade;
+
+    @Reference(timeout = 100000)
+    private IGoodsFacade iGoodsFacade;
+
+    @Resource
+    private RedisTemplate<String, Object> redisTemplate;
 
     @Autowired
     public ChannelController(JumpIndex jumpIndex){
@@ -41,9 +52,8 @@ public class ChannelController {
     }
 
     @RequestMapping("/index")
-    public String test(Model model, HttpServletRequest req){
-
-        return jumpIndex.jumpToIndex(model);
+    public String test(Model model) {
+        return jumpIndex.jumpToIndex(model, redisTemplate, iGoods_typeFacade, iNewsFacade, iAdvertisementFacade);
     }
 
     @RequestMapping("/getChildrenByParentId")

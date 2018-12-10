@@ -276,9 +276,12 @@
         <div class="banner">
             <div class="top_slide_wrap">
                 <ul class="slide_box bxslider">
-                    <li><img th:src="@{/images/ban1.jpg}" width="740" height="401" /></li>
-                    <li><img th:src="@{/images/ban1.jpg}" width="740" height="401" /></li>
-                    <li><img th:src="@{/images/ban1.jpg}" width="740" height="401" /></li>
+                    <!--<li th:each="ad : ${adList}" th:if="${ad.advertisementType eq '2' && ad.goodsId eq 1}">-->
+                    <li th:each="ad : ${adList}">
+                        <a href="${ad.goodsId}">
+                            <img th:src="@{${ad.AdvertisementPhoto}}" width="740" height="401" />
+                        </a>
+                    </li>
                 </ul>
                 <div class="op_btns clearfix">
                     <a th:href="@{/#}" class="op_btn op_prev"><span></span></a>
@@ -304,10 +307,6 @@
                 <li th:each="news : ${newsList}">
                     <span>[</span>&nbsp;<span th:text="${news.newsType}"></span>&nbsp;<span>]</span><a th:href="${news.url}"><span th:text="${news.newsTitle}"></span></a>
                 </li>
-                <!--<li><span>[ 公告 ]</span><a th:href="@{/#}">好奇金装成长裤新品上市</a></li>-->
-                <!--<li><span>[ 特惠 ]</span><a th:href="@{/#}">大牌闪购 · 抢！</a></li>-->
-                <!--<li><span>[ 公告 ]</span><a th:href="@{/#}">发福利 买车就抢千元油卡</a></li>-->
-                <!--<li><span>[ 公告 ]</span><a th:href="@{/#}">家电低至五折</a></li>-->
             </ul>
             <div class="charge_t">
                 话费充值<div class="ch_t_icon"></div>
