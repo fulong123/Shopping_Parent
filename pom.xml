@@ -21,11 +21,22 @@
         <mysql-version>5.1.38</mysql-version>
     </properties>
     <dependencies>
-        <!-- 整合消息队列-->
+        <!-- 整合消息队列 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-activemq</artifactId>
         </dependency>
+        <!--&lt;!&ndash;&lt;!&ndash;这个就是Eurake的依赖文件  注册中心&ndash;&gt;&ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-starter-eureka</artifactId>-->
+            <!--<version>1.4.6.RELEASE</version>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash; 整合安全框架 &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-security</artifactId>-->
+        <!--</dependency>-->
         <!-- 实现单点登录 -->
         <dependency>
             <groupId>net.unicon.cas</groupId>

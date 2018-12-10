@@ -33,6 +33,8 @@
         <option value="$PROJECT_DIR$/AdministrationServer/pom.xml" />
         <option value="$PROJECT_DIR$/AddressServer/pom.xml" />
         <option value="$PROJECT_DIR$/ChannelService/pom.xml" />
+        <option value="$PROJECT_DIR$/Queue/pom.xml" />
+        <option value="$PROJECT_DIR$/Crontab/pom.xml" />
       </list>
     </option>
   </component>

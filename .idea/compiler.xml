@@ -20,6 +20,7 @@
         <module name="channelservice" />
         <module name="cmmons" />
         <module name="Commons" />
+        <module name="Crontab" />
         <module name="daocommons" />
         <module name="DaoCommons" />
         <module name="facade" />
@@ -36,6 +37,7 @@
         <module name="productserver" />
         <module name="productypeserver" />
         <module name="ProducTypeServer" />
+        <module name="Queue" />
         <module name="ServiceComons" />
         <module name="servicecomons" />
         <module name="shoppinguserservice" />
