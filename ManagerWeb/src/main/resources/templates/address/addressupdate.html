@@ -21,7 +21,6 @@
     <script th:src="@{/javascript/main.js}"></script>
     <script>
         $(document).ready(function () {
-
             function init() {
                 var area = $("#distributionArea").val();
                 var areas = area.split("#");
@@ -32,7 +31,6 @@
                 $("#edistrictName").val(areas[2]);
                 $("#edistrictName").trigger("change");
             }
-
             init();
             $('target').distpicker('destroy');
             $("#sub1").click(function () {

@@ -1,5 +1,6 @@
 package com.dream.shopping.facade.po;
 
+import org.apache.solr.client.solrj.beans.Field;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -21,8 +22,10 @@ public class GoodsType implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)     //主键生成策略
+    @Field(value = "goodsTypeId")
     private Integer goodsTypeId;        //商品类别id
     @Column
+    @Field(value = "goodsName")
     private String goodsName;           //类别名字
     @Column
     private String goodsDes;            //类别描述

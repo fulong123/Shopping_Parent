@@ -16,21 +16,39 @@ import java.util.List;
 public class PageBean implements Serializable {
     private static final long serialVersionUID = 2400733408054733050L;
 
-    //当前页
+    //商品总数
     private long total;
-    //当前页记录
+    //商品列表
     private List rows;
+    // 总页数
+    private int pageCount;
+    // 当前页
+    private int curPage;
 
     public PageBean() {
     }
 
-    public PageBean(long total, List rows) {
+    public PageBean(long total, List rows, int pageCount, int curPage) {
         this.total = total;
         this.rows = rows;
+        this.pageCount = pageCount;
+        this.curPage = curPage;
     }
 
-    public long getTotal() {
-        return total;
+    public int getPageCount() {
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+
+    public int getCurPage() {
+        return curPage;
+    }
+
+    public void setCurPage(int curPage) {
+        this.curPage = curPage;
     }
 
     public void setTotal(long total) {

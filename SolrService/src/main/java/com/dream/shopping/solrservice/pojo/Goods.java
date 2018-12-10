@@ -3,7 +3,6 @@ package com.dream.shopping.solrservice.pojo;
 import org.apache.solr.client.solrj.beans.Field;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
@@ -17,7 +16,6 @@ import java.io.Serializable;
 public class Goods implements Serializable {
     private static final long serialVersionUID = 5365786531943271378L;
 
-    @Id
     @Field(value = "goodsId")
     private Integer goodsId;            //商品id
     @Field(value = "goodsType")
@@ -27,7 +25,7 @@ public class Goods implements Serializable {
     @Field(value = "goodsPrice")
     private Double goodsPrice;          //商品价格
     @Field(value = "goodsPhoto")
-    private String goodsPhoto;            //商品图片
+    private String goodsPhoto;          //商品图片
 
     public Goods() {
     }
