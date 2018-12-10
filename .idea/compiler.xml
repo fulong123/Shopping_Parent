@@ -41,9 +41,11 @@
         <module name="ServiceComons" />
         <module name="servicecomons" />
         <module name="shoppinguserservice" />
-        <module name="SolrService" />
         <module name="UserService" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="SolrService" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
