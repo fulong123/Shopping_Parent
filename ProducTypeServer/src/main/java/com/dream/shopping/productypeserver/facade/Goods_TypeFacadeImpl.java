@@ -57,4 +57,9 @@ public class Goods_TypeFacadeImpl implements IGoods_TypeFacade {
     public GoodsType selectGoods_TypeByGoodsTypeId(int id) {
         return goods_typeService.selectGoods_TypeByGoodsTypeId(id);
     }
+
+    @Override
+    public List<GoodsType> queryGoodsType(GoodsType goodsType) {
+        return goods_typeService.queryGoodsType(goodsType);
+    }
 }

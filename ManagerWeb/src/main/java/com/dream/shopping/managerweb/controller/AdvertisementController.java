@@ -1,10 +1,9 @@
 package com.dream.shopping.managerweb.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.dream.shopping.cmmons.utils.WindowUtil;
 import com.dream.shopping.facade.IServiceFacade.IAdvertisementFacade;
 import com.dream.shopping.facade.po.Advertisement;
-import com.dream.shopping.facade.po.News;
-import com.dream.shopping.managerweb.utils.WindowUtil;
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import org.springframework.stereotype.Controller;

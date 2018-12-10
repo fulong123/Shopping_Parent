@@ -1,11 +1,11 @@
 package com.dream.shopping.managerweb.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.dream.shopping.cmmons.utils.MD5;
+import com.dream.shopping.cmmons.utils.WindowUtil;
 import com.dream.shopping.facade.IServiceFacade.IAdministerFacade;
 import com.dream.shopping.facade.po.Administrator;
 import com.dream.shopping.facade.vo.AdminVo;
-import com.dream.shopping.managerweb.utils.MD5;
-import com.dream.shopping.managerweb.utils.WindowUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,8 +26,8 @@ public class AdminController {
     @Reference(version = "1.0.0",timeout = 100000)
     private IAdministerFacade admin;
 
-//    @RequestMapping("/index")
-//    public String index(){
+//    @RequestMapping("/jumpToIndex")
+//    public String jumpToIndex(){
 //        return "login";
 //    }
 

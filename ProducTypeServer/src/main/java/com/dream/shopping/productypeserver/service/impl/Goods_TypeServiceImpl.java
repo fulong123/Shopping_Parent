@@ -56,4 +56,9 @@ public class Goods_TypeServiceImpl implements IGoods_TypeService {
     public GoodsType selectGoods_TypeByGoodsTypeId(int id) {
         return goods_typeMapper.selectGoods_TypeByGoodsTypeId(id);
     }
+
+    @Override
+    public List<GoodsType> queryGoodsType(GoodsType goodsType) {
+        return goods_typeMapper.queryGoodsType(goodsType);
+    }
 }
